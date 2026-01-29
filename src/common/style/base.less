@@ -1,0 +1,149 @@
+/**
+ * @DATE: 2019-09-02 14:59
+ * @Version: 0.0.1
+ * @Author: yunchangJia
+ * @Description: 定义默认样式
+ * @Update: 更新内容 by yunchangJia 2019-09-02 14:59
+ * @Update: 把color文件中定义的一些设置变量转移到此，必免多次加载 by huhaiou 2020/3/20 1:40 PM
+ */
+
+/**
+ * 引入外部文件
+ * color    【 颜色统一文件 】
+ * reset    【 默认 css 重置文件 】
+ */
+@import "color";
+@import 'reset';
+@import '../subgroup/resetClass';
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+/* 其它变量 */
+// layout
+@layout_header: 44px; // 顶部高度
+@layout_footer: 22px; // 底部高度
+@layout_slideMenu: 26px; // 横向导航栏高度
+@layout-sider-collapsed: 60px; // 菜单折叠宽度
+
+.wheader-h {
+  height: @layout_header;
+}
+.wfooter-h {
+  height: @layout_footer;
+}
+.wcside-w {
+  width: @layout-sider-collapsed;
+}
+
+// font-size
+@fs10: 10px;
+@fs12: 12px;
+@fs14: 14px;
+@fs16: 16px;
+@fs18: 18px;
+@fs20: 20px;
+@fs22: 22px;
+@fs24: 24px;
+@fs26: 26px;
+@fs28: 28px;
+@fs30: 30px;
+@fs32: 32px;
+@fs34: 34px;
+@fs36: 36px;
+@fs38: 38px;
+@fs40: 40px;
+@fs42: 42px;
+@fs44: 44px;
+@fs48: 48px;
+@fs52: 52px;
+@fs60: 60px;
+@fs64: 64px;
+@fs72: 72px;
+@fs80: 80px;
+@fs92: 92px;
+@fs100: 100px;
+
+.wfs10 {
+  font-size: @fs10;
+}
+.wfs12 {
+  font-size: @fs12;
+}
+.wfs14 {
+  font-size: @fs14;
+}
+.wfs16 {
+  font-size: @fs16;
+}
+.wfs18 {
+  font-size: @fs18;
+}
+.wfs20 {
+  font-size: @fs20;
+}
+.wfs22 {
+  font-size: @fs22;
+}
+.wfs24 {
+  font-size: @fs24;
+}
+.wfs26 {
+  font-size: @fs26;
+}
+.wfs28 {
+  font-size: @fs28;
+}
+.wfs30 {
+  font-size: @fs30;
+}
+.wfs32 {
+  font-size: @fs32;
+}
+.wfs34 {
+  font-size: @fs34;
+}
+.wfs36 {
+  font-size: @fs36;
+}
+.wfs38 {
+  font-size: @fs38;
+}
+.wfs40 {
+  font-size: @fs40;
+}
+.wfs42 {
+  font-size: @fs42;
+}
+.wfs48 {
+  font-size: @fs48;
+}
+.wfs60 {
+  font-size: @fs60;
+}
+.wfs60 {
+  font-size: @fs60;
+}
+.wfs64 {
+  font-size: @fs64;
+}
+.wfs72 {
+  font-size: @fs72;
+}
+.wfs80 {
+  font-size: @fs80;
+}
+.wfs92 {
+  font-size: @fs92;
+}
+.wfs100 {
+  font-size: @fs100;
+}
+
+// sideMenu
+@menu-collapsed-width: 50px;

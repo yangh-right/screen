@@ -1,0 +1,89 @@
+/**
+ * @DATE:  2019/6/28 16:05
+ * @Version: 0.0.1
+ * @Author: yunchangJia
+ * @Description: 重置主体内容 -- color一般来源于深浅同一变量不同颜色值（与主题有关）
+ * @Update: 重置合并成大页面时的一些组件及字体大小 by huhaiou 2020/3/20 1:38 PM
+ */
+
+.two-screen {
+  zoom: 2;
+}
+
+.big-outer-container {
+  .page-inner-container:not(.two-screen) {
+    // 为了让1/3页面边框显示，设置边框宽度为3
+    .ant-radio-group .ant-radio-button-wrapper,
+    input,
+    .ant-checkbox-inner,
+    .wsbgc-dropdown {
+      border-width: 3px !important;
+    }
+    .ant-select-arrow {
+      zoom: 3;
+      right: 3px;
+    }
+    .ant-checkbox {
+      .ant-checkbox-inner:after {
+        zoom: 3;
+        left: 28%;
+        top: -28%;
+        border-width: 1px !important;
+      }
+    }
+  }
+  .page-inner-container.two-screen {
+    .ant-checkbox {
+      .ant-checkbox-inner:after {
+        zoom: 2;
+      }
+    }
+  }
+}
+
+.ant-radio-group,
+.ant-btn {
+  font-size: 32px;
+  height: auto !important;
+  .ant-radio-button-wrapper {
+    background-color: transparent !important;
+  }
+  &.ant-radio-group-small {
+    font-size: 16px;
+    .ant-radio-button-wrapper {
+      padding: 2px 18px !important;
+    }
+  }
+  .ant-radio-button-wrapper {
+    padding: 7px 30px;
+    height: auto;
+    line-height: 1.2;
+    &[size='small'] {
+      font-size: 20px;
+      padding: 0 10px;
+    }
+  }
+}
+
+.ant-dropdown-menu-item,
+.ant-dropdown-menu-submenu-title,
+.ant-select-dropdown-menu-item {
+  line-height: 1.5;
+}
+
+.ant-select {
+  .ant-select-selection--single {
+    height: auto;
+  }
+  .ant-select-selection__rendered {
+    line-height: 1.5;
+  }
+}
+
+.ant-checkbox {
+  .ant-checkbox-input,
+  .ant-checkbox-inner {
+    background: transparent !important;
+    border-color: @sbd-1-cls!important;
+  }
+}

@@ -1,0 +1,38 @@
+section.full-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  > * {
+    flex: 1;
+    overflow-y: auto;
+  }
+}
+.query-table-wrapper{
+  display: flex;
+  flex-direction: column;
+  .query-form-container {
+    padding: 16px;
+    width: 100%;
+    height: 60px;
+    flex: 0 0 auto;
+    overflow: hidden;
+  }
+  .query-table-container {
+    height: 100%;
+    overflow-y: auto;
+    .action-wrapper {
+      display: flex;
+      /*justify-content: space-between;*/
+      a {
+        margin-right: 16px;
+      }
+    }
+  }
+  .query-pagination-container {
+    padding: 53px 0 34px;
+    height: 106px;
+    text-align: center;
+    flex: 0 0 auto;
+  }
+}

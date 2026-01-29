@@ -1,0 +1,89 @@
+/**
+ * @DATE: 2019-10-12 14:15
+ * @Version: 0.0.1
+ * @Author:
+ * @Description: 重置ant design 组件--布局等不包括颜色和图片等区分主题的重定义
+ * @Update: 更新内容 by yunchangJia 2019-10-12 14:15
+ * @Update: 添加头部导航背景样式 by liuct 2019-12-13 13:45
+ */
+@import '../subgroup/cpts/dateDisplay';
+
+@import '../subgroup/cpts/tipReset';
+
+@import '../subgroup/cpts/DataEntry';
+
+@import '../subgroup/cpts/Ctree';
+
+/*重置ant-layout-head头部导航*/
+.ant-layout-header {
+  .ant-menu {
+    background-color: transparent !important;
+  }
+}
+
+/* 重置ant-layout-sider侧边导航 */
+.ant-layout-sider {
+  // 整体背景
+  &.ant-layout-sider-collapsed {
+    flex: 0 0 @menu-collapsed-width!important;
+    max-width: @menu-collapsed-width!important;
+    min-width: @menu-collapsed-width!important;
+    width: @menu-collapsed-width !important;
+  }
+}
+
+/* 重置tab */
+.ant-tabs.ant-tabs-card {
+  flex: none;
+  padding-right: 80px;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  .ant-tabs-card-bar {
+    margin: 0;
+    border: none;
+    .ant-tabs-nav-container {
+      height: @layout_slideMenu;
+      margin: 0;
+      .ant-tabs-tab {
+        line-height: @layout_slideMenu;
+        margin-right: 0;
+        padding-right: 10px !important;
+        &:first-child {
+          padding: 0 8px;
+          pointer-events: none;
+          .homePageIcon {
+            i {
+              margin: 0;
+            }
+          }
+        }
+        .tab-title {
+          font-size: @fs12;
+        }
+      }
+    }
+  }
+}
+
+// .main-configuration-box {
+//   .configuration-pump {
+//     position: absolute;
+//     top: 70px;
+//     left: 70px;
+//     width: 210px;
+
+//     .ant-select {
+//       width: 100%;
+
+//       .ant-select-selection {
+//         background: none;
+//         border: 1px solid #00ffff;
+//       }
+
+//       .ant-select-selection__rendered {
+//         line-height: 40px;
+//       }
+//     }
+//   }
+// }

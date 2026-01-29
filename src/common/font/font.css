@@ -1,0 +1,23 @@
+
+@font-face {
+  font-family: 'PangMenZhengDao';
+  src: url('./PangMenZhengDaoBiaoTiTi-1.ttf');
+  font-weight: 400;
+}
+@font-face {
+    font-family: 'MiSans-Regular';
+    src: url('./MiSans-Regular.ttf');
+    font-weight: 400;
+}
+@font-face {
+    font-family:  'MiSans-Normal';
+    src: url('./MiSans-Regular.ttf');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'MiSans-Bold';
+    src: url('./MiSans-Bold.ttf');
+    font-weight: 600;
+}
+
+

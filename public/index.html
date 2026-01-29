@@ -1,0 +1,38 @@
+<!--
+ * @Author: wangyr
+ * @Date: 2024-05-28 09:32:25
+ * @LastEditors: wangyr
+ * @LastEditTime: 2024-10-30 15:45:36
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+
+    <!-- 其他静态资源 -->
+    <script type="text/javascript" src="<%= BASE_URL %>static/hkisc/jsencrypt.min.js"></script>
+    <script type="text/javascript" src="<%= BASE_URL %>static/hkisc/jsWebControl-1.0.0.min.js"></script>
+    <script type="text/javascript" src="<%= BASE_URL %>static/hkisc/playback.js"></script>
+    <script type="text/javascript" src="<%= BASE_URL %>static/hkisc/h5player.min.js"></script>
+    <script type="text/javascript" src="<%= BASE_URL %>static/serverConfig.js"></script>
+    <script type="text/javascript" src="<%= BASE_URL %>static/jswebrtc.js"></script>
+
+    <script src="./video/hkH5/h5player.min.js" defer></script>
+    <script src="./video/hkisc/jsWebcontrol-1.0.0.min.js" defer></script>
+    <script src="./video/imouPlayer/imouplayer.js" defer></script>
+  </head>
+  <body>
+    <noscript>
+      <strong
+        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please
+        enable it to continue.</strong
+      >
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>

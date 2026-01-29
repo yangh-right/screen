@@ -1,0 +1,8 @@
+node_modules/
+**/*.spec.*
+**/style/
+**/MarkerDivide/
+*.html
+**/VcTree
+**/searchTree
+**.vue

@@ -1,0 +1,100 @@
+{
+  "nodeList": [
+    {
+      "type": "start",
+      "typeName": "开始",
+      "nodeName": "开始",
+      "id": "34v56ha2l9c000",
+      "no":"34v56ha2l9c000",
+      "top": "160px",
+      "left": "100px",
+      "descs": null
+    },
+    {
+      "type": "judgement",
+      "typeName": "条件分支",
+      "nodeName": "条件分支",
+      "id": "5sdjugrcqhc000",
+      "no":"5sdjugrcqhc000",
+      "top": "300px",
+      "left": "215px",
+      "descs": ["如果 在本市合法稳定就业缴纳社会保险6个月以上 等于 满足"],
+      "data": {
+        "lineObjList": []
+      }
+    },
+    {
+      "type": "rule",
+      "typeName": "规则节点",
+      "nodeName": "申请居住证年限",
+      "id": "3atqi5p6oa4000",
+      "no":"3atqi5p6oa4000",
+      "top": "80px",
+      "left": "600px",
+      "descs": ["如果 居住证年限 大于等于 5", "那么 积分 =75", "否则 那么 积分 =积分*15"],
+      "data": {
+        "lineObjList": []
+      }
+    },
+    {
+      "type": "rule",
+      "typeName": "规则节点",
+      "nodeName": "缴纳社会保险年限",
+      "id": "49vcu89p5q0000",
+      "no":"49vcu89p5q0000",
+      "top": "245px",
+      "left": "600px",
+      "descs": [
+        "如果 缴纳社会保险年限 小于等于 5",
+        "那么 积分 =积分 +缴纳社会保险年限*75",
+        "否则 那么 积分 =积分 + 75"
+      ],
+      "data": {
+        "lineObjList": []
+      }
+    },
+    {
+      "type": "calculate",
+      "typeName": "计算节点",
+      "nodeName": "计算",
+      "id": "1jhiilb0t2tc00",
+      "no": "1jhiilb0t2tc00",
+      "top": "180px",
+      "left": "980px",
+      "descs": ["是否可落户"],
+      "data": {
+        "lineObjList": []
+      }
+    },
+    {
+      "type": "end",
+      "typeName": "结束",
+      "nodeName": "结束",
+      "id": "1ogr3wzy6zhc00",
+      "no": "1ogr3wzy6zhc00",
+      "top": "180px",
+      "left": "1260px",
+      "descs": null,
+      "data": {
+        "lineObjList": [],
+        "top": "180px",
+        "left": "1260px",
+        "nodeData": {},
+        "nodeTwigs": [],
+        "nodeVariable": [],
+        "paramObjList": [],
+        "resultSetting": [],
+        "scriptList": [],
+        "passBool": false
+      }
+    }
+  ],
+  "lineList": [
+    { "from": "34v56ha2l9c000", "to": "5sdjugrcqhc000", "label": "", "id": "5n6pp5xqd6s000", "Remark": "" },
+    { "from": "5sdjugrcqhc000", "to": "3atqi5p6oa4000", "label": "1", "id": "2a0ya9j1kev400", "Remark": "" },
+    { "from": "5sdjugrcqhc000", "to": "49vcu89p5q0000", "label": "2", "id": "zoisvo5gpvk00", "Remark": "" },
+    { "from": "3atqi5p6oa4000", "to": "1jhiilb0t2tc00", "label": "", "id": "4xkb3dju1g0000", "Remark": "" },
+    { "from": "49vcu89p5q0000", "to": "1jhiilb0t2tc00", "label": "", "id": "ldc917l47w000", "Remark": "" },
+    { "from": "1jhiilb0t2tc00", "to": "1ogr3wzy6zhc00", "label": "", "id": "478galw3u34000", "Remark": "" }
+  ]
+}
