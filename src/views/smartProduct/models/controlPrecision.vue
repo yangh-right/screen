@@ -17,7 +17,7 @@
             <div class="star"></div>
           </div>
           <div class="value">
-            <div class="value-input">{{ item.errorValue }}</div>
+            <div class="value-input">{{ item.realData }}</div>
             <div class="unit">mg/L</div>
           </div>
           <div class="name">
@@ -39,6 +39,7 @@
 <script>
 import moment from 'moment';
 import { controlAccuracy } from '@/api/smartProduct';
+import { getRealDataByPointConfigCode } from '@/api/smartProduct';
 export default {
   name: 'controlTheory',
   components: {
@@ -53,31 +54,11 @@ export default {
   data() {
     return {
       poolList: [
-        { value: 0, label: '南池' },
+        { value: 2, label: '南池' },
         { value: 1, label: '北池' }
       ],
       line: 0,
       dataList: [
-        {
-          errorValue: '0',
-          precisionValue: '0',
-          title: '南池一级好氧池末段'
-        },
-        {
-          errorValue: '0',
-          precisionValue: '0',
-          title: '南池二级好氧池末段'
-        },
-        {
-          errorValue: '0',
-          precisionValue: '0',
-          title: '北池一级好氧池末段'
-        },
-        {
-          errorValue: '0',
-          precisionValue: '0',
-          title: '北池二级好氧池末段'
-        }
       ]
     };
   },
@@ -95,31 +76,41 @@ export default {
   created() {},
   methods: {
     async initData() {
-      this.getData(0);
-      this.getData(1);
+      this.getData();
     },
-    async getData(line) {
-      let params = {
-        endTime: moment().endOf('day').format('YYYY-MM-DD HH:mm:ss'),
-        line: line,
-        queryType: 'hours',
-        startTime: moment().startOf('day').format('YYYY-MM-DD HH:mm:ss'),
-        waterPlantId: this.waterPlantId
+    async getData() {
+      let setSouthPrecisionAerationParams = {
+          configCode: 'south_do_set_precision_aeration',
+          pumpHouseId: this.waterPlantId
       };
-      let { resultData, status } = await controlAccuracy(params);
-      if (status === 'complete') {
-        if (!line) {
-          this.dataList[0].errorValue = resultData.firstEndRealPv ?? 0;
-          this.dataList[1].errorValue = resultData.secondMiddleRealPv ?? 0;
-          this.dataList[0].precisionValue = resultData.firstEndDesignPv ?? 0;
-          this.dataList[1].precisionValue = resultData.secondMiddleDesignPv ?? 0;
-        } else {
-          this.dataList[2].errorValue = resultData.firstEndRealPv ?? 0;
-          this.dataList[3].errorValue = resultData.secondMiddleRealPv ?? 0;
-          this.dataList[2].precisionValue = resultData.firstEndDesignPv ?? 0;
-          this.dataList[3].precisionValue = resultData.secondMiddleDesignPv ?? 0;
-        }
-      }
+      let setSouthPrecisionAerationResultData = await getRealDataByPointConfigCode(setSouthPrecisionAerationParams);
+      let realSouthPrecisionAerationParams = {
+          configCode: 'south_do_real_precision_aeration',
+          pumpHouseId: this.waterPlantId
+      };
+      let realSouthPrecisionAerationResultData = await getRealDataByPointConfigCode(realSouthPrecisionAerationParams);
+
+      let setNorthPrecisionAerationParams = {
+          configCode: 'north_do_set_precision_aeration',
+          pumpHouseId: this.waterPlantId
+      };
+      let setNorthPrecisionAerationResultData = await getRealDataByPointConfigCode(setNorthPrecisionAerationParams);
+      let realNorthPrecisionAerationParams = {
+          configCode: 'south_do_set_precision_aeration',
+          pumpHouseId: this.waterPlantId
+      };
+      let  realNorthPrecisionAerationResultData = await getRealDataByPointConfigCode(realNorthPrecisionAerationParams);
+      this.dataList.push({
+        precisionValue: setSouthPrecisionAerationResultData?.resultData?.[0]?.pointValueRatio || 0,
+        realData: realSouthPrecisionAerationResultData?.resultData?.[0]?.pointValueRatio ?? 0,
+        title: '南侧生物池'
+      });
+      this.dataList.push({
+        precisionValue: setNorthPrecisionAerationResultData?.resultData?.[0]?.pointValueRatio || 0,
+        realData: realNorthPrecisionAerationResultData?.resultData?.[0]?.pointValueRatio ?? 0,
+        title: '北侧生物池'
+      });
+      console.log('data...', setNorthPrecisionAerationResultData);
     },
     lineChange() {
       this.initData();
@@ -143,7 +134,7 @@ export default {
     &__item {
       flex: 1;
       margin-right: 17px;
-      max-width: 242px;
+      max-width: 360px;
       height: 100%;
       padding-top: 10px;
       background: url('~@/assets/img/smartProduct/precision-bg1.png') no-repeat;

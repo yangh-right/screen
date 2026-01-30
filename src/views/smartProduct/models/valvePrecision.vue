@@ -9,16 +9,27 @@
   <unit-card cardTitle="阀门控制精度" cardType="3" :showTime="false">
     <div class="card-inner">
       <div class="box">
-        <div class="box__item" v-for="pool in dataList" :key="pool.poolName">
-          <div class="position">{{ pool.poolName }}</div>
+        <div class="box__item">
+          <div class="position">南池</div>
           <div class="data">
-            <div class="data__item" v-for="(data, index) in pool.data" :key="data.pointName">
-              <div class="point"><gradientShadowText :text="index + 1 + '控制点'"></gradientShadowText></div>
-              <div class="name">阀门开度</div>
-              <div class="value">{{ data.Stroke_Act }}</div>
+            <div class="data__item" v-for="data in southDataList" :key="data.pointName">
+              <div class="point"><gradientShadowText :text="data.deviceName"></gradientShadowText></div>
+              <div class="value">{{ data.pointMemo }}</div>
               <div class="split"></div>
-              <div class="name">曝气流量</div>
-              <div class="value">{{ data.Air_Flow }}</div>
+              <div class="value">{{ data.pointValueRatio }}{{ data.pointUnit }}</div>
+              <div class="split"></div>
+            </div>
+          </div>
+        </div>
+        <div class="box__item">
+          <div class="position">北池</div>
+          <div class="data">
+            <div class="data__item" v-for="data in northDataList" :key="data.pointName">
+              <div class="point"><gradientShadowText :text="data.deviceName"></gradientShadowText></div>
+              <div class="value">{{ data.pointMemo }}</div>
+              <div class="split"></div>
+              <div class="value">{{ data.pointValueRatio }}{{ data.pointUnit }}</div>
+              <div class="split"></div>
             </div>
           </div>
         </div>
@@ -30,7 +41,7 @@
 <script>
 import uuid from '@/utils/uuid';
 import { getRealDataByPointConfigCode } from '@/api/smartProduct';
-import { processPointsData, POINTS_CONFIG, POINTS_LIST, getValue } from './data';
+import { processPointsData, POINTS_CONFIG, getValue } from './data';
 import gradientShadowText from '@/components/gradientShadowText';
 export default {
   name: 'valvePrecision',
@@ -46,52 +57,11 @@ export default {
   },
   data() {
     return {
-      pointsList: POINTS_LIST,
+      pointsList: [],
       pointsData: [],
-      dataList: [
-        {
-          poolName: '南池',
-          data: [
-            {
-              Stroke_Act: '--%',
-              Air_Flow: '--m³/min'
-            },
-            {
-              Stroke_Act: '--%',
-              Air_Flow: '--m³/min'
-            },
-            {
-              Stroke_Act: '--%',
-              Air_Flow: '--m³/min'
-            },
-            {
-              Stroke_Act: '--%',
-              Air_Flow: '--m³/min'
-            }
-          ]
-        },
-        {
-          poolName: '北池',
-          data: [
-            {
-              Stroke_Act: '--%',
-              Air_Flow: '--m³/min'
-            },
-            {
-              Stroke_Act: '--%',
-              Air_Flow: '--m³/min'
-            },
-            {
-              Stroke_Act: '--%',
-              Air_Flow: '--m³/min'
-            },
-            {
-              Stroke_Act: '--%',
-              Air_Flow: '--m³/min'
-            }
-          ]
-        }
-      ]
+      southDataList: [],
+      northDataList: [],
+      dataList: []
     };
   },
 
@@ -114,32 +84,22 @@ export default {
     async fetchData() {
       if (!this.waterPlantId) return;
       try {
-        const results = await this.batchApiCall(this.pointsList, async item => {
-          let params = {
-            configCode: item.code,
-            pumpHouseId: this.waterPlantId
-          };
-          const res = await getRealDataByPointConfigCode(params);
-          return {
-            error: false,
-            group: item.group,
-            ...res,
-            ...params
-          };
-        });
-
-        this.pointsData = results.filter(item => !item.error);
-        // this.pointsData = infoData;
-        this.handlePointsData();
+        let south_params = {
+          configCode: 'bio_reactor_south_precise_aeration',
+          pumpHouseId: this.waterPlantId
+        };
+        const south_precise_aeration_data = await getRealDataByPointConfigCode(south_params);
+        this.southDataList = south_precise_aeration_data.resultData;
+        let north_params = {
+          configCode: 'bio_reactor_north_precise_aeration',
+          pumpHouseId: this.waterPlantId
+        };
+        const north_precise_aeration_data = await getRealDataByPointConfigCode(north_params);
+        this.northDataList = north_precise_aeration_data.resultData;
       } catch (error) {
         this.$message.error('数据加载失败');
         console.error('数据获取失败:', error);
       }
-    },
-    handlePointsData() {
-      this.dataList[0].data = processPointsData(this.getPointsByGroup(POINTS_CONFIG.SOUTH));
-      this.dataList[1].data = processPointsData(this.getPointsByGroup(POINTS_CONFIG.NORTH));
-      this.dataList = { ...this.dataList };
     },
     async batchApiCall(items, apiCallFn) {
       if (this.loading) return [];
@@ -217,7 +177,7 @@ export default {
           flex-direction: column;
           align-items: center;
           .point {
-            width: 104px;
+            width: 160px;
             height: 28px;
             border-radius: 3px 0 0 5px;
             line-height: 28px;

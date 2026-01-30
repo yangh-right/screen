@@ -6,7 +6,7 @@
  * @Description: 稳定出水监控组件
 -->
 <template>
-  <unit-card cardTitle="稳定出水" cardType="2" :showTime="false">
+  <unit-card cardTitle="千吨水药耗" cardType="2" :showTime="false">
     <div class="card-inner">
       <div class="box">
         <line-chart :options="thirdOption"></line-chart>

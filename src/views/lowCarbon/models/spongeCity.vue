@@ -6,7 +6,7 @@
  * @Description:
 -->
 <template>
-  <unit-card cardTitle="海绵城市">
+  <unit-card cardTitle="绿色低碳">
     <div class="card-inner">
       <!-- 使用过渡组件包裹 img 标签 -->
       <div class="img-list">
@@ -17,8 +17,7 @@
         </a-carousel>
       </div>
       <div class="text">
-        永康污水厂结合项目特点运用“海绵”理念，地下建设污水厂，地上建设生态园林，消纳周边区域的地表雨水，水厂花园采用中水回用，节能降耗的同时，美化环境。
-        项目积极向公众开放，打造生态科普基地，让公众了解污水处理和海绵城市建设的成果，增强公众的环保意识。
+        永康城市污水厂以数字化技术驱动低碳转型，采用精确曝气、精确加药和智慧平台等实现污水处理全流程实时监测、动态调控与精准运维，从生产运营端切实实现节能降耗、减碳增效，推动污水处理工艺向绿色高效升级，也为区域水务行业低碳发展提供了可复制、可推广的实践范例。
       </div>
     </div>
     <image-preview-modal :visible.sync="showPreview" :imageUrl="currentImgUrl" />
@@ -44,15 +43,7 @@ export default {
       imgsList: [
         {
           id: 1,
-          url: require('@/assets/img/smartProduct/spongeCity.png')
-        },
-        {
-          id: 2,
-          url: require('@/assets/img/smartProduct/fir_house.jpg')
-        },
-        {
-          id: 3,
-          url: require('@/assets/img/smartProduct/fir_home.jpg')
+          url: require('@/assets/img/smartProduct/spongeCity.jpg')
         }
       ],
       showPreview: false,

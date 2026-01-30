@@ -1,9 +1,9 @@
 /*
  * @Author: yuan wenyu
  * @Version: 1.0.1
- * @Date: 2024-10-22 18:09:41
+ * @Date: 2025-10-22 18:09:41
  * @LastEditors: yuan wenyu
- * @LastEditTime: 2024-11-26 11:26:59
+ * @LastEditTime: 2025-11-26 11:26:59
  * @Description:
  */
 import moment from 'moment';
@@ -245,39 +245,39 @@ export const carbonData = [
       {
         name: 'PAC排放',
         dataList: [
-          { date: '2024-06', value: '874.88' },
-          { date: '2024-07', value: '790.77' },
-          { date: '2024-08', value: '694.22' },
-          { date: '2024-09', value: '653.77' },
-          { date: '2024-10', value: '657.36' },
-          { date: '2024-11', value: '597.70' },
-          { date: '2024-12', value: '492.16' }
+          { date: '2025-06', value: '874.88' },
+          { date: '2025-07', value: '790.77' },
+          { date: '2025-08', value: '694.22' },
+          { date: '2025-09', value: '653.77' },
+          { date: '2025-10', value: '657.36' },
+          { date: '2025-11', value: '597.70' },
+          { date: '2025-12', value: '492.16' }
         ],
         unit: 'tCO2'
       },
       {
         name: '乙酸钠排放',
         dataList: [
-          { date: '2024-06', value: '728.62' },
-          { date: '2024-07', value: '842.46' },
-          { date: '2024-08', value: '951.47' },
-          { date: '2024-09', value: '931.94' },
-          { date: '2024-10', value: '851.63' },
-          { date: '2024-11', value: '757.60' },
-          { date: '2024-12', value: '929.66' }
+          { date: '2025-06', value: '728.62' },
+          { date: '2025-07', value: '842.46' },
+          { date: '2025-08', value: '951.47' },
+          { date: '2025-09', value: '931.94' },
+          { date: '2025-10', value: '851.63' },
+          { date: '2025-11', value: '757.60' },
+          { date: '2025-12', value: '929.66' }
         ],
         unit: 'tCO2'
       },
       {
         name: '次氯酸钠排放',
         dataList: [
-          { date: '2024-06', value: '55.55' },
-          { date: '2024-07', value: '27.43' },
-          { date: '2024-08', value: '54.80' },
-          { date: '2024-09', value: '62.47' },
-          { date: '2024-10', value: '27.34' },
-          { date: '2024-11', value: '27.51' },
-          { date: '2024-12', value: '54.94' }
+          { date: '2025-06', value: '55.55' },
+          { date: '2025-07', value: '27.43' },
+          { date: '2025-08', value: '54.80' },
+          { date: '2025-09', value: '62.47' },
+          { date: '2025-10', value: '27.34' },
+          { date: '2025-11', value: '27.51' },
+          { date: '2025-12', value: '54.94' }
         ],
         unit: 'tCO2'
       }
@@ -290,26 +290,26 @@ export const carbonData = [
       {
         name: '生产用电排放',
         dataList: [
-          { date: '2024-06', value: '405.03' },
-          { date: '2024-07', value: '460.44' },
-          { date: '2024-08', value: '560.15' },
-          { date: '2024-09', value: '612.19' },
-          { date: '2024-10', value: '569.11' },
-          { date: '2024-11', value: '735.14' },
-          { date: '2024-12', value: '594.73' }
+          { date: '2025-06', value: '405.03' },
+          { date: '2025-07', value: '460.44' },
+          { date: '2025-08', value: '560.15' },
+          { date: '2025-09', value: '612.19' },
+          { date: '2025-10', value: '569.11' },
+          { date: '2025-11', value: '735.14' },
+          { date: '2025-12', value: '594.73' }
         ],
         unit: 'tCO2'
       },
       {
         name: '办公用电排放',
         dataList: [
-          { date: '2024-06', value: '2.06' },
-          { date: '2024-07', value: '2.03' },
-          { date: '2024-08', value: '1.46' },
-          { date: '2024-09', value: '2.46' },
-          { date: '2024-10', value: '2.80' },
-          { date: '2024-11', value: '3.06' },
-          { date: '2024-12', value: '3.82' }
+          { date: '2025-06', value: '2.06' },
+          { date: '2025-07', value: '2.03' },
+          { date: '2025-08', value: '1.46' },
+          { date: '2025-09', value: '2.46' },
+          { date: '2025-10', value: '2.80' },
+          { date: '2025-11', value: '3.06' },
+          { date: '2025-12', value: '3.82' }
         ],
         unit: 'tCO2'
       }
@@ -322,13 +322,13 @@ export const carbonData = [
       {
         name: '折二氧化碳排放',
         dataList: [
-          { date: '2024-06', value: '203.27' },
-          { date: '2024-07', value: '183.37' },
-          { date: '2024-08', value: '168.92' },
-          { date: '2024-09', value: '226.18' },
-          { date: '2024-10', value: '283.95' },
-          { date: '2024-11', value: '291.58' },
-          { date: '2024-12', value: '280.76' }
+          { date: '2025-06', value: '203.27' },
+          { date: '2025-07', value: '183.37' },
+          { date: '2025-08', value: '168.92' },
+          { date: '2025-09', value: '226.18' },
+          { date: '2025-10', value: '283.95' },
+          { date: '2025-11', value: '291.58' },
+          { date: '2025-12', value: '280.76' }
         ],
         unit: 'tCO2'
       }

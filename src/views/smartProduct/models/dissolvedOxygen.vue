@@ -47,7 +47,7 @@ export default {
       oneConfigCode: 'bio_reactor_north_precise_aeration',
       threeConfigCode: 'bio_reactor_south_precise_aeration',
       poolList: [
-        { value: 0, label: '南池' },
+        { value: 2, label: '南池' },
         { value: 1, label: '北池' }
       ],
       line: 0,

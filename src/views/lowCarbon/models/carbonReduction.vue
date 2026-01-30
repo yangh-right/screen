@@ -69,8 +69,8 @@ export default {
           { value: 12, name: '中水回用' },
           { value: 9, name: '精确曝气' },
           { value: 6, name: '精确加药' },
-          { value: 4, name: '水源热泵' },
-          { value: 2, name: '智能照明' },
+          // { value: 4, name: '水源热泵' },
+          // { value: 2, name: '智能照明' },
           { value: 1, name: '绿化' }
         ]
       });

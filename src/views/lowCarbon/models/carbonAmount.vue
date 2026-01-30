@@ -54,8 +54,8 @@ export default {
         { label: '精准曝气', color: 'yellow', value: 192.2 },
         { label: '精准加药', color: 'green', value: 1659.74 },
         { label: '中水回用', color: 'blue', value: 92.52 },
-        { label: '水源热泵', color: 'blue', value: 35.91 },
-        { label: '智能照明', color: 'yellow', value: 54 },
+        { label: '光伏发电', color: 'blue', value: 35.91 },
+        { label: '景观用水', color: 'yellow', value: 54 },
         { label: '绿化', color: 'green', value: 8 }
       ]
     };

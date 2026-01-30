@@ -1,40 +1,35 @@
-<!--
- * @Author: wangyr
- * @Date: 2023-09-05 10:30:42
- * @LastEditors: fengtaotao
- * @LastEditTime: 2025-03-18 09:51:21
- * @Description:
--->
 <template>
-  <unit-card cardTitle="照明状态">
-    <div class="card-inner">
-      <div class="total">
-        <img class="light" src="@/assets/img/smartProduct/light.png" alt="" />
-        <div class="name">回路数量</div>
-        <div class="value">{{ total }} 个</div>
-      </div>
-      <div class="status">
-        <div class="status__item" v-for="item in dataList" :key="item.name">
-          <div class="count">{{ item.count }}</div>
-          <div class="split"></div>
-          <div class="name">{{ item.name }}</div>
-          <div class="percent">
-            <span class="val">{{ item.percent }}</span>
-            <span class="unit">%</span>
-          </div>
-          <div class="rate">{{ item.rateName }}</div>
+  <unit-card cardTitle="日耗电曲线">
+    <template #headerRight>
+      <div class="date-tabs">
+        <div v-for="tab in tabs" :key="tab.value" :class="['tab-item', { active: currentTab === tab.value }]"
+          @click="handleTabChange(tab.value)">
+          {{ tab.label }}
         </div>
+      </div>
+    </template>
+    <div class="card-inner">
+      <div class="unit" v-show="hasData">kWh</div>
+      <div class="chart-box" v-show="hasData">
+        <chart ref="energyChart" :key="String(hasData)" :options="option"></chart>
+      </div>
+      <div class="chart-box no-data" v-show="!hasData">
+        暂无数据
       </div>
     </div>
   </unit-card>
 </template>
 
 <script>
-import { illuminationCondition } from '@/api/smartProduct';
+import * as echarts from 'echarts';
+import moment from 'moment';
+import { getEnergyData } from '@/api/energyAnalyse';
+
 export default {
   name: 'lightStatus',
   components: {
-    UnitCard: () => import('@/components/UnitCard.vue')
+    UnitCard: () => import('@/components/UnitCard.vue'),
+    Chart: () => import('@/components/chart/Chart.vue')
   },
   props: {
     waterPlantId: {
@@ -44,15 +39,24 @@ export default {
   },
   data() {
     return {
-      total: 0,
-      dataList: [
-        { count: 0, name: '在线数量（盏）', percent: 0, rateName: '在线率' },
-        { count: 0, name: '开灯数量（盏）', percent: 0, rateName: '亮灯率' },
-        { count: 0, name: '关灯数量（盏）', percent: 0, rateName: '关灯率' }
-      ]
+      currentTab: 'day',
+      tabs: [
+        { label: '日', value: 'hour' },
+        { label: '月', value: 'day' },
+        { label: '年', value: 'month' }
+      ],
+      option: {
+        xAxis: { type: 'category', data: [] },
+        yAxis: { type: 'value' },
+        series: []
+      }
     };
   },
-
+  computed: {
+    hasData() {
+      return this.option.series && this.option.series.length > 0 && this.option.series[0].data.length > 0;
+    }
+  },
   watch: {
     waterPlantId: {
       handler(val) {
@@ -64,118 +68,174 @@ export default {
     }
   },
   methods: {
+    handleTabChange(val) {
+      this.currentTab = val;
+      this.initData();
+    },
     async initData() {
-      const { resultData, status } = await illuminationCondition(this.waterPlantId);
-      if (status === 'complete') {
-        this.total = resultData?.totalNum ?? 0;
-        this.dataList[0].count = resultData?.onlineNum ?? 0;
-        this.dataList[0].percent = resultData?.onlineRate ?? 0;
-        this.dataList[1].count = resultData?.lightUp ?? 0;
-        this.dataList[1].percent = resultData?.lightUpRate ?? 0;
-        this.dataList[2].count = resultData?.lightDown ?? 0;
-        this.dataList[2].percent = resultData?.lightDownRate ?? 0;
-        this.dataList = [...this.dataList];
+      if (!this.waterPlantId) return;
+      // 稍微延迟，等待大屏布局完全稳定（处理 scale 缩放等）
+      await new Promise(resolve => setTimeout(resolve, 300));
+
+      let startDate, endDate;
+      const now = moment();
+
+      if (this.currentTab === 'hour') {
+        startDate = now.format('YYYY-MM-DD');
+        endDate = now.format('YYYY-MM-DD');
+      } else if (this.currentTab === 'day') {
+        startDate = now.clone().startOf('month').format('YYYY-MM-DD');
+        endDate = now.format('YYYY-MM-DD');
+      } else if (this.currentTab === 'month') {
+        startDate = now.clone().startOf('year').format('YYYY-MM-DD');
+        endDate = now.format('YYYY-MM-DD');
       }
+
+      const params = {
+        dateType: this.currentTab,
+        deviceIdList: [],
+        startDate,
+        endDate,
+        ratioFlag: true,
+        statType: 0,
+        waterPlantIdList: [this.waterPlantId]
+      };
+
+      try {
+        const { status, resultData } = await getEnergyData(params);
+        if (status === 'complete') {
+          this.renderChart(resultData || []);
+        }
+      } catch (error) {
+        console.error('获取能耗数据失败:', error);
+      }
+    },
+    renderChart(data) {
+      const xData = data.map(item => {
+        const dateStr = item.date || item.dateTime || '';
+        if (this.currentTab === 'hour') {
+          return dateStr.includes(' ') ? dateStr.split(' ')[1].slice(0, 5) : dateStr;
+        }
+        if (this.currentTab === 'day') return dateStr.split('-').slice(1).join('-'); // 取月-日
+        return dateStr; // 年月
+      });
+      const yData = data.map(item => item.powerPv);
+
+      this.option = {
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: { type: 'shadow' },
+          backgroundColor: 'rgba(0, 0, 0, 0.7)',
+          borderColor: 'transparent',
+          textStyle: { color: '#fff' }
+        },
+        legend: {
+          show: true,
+          right: '5%',
+          top: '0%',
+          textStyle: { color: '#bac9e7', fontSize: 12 },
+          icon: 'rect',
+          itemWidth: 10,
+          itemHeight: 10
+        },
+        grid: {
+          top: '15%',
+          left: '3%',
+          right: '4%',
+          bottom: '5%',
+          containLabel: true
+        },
+        xAxis: {
+          type: 'category',
+          data: xData,
+          axisLine: { lineStyle: { color: 'rgba(255, 255, 255, 0.1)' } },
+          axisLabel: { color: '#bac9e7', fontSize: 12, rotate: xData.length > 12 ? 30 : 0 },
+          axisTick: { show: false }
+        },
+        yAxis: {
+          type: 'value',
+          axisLine: { show: false },
+          axisLabel: { color: '#bac9e7', fontSize: 12 },
+          splitLine: { lineStyle: { color: 'rgba(255, 255, 255, 0.05)' } }
+        },
+        series: [{
+          name: '耗电量',
+          type: 'line',
+          smooth: true,
+          symbol: 'circle',
+          symbolSize: 6,
+          lineStyle: {
+            width: 3,
+            color: '#00d2ff'
+          },
+          areaStyle: {
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+              { offset: 0, color: 'rgba(0, 210, 255, 0.3)' },
+              { offset: 1, color: 'rgba(0, 102, 255, 0)' }
+            ])
+          },
+          data: yData,
+          itemStyle: {
+            color: '#00d2ff',
+            borderColor: '#fff',
+            borderWidth: 2
+          }
+        }]
+      };
     }
   }
 };
 </script>
 
 <style lang="less" scoped>
+.date-tabs {
+  display: flex;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+
+  .tab-item {
+    padding: 2px 10px;
+    font-size: 14px;
+    color: #bac9e7;
+    cursor: pointer;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:last-child {
+      border-right: none;
+    }
+
+    &.active {
+      background: #1890ff;
+      color: #fff;
+    }
+  }
+}
+
 .card-inner {
   width: 100%;
   height: 100%;
-  padding: 17px 20px 0;
-  .total {
-    height: 46px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 17px;
-    background: url('~@/assets/img/smartProduct/light-title.png') no-repeat;
-    background-size: 100% 100%;
-    position: relative;
-    padding: 0 72px;
-    .light {
-      position: absolute;
-      left: 6.5px;
-      width: 51px;
-      height: 51px;
-    }
-    .name {
-      font-family: AlibabaPuHuiTi-Regular, sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      color: #bac9e7;
-      letter-spacing: 0.46px;
-      margin-right: 42px;
-    }
-    .value {
-      font-family: AlibabaPuHuiTiM, sans-serif;
-      font-size: 18px;
-      color: #ffffff;
-      letter-spacing: 0.51px;
-    }
-  }
-  .status {
-    display: flex;
-    align-items: center;
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
 
-    &__item {
-      flex: 1;
-      overflow: hidden;
+  .unit {
+    font-size: 12px;
+    color: #bac9e7;
+    margin-bottom: 5px;
+  }
+
+  .chart-box {
+    flex: 1;
+    min-height: 0;
+
+    &.no-data {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      margin-right: 29.34px;
-      &:nth-last-child(1) {
-        margin-right: 0;
-      }
-      .count {
-        font-family: AlibabaPuHuiTiM, sans-serif;
-        font-size: 24px;
-        color: #ffffff;
-        letter-spacing: 0;
-      }
-      .split {
-        width: 100%;
-        border: 1.28px solid #203a57;
-        margin: 8px 0;
-      }
-      .name {
-        width: 100%;
-        height: 33.34px;
-        background: rgba(35, 88, 146, 0.4);
-        font-family: AlibabaPuHuiTi-Regular, sans-serif;
-        font-weight: 400;
-        font-size: 14px;
-        color: #bac9e7;
-        letter-spacing: 0;
-        text-align: center;
-        line-height: 33.34px;
-        margin-bottom: 22.76px;
-      }
-      .percent {
-        background: url('~@/assets/img/smartProduct/light-ball.png') no-repeat;
-        background-size: 100% 100%;
-        height: 70.28px;
-        width: 70.28px;
-        text-align: center;
-        line-height: 70.28px;
-        color: #ebf4fd;
-        font-size: 24px;
-        letter-spacing: 0;
-        margin-bottom: 6.18px;
-        .unit {
-          font-size: 14px;
-        }
-      }
-      .rate {
-        font-family: AlibabaPuHuiTi-Regular, sans-serif;
-        font-weight: 400;
-        font-size: 14px;
-        color: #bac9e7;
-        text-align: center;
-      }
+      justify-content: center;
+      color: #bac9e7;
+      font-size: 14px;
     }
   }
 }

@@ -76,8 +76,8 @@ export default {
   data() {
     return {
       poolList: [
-        { value: 1, label: '南池' },
-        { value: 2, label: '北池' }
+        { value: 2, label: '南池' },
+        { value: 1, label: '北池' }
       ],
       line: 1,
       processStages: [
@@ -203,13 +203,13 @@ export default {
   text-align: center;
 
   &.process-stage-1 {
-    width: 180px;
+    width: 240px;
     height: 47px;
     background: url('~@/assets/img/smartProduct/normal.png') no-repeat;
     background-size: 100% 100%;
   }
   &.process-stage-2 {
-    width: 180px;
+    width: 240px;
     height: 70px;
     background: url('~@/assets/img/smartProduct/anaerobic_aerobic_alternating_segment.png') no-repeat;
     background-size: 100% 100%;
@@ -219,7 +219,7 @@ export default {
     }
   }
   &.process-stage-3 {
-    width: 180px;
+    width: 240px;
     height: 122px;
     background: url('~@/assets/img/smartProduct/outlet_drainage.png') no-repeat;
     background-size: 100% 100%;
@@ -237,12 +237,12 @@ export default {
     transform: translateX(-50%);
   }
   .stage-arrows {
-    width: 52px;
+    width: 160px;
     height: 38px;
     position: absolute;
     top: 50%;
-    right: -66px;
-    transform: translateY(-50%);
+    right: -140px;
+    transform: translateY(-240%);
     z-index: 0;
     background: url('~@/assets/img/smartProduct/stage-arrows.png') no-repeat;
     background-size: 100% 100%;
@@ -304,22 +304,22 @@ export default {
 }
 .stage-data_stage1 {
   top: -98px;
-  width: 160px;
+  width: 240px;
   height: 54px;
 }
 .stage-data_stage2 {
   top: -140px;
-  width: 160px;
+  width: 240px;
   height: 120px;
 }
 .stage-data_stage3 {
   top: -130px;
-  width: 160px;
+  width: 240px;
   height: 90px;
 }
 .stage-data_stage4 {
-  top: -202px;
-  width: 160px;
+  top: -220px;
+  width: 220px;
   height: 164px;
 }
 

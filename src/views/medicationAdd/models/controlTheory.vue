@@ -18,7 +18,7 @@
     </div>
     <div class="card-inner">
       <div class="second_title">
-        <div class="title">加药泵运行状况</div>
+        <div class="title">碳源消耗量</div>
       </div>
       <div class="tabs" style="height: 275px;">
         <line-chart :options="secondOption"></line-chart>

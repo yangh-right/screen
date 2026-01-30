@@ -1,59 +1,37 @@
-<!--
- * @Author: wangyr
- * @Date: 2023-05-30 19:52:35
- * @LastEditors: wangyr
- * @LastEditTime: 2024-09-10 18:46:18
- * @Description:
--->
 <template>
-  <unit-card cardTitle="自动照明">
+  <unit-card cardTitle="千吨水电耗曲线">
+    <template #headerRight>
+      <div class="date-tabs">
+        <div v-for="tab in tabs" :key="tab.value" :class="['tab-item', { active: currentTab === tab.value }]"
+          @click="handleTabChange(tab.value)">
+          {{ tab.label }}
+        </div>
+      </div>
+    </template>
     <div class="card-inner">
-      <div class="table-box">
-        <div class="table-head">
-          <div :style="{ flexBasis: item.width }" class="col" v-for="item in columns" :key="item.dataIndex + 'title'">
-            {{ item.title }}
-          </div>
-        </div>
-
-        <div class="table-body">
-          <c-split v-if="tableData.length" class="split"></c-split>
-          <div
-            @click="selectAlarm(item)"
-            v-for="(item, i) in tableData"
-            :key="i"
-            :class="['table-tr', item.isDanger ? 'table-tr--alarm' : '']"
-          >
-            <div
-              :style="{ flexBasis: col.width }"
-              :class="['col', col.dataIndex === 'temp' ? 'temp' : '']"
-              v-for="col in columns"
-              :key="col.dataIndex"
-            >
-              <span :title="item[col.dataIndex]">{{ item[col.dataIndex] }}</span>
-            </div>
-            <c-split class="split row-split"></c-split>
-          </div>
-        </div>
+      <div class="unit" v-show="hasData">kWh/m³</div>
+      <div class="chart-box" v-show="hasData">
+        <chart ref="energyChart" :key="String(hasData)" :options="option"></chart>
+      </div>
+      <div class="chart-box no-data" v-show="!hasData">
+        暂无数据
       </div>
     </div>
   </unit-card>
 </template>
 
 <script>
-import cSplit from '@/components/split';
+import * as echarts from 'echarts';
 import moment from 'moment';
-import { getPlanConfigPage } from '@/api/smartProduct';
+import { getEnergyData } from '@/api/energyAnalyse';
+
 export default {
-  name: 'autoLight',
+  name: 'lightStatus',
   components: {
-    cSplit,
-    UnitCard: () => import('@/components/UnitCard.vue')
+    UnitCard: () => import('@/components/UnitCard.vue'),
+    Chart: () => import('@/components/chart/Chart.vue')
   },
   props: {
-    title: {
-      type: String,
-      default: ''
-    },
     waterPlantId: {
       type: String,
       default: ''
@@ -61,41 +39,24 @@ export default {
   },
   data() {
     return {
-      alarmId: '',
-      columns: [
-        {
-          dataIndex: 'index',
-          title: '序号',
-          width: '60px'
-        },
-        {
-          dataIndex: 'planName',
-          title: '计划名称',
-          width: '121px'
-        },
-        {
-          dataIndex: 'startTime',
-          title: '计划开始时间',
-          width: '183px'
-        },
-        {
-          dataIndex: 'endTime',
-          title: '计划结束时间',
-          width: '183px'
-        },
-        {
-          dataIndex: 'userName',
-          title: '负责人',
-          width: '100px'
-        }
+      currentTab: 'day',
+      tabs: [
+        { label: '日', value: 'hour' },
+        { label: '月', value: 'day' },
+        { label: '年', value: 'month' }
       ],
-      scrollTimer: null,
-      scrollDirection: 'down',
-      tableData: [],
-      alarmDetail: {}
+      option: {
+        xAxis: { type: 'category', data: [] },
+        yAxis: { type: 'value' },
+        series: []
+      }
     };
   },
-  computed: {},
+  computed: {
+    hasData() {
+      return this.option.series && this.option.series.length > 0 && this.option.series[0].data.length > 0;
+    }
+  },
   watch: {
     waterPlantId: {
       handler(val) {
@@ -106,142 +67,175 @@ export default {
       immediate: true
     }
   },
-  activated() {
-    this.scrollFun();
-  },
   methods: {
-    selectAlarm(row) {},
+    handleTabChange(val) {
+      this.currentTab = val;
+      this.initData();
+    },
     async initData() {
-      let params = {
-        page: {
-          current: 1,
-          size: 10000
-        },
-        planType: '6'
+      if (!this.waterPlantId) return;
+      // 稍微延迟，等待大屏布局完全稳定（处理 scale 缩放等）
+      await new Promise(resolve => setTimeout(resolve, 300));
+
+      let startDate, endDate;
+      const now = moment();
+
+      if (this.currentTab === 'hour') {
+        startDate = now.format('YYYY-MM-DD');
+        endDate = now.format('YYYY-MM-DD');
+      } else if (this.currentTab === 'day') {
+        startDate = now.clone().startOf('month').format('YYYY-MM-DD');
+        endDate = now.format('YYYY-MM-DD');
+      } else if (this.currentTab === 'month') {
+        startDate = now.clone().startOf('year').format('YYYY-MM-DD');
+        endDate = now.format('YYYY-MM-DD');
+      }
+
+      const params = {
+        dateType: this.currentTab,
+        deviceIdList: [],
+        startDate,
+        endDate,
+        ratioFlag: true,
+        statType: 0,
+        waterPlantIdList: [this.waterPlantId]
       };
-      let { status, resultData } = await getPlanConfigPage(params);
-      if (status === 'complete') {
-        this.tableData = resultData?.records || [];
-        this.tableData.forEach((v, i) => {
-          v.index = i + 1;
-          v.startTime = moment(v.startTime).format('YYYY-MM-DD 20:00');
-          v.endTime = moment(v.endTime).format('YYYY-MM-DD 23:00');
-        });
-        // 表格内容滚动
-        setTimeout(() => {
-          this.scrollFun();
-        }, 1000);
+
+      try {
+        const { status, resultData } = await getEnergyData(params);
+        if (status === 'complete') {
+          this.renderChart(resultData || []);
+        }
+      } catch (error) {
+        console.error('获取能耗数据失败:', error);
       }
     },
-    // 自动滚动
-    scrollFun() {
-      if (this.tableData.length <= 6) {
-        return false;
-      }
-      // 如果定时器存在
-      if (this.scrollTimer) {
-        // 则先清除
-        clearInterval(this.scrollTimer);
-        this.scrollTimer = null;
-      }
-      this.scrollTimer = setInterval(() => {
-        const scrollHeight = document.querySelectorAll(`.table-box .table-body`)[0].scrollHeight;
-        const clientHeight = document.querySelectorAll(`.table-box .table-body`)[0].clientHeight;
-        if (clientHeight === 0) {
-          return false;
+    renderChart(data) {
+      const xData = data.map(item => {
+        const dateStr = item.date || item.dateTime || '';
+        if (this.currentTab === 'hour') {
+          return dateStr.includes(' ') ? dateStr.split(' ')[1].slice(0, 5) : dateStr;
         }
-        const scroll = scrollHeight - clientHeight;
-        const scrollTop = document.querySelectorAll(`.table-box .table-body`)[0].scrollTop;
-        // 向下滚动
-        if (this.scrollDirection === 'down') {
-          // 滚动速度
-          const temp = scrollTop + 2;
-          document.querySelectorAll(`.table-box .table-body`)[0].scrollTop = temp; // 滚动
-          // 距离顶部高度  大于等于 滚动长度
-          if (scroll <= temp) {
-            clearInterval(this.scrollTimer);
-            this.scrollTimer = null;
-            document.querySelectorAll(`.table-box .table-body`)[0].scrollTop = 0;
-            this.initData(this.waterPlantId);
+        if (this.currentTab === 'day') return dateStr.split('-').slice(1).join('-'); // 取月-日
+        return dateStr; // 年月
+      });
+      const yData = data.map(item => item.energy);
+
+      this.option = {
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: { type: 'shadow' },
+          backgroundColor: 'rgba(0, 0, 0, 0.7)',
+          borderColor: 'transparent',
+          textStyle: { color: '#fff' }
+        },
+        legend: {
+          show: true,
+          right: '5%',
+          top: '0%',
+          textStyle: { color: '#bac9e7', fontSize: 12 },
+          icon: 'rect',
+          itemWidth: 10,
+          itemHeight: 10
+        },
+        grid: {
+          top: '15%',
+          left: '3%',
+          right: '4%',
+          bottom: '5%',
+          containLabel: true
+        },
+        xAxis: {
+          type: 'category',
+          data: xData,
+          axisLine: { lineStyle: { color: 'rgba(255, 255, 255, 0.1)' } },
+          axisLabel: { color: '#bac9e7', fontSize: 12, rotate: xData.length > 12 ? 30 : 0 },
+          axisTick: { show: false }
+        },
+        yAxis: {
+          type: 'value',
+          axisLine: { show: false },
+          axisLabel: { color: '#bac9e7', fontSize: 12 },
+          splitLine: { lineStyle: { color: 'rgba(255, 255, 255, 0.05)' } }
+        },
+        series: [{
+          name: '千吨水电耗曲线',
+          type: 'line',
+          smooth: true,
+          symbol: 'circle',
+          symbolSize: 6,
+          lineStyle: {
+            width: 3,
+            color: '#ff6b6b'
+          },
+          areaStyle: {
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+              { offset: 0, color: 'rgba(255, 107, 107, 0.3)' },
+              { offset: 1, color: 'rgba(255, 107, 107, 0)' }
+            ])
+          },
+          data: yData,
+          itemStyle: {
+            color: '#ff6b6b',
+            borderColor: '#fff',
+            borderWidth: 2
           }
-        }
-      }, 300);
-    },
-    // 停止滚动
-    pauseScroll() {
-      if (this.scrollTimer) {
-        clearInterval(this.scrollTimer);
-        this.scrollTimer = null;
-      }
+        }]
+      };
     }
-  },
-  deactivated() {
-    this.pauseScroll();
-  },
-  beforeDestroy() {
-    this.pauseScroll();
   }
 };
 </script>
 
 <style lang="less" scoped>
+.date-tabs {
+  display: flex;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+
+  .tab-item {
+    padding: 2px 10px;
+    font-size: 14px;
+    color: #bac9e7;
+    cursor: pointer;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:last-child {
+      border-right: none;
+    }
+
+    &.active {
+      background: #1890ff;
+      color: #fff;
+    }
+  }
+}
+
 .card-inner {
   width: 100%;
   height: 100%;
-  position: relative;
-  padding: 20px 0;
-  .table-box {
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
 
-    .col {
-      text-align: left;
-      padding-left: 12px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-    .table-head {
-      height: 40px;
+  .unit {
+    font-size: 12px;
+    color: #bac9e7;
+    margin-bottom: 5px;
+  }
+
+  .chart-box {
+    flex: 1;
+    min-height: 0;
+
+    &.no-data {
       display: flex;
       align-items: center;
-      font-family: AlibabaPuHuiTiM, sans-serif;
-      font-size: 16px;
-      color: #ffffff;
-      letter-spacing: 0;
-    }
-    .split {
-      &.row-split {
-        position: absolute;
-        bottom: 0;
-      }
-    }
-    .table-body {
-      width: 100%;
-      height: calc(100% - 40px);
-      overflow: auto;
-      &::-webkit-scrollbar {
-        width: 0px;
-      }
-    }
-    .table-tr {
-      height: 40px;
-      display: flex;
-      font-family: AlibabaPuHuiTi-Regular, sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      color: #bfd5ff;
-      letter-spacing: 0;
-      line-height: 40px;
-      position: relative;
-      &--alarm {
-        background: url('~@/assets/img/smartSafe/row-temp.png') no-repeat;
-        background-size: 100% 100%;
-        .temp {
-          color: #ff5a5a;
-        }
-      }
+      justify-content: center;
+      color: #bac9e7;
+      font-size: 14px;
     }
   }
 }

@@ -378,6 +378,15 @@ export default {
           }
         });
       });
+      setTimeout(() => {
+        // 平移到稍微偏移的位置（向西南方向偏移）
+        this.map.easeTo({
+          center: this.currentMapCenter, // [center.lng - 0.003, center.lat - 0.003],
+          zoom: this.currentMapZoom,
+          duration: 2000, // 动画持续2秒
+          easing: t => t * (2 - t) // 使用缓动函数使动画更平滑
+        });
+      }, 800);
     },
     handlePopup() {
       this.isShowPopup = !this.isShowPopup;

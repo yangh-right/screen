@@ -27,8 +27,7 @@
 <script>
 import { getCarbonReductionOption as getOption } from './data';
 import moment from 'moment';
-import { alarmHandlerData } from '@/api/smartProduct';
-import { sysDictListByCode } from '@/api/deviceManager.js';
+import { aiAlarmAnalysis } from '@/api/smartProduct';
 export default {
   name: 'temperatureInfo',
   components: {
@@ -57,46 +56,40 @@ export default {
     };
   },
 
-  watch: {},
+  watch: {
+    waterPlantId: {
+      handler(newVal) {
+        if (newVal) {
+          this.initData(newVal);
+        }
+      },
+      immediate: true
+    }
+  },
   async created() {
-    await this.sysDictListByCode('ai_dict_type', 'alarmType');
     await this.initData();
   },
   methods: {
-    /** 报警类型 */
-    async sysDictListByCode(code, data) {
-      const res = await sysDictListByCode(code);
-      this[`${data}List`] = res.resultData.map(item => {
-        return {
-          ...item,
-          label: item.dictName,
-          value: item.dictValue
-        };
-      });
-      this[`${data}Name`] = this[`${data}List`].reduce((acc, item) => {
-        acc[item.dictValue] = item.dictName;
-        return acc;
-      }, {});
-    },
     async initData() {
       let params = {
         status: 0,
         currentPage: 1,
         alarmTypeCodes: this.alarmTypeList.map(item => item.value),
         pageSize: 5,
+        waterPlantId: this.waterPlantId,
         startTime: moment().subtract(30, 'days').format('YYYY-MM-DD 00:00:00'),
         endTime: moment().format('YYYY-MM-DD HH:mm:ss')
       };
-      let { status, resultData } = await alarmHandlerData(params);
+      let { status, resultData } = await aiAlarmAnalysis(params);
       if (status === 'complete') {
-        this.tableData = resultData?.records || [];
-        let tempData = this.alarmTypeList.map(item => {
-          let filterData = this.tableData.filter(r => r.alarmType === item.dictValue);
+        let tableData = resultData || [];
+        let tempData = tableData.map(item => {
           return {
-            name: item.dictName,
-            value: filterData.length
+            name: item.name,
+            value: item.num
           };
         });
+        console.log('0000', tempData);
         let option = getOption({
           data: tempData
         });

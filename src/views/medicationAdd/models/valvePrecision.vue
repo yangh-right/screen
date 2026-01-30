@@ -6,7 +6,7 @@
  * @Description:
 -->
 <template>
-  <unit-card cardTitle="除磷剂投加" cardType="3" :showTime="false">
+  <unit-card cardTitle="过程指标" cardType="3" :showTime="false">
     <div class="aaa">
       <div class="card-inner">
         <div class="second_title">
@@ -260,8 +260,8 @@ export default {
       ],
       tabPointActive: 'biocycle_pool',
       poolList: [
-        { value: 0, label: '北池' },
-        { value: 1, label: '南池' }
+        { value: 1, label: '北池' },
+        { value: 2, label: '南池' }
       ],
       pumpFeedbackList: []
     };

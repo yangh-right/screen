@@ -177,3 +177,11 @@ export const getAccessRecord = data => {
     data
   });
 };
+
+export const aiAlarmAnalysis = data => {
+  return axios({
+    url: `${BASEURL}/alarm/aiAlarmAnalysis`,
+    method: 'post',
+    data
+  })
+}

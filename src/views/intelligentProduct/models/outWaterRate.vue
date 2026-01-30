@@ -52,13 +52,13 @@ export default {
       baseGaugeData: [
         {
           title: '累计达到',
-          subtitle: '准Ⅲ类天数',
+          subtitle: '一级A天数',
           startColor: '#34DDFF',
           endColor: '#38B0FF'
         },
         {
           title: '当年累计达到',
-          subtitle: '准Ⅲ类天数',
+          subtitle: '一级A天数',
           startColor: '#481A74',
           endColor: '#38FFFF'
         }
@@ -142,7 +142,7 @@ export default {
       let gaugeData = [
         {
           title: '累计达到',
-          subtitle: '准Ⅲ类天数',
+          subtitle: '一级A天数',
           value: this.qualityData.quasiClassThreeRate,
           days: this.qualityData.quasiClassThree,
           startColor: '#34DDFF',
@@ -151,7 +151,7 @@ export default {
         },
         {
           title: '当年累计达到',
-          subtitle: '准Ⅲ类天数',
+          subtitle: '一级A天数',
           value: this.qualityData.quasiClassThreeRateThisYear,
           days: this.qualityData.quasiClassThreeThisYear,
           startColor: '#481A74',

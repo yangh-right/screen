@@ -35,7 +35,7 @@ export function getCarbonReductionOption(config = {}) {
         avoidLabelOverlap: true,
         label: {
           show: true,
-          formatter: '{name|{b}}',
+          formatter: '{name|{b}: {c}}',
           rich: {
             name: { fontSize: 14, color: '#D9F7FF', fontFamily: 'AlibabaPuHuiTi' },
             value: { fontSize: 14, color: '#ffffff', fontFamily: 'AlibabaPuHuiTi' }
