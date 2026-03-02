@@ -1,5 +1,5 @@
 <template>
-  <unit-card cardTitle="出水达标率">
+  <unit-card cardTitle="出水达标率" cardType="5">
     <div class="gauge-container">
       <div class="dashboard-header">
         <div class="header-left">出水达标率</div>
@@ -44,7 +44,7 @@ export default {
     },
     qualityData: {
       type: Object,
-      default: () => {}
+      default: () => { }
     }
   },
   data() {
@@ -186,8 +186,9 @@ export default {
   align-items: center;
   padding: 0px 20px 0 60px;
   box-sizing: border-box;
-  background: url('~@/assets/img/smartProduct/outlet_water_compliance_rate.png') no-repeat;
+  background: url('~@/assets/lightimg/shenchan/water_quality_rate.png') no-repeat;
   background-size: 100% 100%;
+
   .header-left {
     font-family: AlibabaPuHuiTi_2_55_Regular, sans-serif;
     font-weight: 400;
@@ -195,6 +196,7 @@ export default {
     color: #cee6ff;
     letter-spacing: 0;
   }
+
   .header-right {
     font-family: MiSans-Medium, sans-serif;
     font-weight: 500;
@@ -203,6 +205,7 @@ export default {
     letter-spacing: 0;
     text-align: center;
   }
+
   .header-unit {
     font-family: AlibabaPuHuiTi_2_85_Bold, sans-serif;
     font-weight: 700;
@@ -227,7 +230,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: url('~@/assets/img/smartProduct/card245_small.png') no-repeat;
+  background: url('~@/assets/lightimg/shenchan/card_209.png') no-repeat;
   background-size: 100% 100%;
 }
 
@@ -255,15 +258,18 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+
   .gauge-value-unit {
     font-size: 16px;
     color: #cee6ff;
   }
 }
+
 .gauge-value-0 {
   background: url('~@/assets/img/smartProduct/blue.png') no-repeat;
   background-size: 100% 100%;
 }
+
 .gauge-value-1 {
   background: url('~@/assets/img/smartProduct/cyan.png') no-repeat;
   background-size: 100% 100%;
@@ -305,16 +311,17 @@ export default {
     background-color: #4fef15;
   }
 }
+
 .gauge-title {
   margin-bottom: 4px;
 }
 
 .gauge-days {
-  margin-top: 4px;
-  padding: 6px 0;
+  margin-top: 10px;
+  padding: 0;
   width: 90%;
-  background: url('~@/assets/img/smartProduct/days.png') no-repeat;
-  background-size: 100% 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 10px;
   font-family: MiSans-Medium, sans-serif;
   font-weight: 500;
   font-size: 18px;

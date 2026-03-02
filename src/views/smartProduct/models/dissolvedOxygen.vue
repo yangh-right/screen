@@ -6,10 +6,7 @@
  * @Description:
 -->
 <template>
-  <unit-card cardTitle="溶氧控制">
-    <div class="pool-select" slot="headerRight">
-      <radio-button @change="lineChange" :options="poolList" v-model="line"></radio-button>
-    </div>
+  <unit-card cardTitle="溶氧控制" cardType="10">
     <div class="echart-block developing-tip">
       <LineChart v-if="line === 0" :options="threeOption"></LineChart>
       <LineChart v-else :options="oneOption"></LineChart>
@@ -30,7 +27,6 @@ import { getDissolvedOxygenOption as getOption, colorRgb } from './data';
 export default {
   name: 'dissolvedOxygen',
   components: {
-    RadioButton,
     LineChart,
     UnitCard: () => import('@/components/UnitCard.vue')
   },

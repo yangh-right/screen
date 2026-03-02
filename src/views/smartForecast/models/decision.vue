@@ -7,7 +7,7 @@
  * @Description:
 -->
 <template>
-  <unit-card cardTitle="智慧决策" cardType="3">
+  <unit-card cardTitle="智慧决策" cardType="9">
     <div class="solution-box" id="expert-solution">
       <div class="panel">
         <div class="title" :title="alarmInfo.alarmContent">{{ alarmInfo.alarmContent }}</div>
@@ -15,12 +15,9 @@
           <img src="@/assets/img/smartForecast/calendar.png" alt="" class="time__icon" />
           <span class="time__str">{{ alarmInfo.startTime }}</span>
         </div>
-        <div
-          class="card-content"
-          :style="{
-            'justify-content': appliedPointList.length ? 'space-between' : 'flex-start'
-          }"
-        >
+        <div class="card-content" :style="{
+          'justify-content': appliedPointList.length ? 'space-between' : 'flex-start'
+        }">
           <div class="text condition" v-html="conditionDesc"></div>
           <div v-if="realValue.length" class="box">
             <div class="text name">实际值为</div>
@@ -45,54 +42,26 @@
         <radio-button class="radio-button" :options="filterPointList" v-model="factorType" />
         <div class="solution-wrapper">
           <div v-if="!loading && planDataList.length" class="solution" v-resize="resize">
-            <div
-              :class="['solution__item', planData.applied ? 'plan-applied' : '']"
-              v-for="(planData, index) in filterPlanDataList"
-              :key="planData.id"
-            >
+            <div :class="['solution__item', planData.applied ? 'plan-applied' : '']"
+              v-for="(planData, index) in filterPlanDataList" :key="planData.id">
               <note-box v-if="planData.startRender" :title="getPlanDataTitle(planData)">
-                <template
-                  v-if="
-                    (planData.alarmDataList && planData.alarmDataList.length) ||
-                    (planData.planList && planData.planList.length)
-                  "
-                >
-                  <vue-typed-js
-                    :strings="planData.htmlStr || ''"
-                    :shuffle="false"
-                    cursorChar=""
-                    @onComplete="onComplete(index)"
-                    :typeSpeed="14"
-                    :fadeOutClass="'fadeOutClass'"
-                    :loop="false"
-                    :loopCount="1"
-                    :startDelay="500"
-                    :showCursor="true"
-                    :contentType="'html'"
-                  >
+                <template v-if="
+                  (planData.alarmDataList && planData.alarmDataList.length) ||
+                  (planData.planList && planData.planList.length)
+                ">
+                  <vue-typed-js :strings="planData.htmlStr || ''" :shuffle="false" cursorChar=""
+                    @onComplete="onComplete(index)" :typeSpeed="14" :fadeOutClass="'fadeOutClass'" :loop="false"
+                    :loopCount="1" :startDelay="500" :showCursor="true" :contentType="'html'">
                     <div class="typing"></div>
                   </vue-typed-js>
                 </template>
               </note-box>
             </div>
           </div>
-          <empty
-            v-if="planDataList.length === 0 && numData !== 1"
-            class="data-empty"
-            tip="二级因素均未命中，请深入排查"
-          >
-            <vue-typed-js
-              :strings="['二级因素均未命中，请深入排查']"
-              :shuffle="false"
-              cursorChar=""
-              :typeSpeed="50"
-              :fadeOutClass="'fadeOutClass'"
-              :loop="false"
-              :loopCount="1"
-              :startDelay="1000"
-              :showCursor="true"
-              :contentType="'html'"
-            >
+          <empty v-if="planDataList.length === 0 && numData !== 1" class="data-empty" tip="二级因素均未命中，请深入排查">
+            <vue-typed-js :strings="['二级因素均未命中，请深入排查']" :shuffle="false" cursorChar="" :typeSpeed="50"
+              :fadeOutClass="'fadeOutClass'" :loop="false" :loopCount="1" :startDelay="1000" :showCursor="true"
+              :contentType="'html'">
               <div class="typing"></div>
             </vue-typed-js>
           </empty>
@@ -286,13 +255,16 @@ export default {
 <style lang="less" scoped>
 .radio-button {
   margin-bottom: 12px;
+
   /deep/ .radio-item {
     min-width: 92px !important;
   }
 }
+
 .expression {
   min-width: 100px;
 }
+
 /deep/ .point_value {
   font-family: AlibabaPuHuiTi_2_85_Bold, sans-serif;
   font-weight: 700;
@@ -300,10 +272,12 @@ export default {
   color: #6ce8ff;
   letter-spacing: 0;
 }
+
 .solution-box {
   padding: 10px 0;
   height: 100%;
   display: flex;
+
   .panel {
     width: 210px;
     height: 100%;
@@ -311,8 +285,9 @@ export default {
     padding: 9px 8px 12px;
     display: flex;
     flex-direction: column;
-    background: url('~@/assets/img/smartForecast/panel.png') no-repeat;
-    background-size: 100% 100%;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+
     .title {
       width: 72%;
       height: 24px;
@@ -327,8 +302,9 @@ export default {
       letter-spacing: 0;
       margin-bottom: 5px;
     }
+
     .time {
-      background: #0613278c;
+      background: rgba(6, 19, 39, 0.3);
       border-radius: 14px;
       height: 28px;
       line-height: 28px;
@@ -336,10 +312,12 @@ export default {
       margin-bottom: 12px;
       display: flex;
       align-items: center;
+
       .time__icon {
         width: 15.67px;
         margin-right: 10.7px;
       }
+
       .time__str {
         font-family: PingFangSC-Regular, sans-serif;
         font-weight: 400;
@@ -348,6 +326,7 @@ export default {
         letter-spacing: 0;
       }
     }
+
     .card-content {
       flex: 1;
       display: flex;
@@ -355,24 +334,29 @@ export default {
       justify-content: space-between;
       overflow: auto;
       padding: 2px 12px 0;
+
       .text {
         font-family: PingFangSC-Regular, sans-serif;
         font-weight: 400;
         font-size: 14px;
         color: #e9f1ff;
         letter-spacing: 0;
+
         &.condition {
           margin-bottom: 20px;
         }
       }
+
       .name {
         margin-bottom: 6px;
       }
+
       .box {
         &__icon {
           width: 20px;
           margin-bottom: 6px;
         }
+
         .value__content {
           display: flex;
           align-items: center;
@@ -389,23 +373,28 @@ export default {
             margin-right: 7px;
             background: url('~@/assets/img/smartForecast/underline.png') 0 24px no-repeat;
             background-size: 100% 1px;
+
             &:nth-last-child(1) {
               margin-right: 0px;
             }
           }
+
           &.real-content {
             margin-bottom: 2px;
+
             &:nth-last-child(1) {
               margin-bottom: 0px;
             }
           }
         }
+
         &.point {
           margin-top: 10px;
         }
       }
     }
   }
+
   .right {
     flex: 1;
     display: flex;
@@ -413,20 +402,25 @@ export default {
     overflow: hidden;
   }
 }
+
 .action {
   position: absolute;
   top: -24px;
   z-index: 3;
   right: 16px;
 }
+
 /deep/ .point-radio {
   margin-top: 10px;
+
   .wpg-radio-button-wrapper:not(:first-child)::before {
     display: none;
   }
+
   .wpg-radio-button-wrapper:last-child {
     margin-right: 0;
   }
+
   .wpg-radio-button-wrapper {
     margin-bottom: 8px;
     margin-right: 8px;
@@ -437,52 +431,65 @@ export default {
     font-size: 12px;
     line-height: 16px;
     border: 1px solid transparent;
+
     &.wpg-radio-button-wrapper-checked {
       box-shadow: none !important;
       outline: none !important;
     }
   }
 }
+
 .control {
   margin-bottom: 6px;
   display: flex;
   align-items: center;
+
   .target {
     display: flex;
     align-items: center;
     margin-right: 12px;
   }
 }
+
 .solution-wrapper {
   flex: 1;
   overflow: auto;
 }
+
 .data-empty {
   position: absolute;
   left: 58%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
 .solution {
   width: 100%;
+
   &__item {
     margin-bottom: 10px;
     width: 100%;
+
     /deep/.card-box {
       border-radius: 4px;
+
       &__content {
         padding: 10px 8px 6px;
       }
     }
+
     &:nth-last-child(1) {
       margin-bottom: 0;
     }
+
     /deep/.typing {
       width: 100%;
+
       .note__title {
         font-size: 14px;
         margin-bottom: 8px;
       }
+
       .note {
         width: 100%;
         overflow: auto;
@@ -493,6 +500,7 @@ export default {
         justify-content: space-between;
         letter-spacing: 0;
         height: 100%;
+
         &__text {
           font-family: AlibabaPuHuiTi_2_55_Regular, sans-serif;
           font-weight: 400;
@@ -503,9 +511,11 @@ export default {
           position: relative;
           top: -2px;
           display: flex;
+
           .name-wrap {
             white-space: nowrap;
           }
+
           .status-point {
             position: relative;
             top: -2px;
@@ -516,6 +526,7 @@ export default {
             box-shadow: 0 0 4px 0 #4fef15cf;
             margin-right: 6px;
           }
+
           &-name {
             font-family: AlibabaPuHuiTi_2_55_Regular, sans-serif;
             font-weight: 400;
@@ -524,6 +535,7 @@ export default {
             line-height: 16px;
           }
         }
+
         &__wrapper {
           width: 100%;
           height: 100%;
@@ -531,17 +543,21 @@ export default {
           flex-direction: column;
           padding: 2px 6px;
         }
+
         &__item {
           margin-left: 0;
           display: flex;
           width: calc(50% - 19px);
           margin-bottom: 11px;
+
           &:last-child {
             margin-bottom: 0;
           }
+
           &:nth-last-child(1) {
             margin-bottom: 0;
           }
+
           &:nth-last-child(2) {
             margin-bottom: 0;
           }

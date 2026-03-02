@@ -115,7 +115,7 @@ export default {
     };
   },
 
-  mounted() {},
+  mounted() { },
 
   methods: {
     alarmChange(val) {
@@ -140,8 +140,16 @@ export default {
 .smart-forecast {
   width: 100%;
   height: 100%;
+  background: #0b4e6f;
+  padding: 100px 18px 18px;
+  box-sizing: border-box;
+
   /deep/ .margin-right {
     margin-right: 18px;
+  }
+
+  /deep/ .margin-bottom {
+    margin-bottom: 18px;
   }
 }
 </style>

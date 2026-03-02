@@ -1,16 +1,10 @@
 <template>
   <div :class="[showStage ? 'one' : 'oneOut', 'left_panel']">
     <device-type title="建党引领" :class="[showStage ? 'one' : 'oneOut', 'pump-module']" :waterPlantId="waterPlantId" />
-    <device-fault-order
-      title="团队建设"
-      :class="[showStage ? 'two' : 'twoOut', 'inwater-module']"
-      :waterPlantId="waterPlantId"
-    />
-    <device-repaire
-      title="志愿服务"
-      :class="[showStage ? 'three' : 'threeOut', 'outwater-module']"
-      :waterPlantId="waterPlantId"
-    />
+    <device-fault-order title="团队建设" :class="[showStage ? 'two' : 'twoOut', 'inwater-module']"
+      :waterPlantId="waterPlantId" />
+    <device-repaire title="志愿服务" :class="[showStage ? 'three' : 'threeOut', 'outwater-module']"
+      :waterPlantId="waterPlantId" />
   </div>
 </template>
 
@@ -47,14 +41,14 @@ export default {
   width: 452px;
   display: flex;
   flex-direction: column;
-  background: #040c21;
+  background: #0b4a6a;
   padding: 12px 0px;
   box-sizing: border-box;
 
   background-size: 100% 100%;
   position: relative;
 
-  > div {
+  >div {
     position: relative;
     width: 452px;
     display: flex;
@@ -63,20 +57,24 @@ export default {
     padding: 0 12px;
     box-sizing: border-box;
   }
+
   .pump-module {
     height: 350px;
   }
+
   .inwater-module {
     height: 350px;
   }
+
   .outwater-module {
     height: 350px;
   }
 
-  > div:nth-last-child(1) {
+  >div:nth-last-child(1) {
     margin-bottom: 0;
   }
 }
+
 .in {
   animation: left-to-right 1s ease-in-out 1;
   animation-fill-mode: forwards;
@@ -112,6 +110,7 @@ export default {
   from {
     left: -492px;
   }
+
   to {
     left: 0;
   }
@@ -121,6 +120,7 @@ export default {
   from {
     left: 0;
   }
+
   to {
     left: -492px;
   }

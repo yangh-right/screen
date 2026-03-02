@@ -11,7 +11,9 @@
     <mapbox-map v-if="shouldRenderMap" v-bind="mapProps" @initialize="onInitialize" />
     <div v-show="false" class="scene-legend">
       <div class="legend">
-        <div class="header"><div class="--title">图例</div></div>
+        <div class="header">
+          <div class="--title">图例</div>
+        </div>
         <div class="main">
           <div class="leftname"><span>规划中</span><i class="ico-lengend ico-line"></i></div>
         </div>
@@ -57,7 +59,7 @@ export default {
     currentMapZoom: {
       type: Number,
       required: true,
-      default: MAP_CONFIG.DEFAULT_ZOOM 
+      default: MAP_CONFIG.DEFAULT_ZOOM
     },
     currentMapCenter: {
       type: Array,
@@ -65,7 +67,7 @@ export default {
       validator: (value) => {
         return value.length === 2 && typeof value[0] === 'number' && typeof value[1] === 'number';
       },
-      default: () => MAP_CONFIG.DEFAULT_CENTER 
+      default: () => MAP_CONFIG.DEFAULT_CENTER
     }
   },
   data() {
@@ -80,7 +82,7 @@ export default {
       animationStep: 0,
       defaultMapProps: {
         baseURL:
-          process.env.NODE_ENV === 'production' ? `${window.location.origin}/main` : 'http://172.168.10.138:8877/main',
+          process.env.NODE_ENV === 'production' ? `${window.location.origin}/main` : `${process.env.VUE_APP_HOST}/main`,
         token: '',
         theme: 'SUPPLY_WATER_SCREEN',
         controls: {
@@ -172,6 +174,10 @@ export default {
     handleMapEvent() {
       const events = {
         zoom: this.debounce(this.handleMapZoom, 100),
+        moveend: () => {
+          const center = this.map.getCenter();
+          console.log('当前地图中心点:', [center.lng, center.lat]);
+        },
         error: e => {
           console.error('Map error:', e);
         }
@@ -327,7 +333,7 @@ export default {
       this.handleMapEvent();
       this.handleMapZoom(); // 直接调用一次确保初始状态正确
     },
-    setMapView() {},
+    setMapView() { },
     drawWholeZone() {
       const areaColors = ['#088', '#FFD700', '#0f8', '#80f', '#f80', '#08f'];
       // 批量处理区域图层
@@ -379,7 +385,7 @@ export default {
         });
       });
       setTimeout(() => {
-        // 平移到稍微偏移的位置（向西南方向偏移）
+        // 平移到稀微偏移的位置（向西南方向偏移）
         this.map.easeTo({
           center: this.currentMapCenter, // [center.lng - 0.003, center.lat - 0.003],
           zoom: this.currentMapZoom,
@@ -455,10 +461,10 @@ export default {
               ...feature.geometry,
               coordinates: Array.isArray(coords[0])
                 ? coords.map(ring =>
-                    Array.isArray(ring[0])
-                      ? ring.map(coord => bd09towgs84(coord[0], coord[1]))
-                      : bd09towgs84(ring[0], ring[1])
-                  )
+                  Array.isArray(ring[0])
+                    ? ring.map(coord => bd09towgs84(coord[0], coord[1]))
+                    : bd09towgs84(ring[0], ring[1])
+                )
                 : bd09towgs84(coords[0], coords[1])
             }
           };
@@ -486,6 +492,7 @@ export default {
   right: 10px;
   bottom: 2px;
   z-index: 14;
+
   .legend {
     position: relative;
     z-index: 12;
@@ -494,6 +501,7 @@ export default {
     overflow: hidden;
     pointer-events: auto;
   }
+
   .header {
     display: flex;
     align-items: center;
@@ -502,12 +510,14 @@ export default {
     padding-left: 20px;
     background: url('~@/assets/img/summaryOverview/fir_top.png') no-repeat;
     background-size: 100% 100%;
+
     .--title {
       color: #e3f5ff;
       font-size: 18px;
       font-family: Aliba, sans-serif;
     }
   }
+
   .main {
     position: relative;
     padding: 0 12px 10px;
@@ -525,11 +535,13 @@ export default {
       background-size: 100% 100%;
       content: '';
     }
+
     .leftname {
       display: flex;
       align-items: center;
       line-height: 44px;
       justify-content: space-between;
+
       span {
         font-family: PingFangSC-Regular, sans-serif;
         font-weight: 400;
@@ -538,6 +550,7 @@ export default {
         letter-spacing: 0;
       }
     }
+
     .ico-line {
       display: inline-block;
       width: 22px;
@@ -547,6 +560,7 @@ export default {
     }
   }
 }
+
 ::v-deep .mapboxgl-popup-close-button,
 ::v-deep .mapboxgl-popup-tip {
   display: none;
@@ -577,7 +591,7 @@ export default {
   .spinStyle {
     width: 100%;
     height: 100%;
-    background-color: #02263e !important;
+    background-color: #073c57 !important;
     z-index: 7;
     position: absolute;
     left: 0;

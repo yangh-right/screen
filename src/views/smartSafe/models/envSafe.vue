@@ -6,7 +6,7 @@
  * @Description:
 -->
 <template>
-  <unit-card cardTitle="门禁视频">
+  <unit-card cardTitle="门禁视频" cardType="5">
     <div class="card-inner">
       <!-- 数据列表展示 -->
       <div class="list">
@@ -114,6 +114,7 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 12px 0;
+
   .list {
     width: 100%;
     height: 100%;
@@ -121,6 +122,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     &__item {
       width: 94%;
       height: 46%;
@@ -136,6 +138,7 @@ export default {
       &:nth-last-child(1) {
         margin-bottom: 0;
       }
+
       &:nth-child(1) {
         .left {
           .icon {
@@ -144,6 +147,7 @@ export default {
           }
         }
       }
+
       &:nth-child(2) {
         .left {
           .icon {
@@ -152,6 +156,7 @@ export default {
           }
         }
       }
+
       .left {
         display: flex;
         align-items: center;
@@ -162,6 +167,7 @@ export default {
           border-radius: 8px;
           margin-right: 12px;
         }
+
         .total {
           .title {
             font-weight: 400;
@@ -171,6 +177,7 @@ export default {
             margin-bottom: 13px;
             margin-top: 1px;
           }
+
           .value {
             font-weight: 600;
             font-size: 16px;
@@ -179,6 +186,7 @@ export default {
           }
         }
       }
+
       .line {
         width: 201px;
 
@@ -203,9 +211,11 @@ export default {
               }
             }
           }
+
           &:nth-last-child(1) {
             margin-bottom: 0;
           }
+
           .title {
             .icon {
               position: relative;

@@ -6,7 +6,7 @@
  * @Description:
 -->
 <template>
-  <unit-card cardTitle="碳源投加系统" cardType="2" :showTime="false">
+  <unit-card cardTitle="碳源投加系统" cardType="10" :showTime="false">
     <div class="pool-select" slot="headerRight">
       <radio-button @change="lineChange" :options="poolList" v-model="line"></radio-button>
     </div>
@@ -473,18 +473,22 @@ export default {
     padding: 0 50px;
     display: flex;
     justify-content: space-between;
-    background: url('~@/assets/img/smartProduct/second_title-bg.png') no-repeat;
+    background: url('~@/assets/lightimg/new/subtitle_backup5.png') no-repeat;
     background-size: 100% 100%;
-    padding-bottom: 10px;
+    padding-bottom: 0px;
 
     .title {
       display: flex;
       align-items: center;
-      font-family: AlibabaPuHuiTi_2_65_Medium, sans-serif;
-      font-weight: 500;
-      font-size: 16px;
-      color: #d8edff;
+      width: 144px;
+      height: 32px;
+      font-family: MiSans-Demibold;
+      font-weight: 600;
+      font-size: 24px;
+      color: #E4F0F6;
       letter-spacing: 0;
+      text-shadow: 0 2px 2px #011B25;
+      margin-left: 10px;
     }
   }
 

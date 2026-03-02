@@ -6,14 +6,16 @@
  * @Description:
 -->
 <template>
-  <unit-card cardTitle="阀门控制精度" cardType="3" :showTime="false">
+  <unit-card cardTitle="阀门控制精度" cardType="9" :showTime="false">
     <div class="card-inner">
       <div class="box">
         <div class="box__item">
           <div class="position">南池</div>
           <div class="data">
             <div class="data__item" v-for="data in southDataList" :key="data.pointName">
-              <div class="point"><gradientShadowText :text="data.deviceName"></gradientShadowText></div>
+              <div class="point">
+                <gradientShadowText :text="data.deviceName"></gradientShadowText>
+              </div>
               <div class="value">{{ data.pointMemo }}</div>
               <div class="split"></div>
               <div class="value">{{ data.pointValueRatio }}{{ data.pointUnit }}</div>
@@ -25,7 +27,9 @@
           <div class="position">北池</div>
           <div class="data">
             <div class="data__item" v-for="data in northDataList" :key="data.pointName">
-              <div class="point"><gradientShadowText :text="data.deviceName"></gradientShadowText></div>
+              <div class="point">
+                <gradientShadowText :text="data.deviceName"></gradientShadowText>
+              </div>
               <div class="value">{{ data.pointMemo }}</div>
               <div class="split"></div>
               <div class="value">{{ data.pointValueRatio }}{{ data.pointUnit }}</div>
@@ -75,7 +79,7 @@ export default {
       immediate: true
     }
   },
-  created() {},
+  created() { },
 
   methods: {
     initData() {
@@ -134,21 +138,26 @@ export default {
 .card-inner {
   width: 100%;
   height: 100%;
-  margin-top: 18px;
+  padding: 40px 20px;
+
   .box {
-    height: calc(100% - 18px);
+    height: 100%;
     display: flex;
+
     &__item {
       flex: 1;
       overflow: hidden;
       display: flex;
       align-items: center;
+
       &:nth-child(1) {
         margin-right: 30px;
       }
+
       &:nth-child(2) {
         margin-right: 12px;
       }
+
       .position {
         display: flex;
         justify-content: center;
@@ -161,21 +170,24 @@ export default {
         font-size: 18px;
         color: #eff5ff;
         letter-spacing: 0;
-        background: url('~@/assets/img/smartProduct/pool.png') no-repeat;
+        background: url('~@/assets/lightimg/baoqi/title_label.png') no-repeat;
         background-size: 100% 100%;
       }
+
       .data {
         padding: 13px 6px 20px;
         width: calc(100% - 82px);
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: url('~@/assets/img/smartProduct/valve-bg.png') no-repeat;
+        background: url('~@/assets/lightimg/baoqi/card1.png') no-repeat;
         background-size: 100% 100%;
+
         &__item {
           display: flex;
           flex-direction: column;
           align-items: center;
+
           .point {
             width: 160px;
             height: 28px;
@@ -183,8 +195,9 @@ export default {
             line-height: 28px;
             text-align: center;
             margin-bottom: 18px;
-            background: url('~@/assets/img/smartProduct/control-point.png') no-repeat;
+            background: url('~@/assets/lightimg/baoqi/heading1.png') no-repeat;
             background-size: 100% 100%;
+
             /deep/.gradient-shadow {
               .text {
                 font-family: AlibabaPuHuiTi_2_85_Bold, sans-serif;
@@ -193,6 +206,7 @@ export default {
                 font-size: 14px;
                 text-shadow: 0 2px 2px #000000ab;
               }
+
               .text:before {
                 /*覆盖文字的颜色*/
                 letter-spacing: 0;
@@ -201,6 +215,7 @@ export default {
               }
             }
           }
+
           .name {
             font-family: AlibabaPuHuiTi_2_55_Regular, sans-serif;
             font-weight: 400;
@@ -209,6 +224,7 @@ export default {
             letter-spacing: 0;
             margin-bottom: 4px;
           }
+
           .value {
             font-family: MiSans-Bold, sans-serif;
             font-weight: 700;
@@ -217,6 +233,7 @@ export default {
             letter-spacing: 0;
             text-align: center;
           }
+
           .split {
             width: 100px;
             height: 1px;

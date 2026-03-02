@@ -7,7 +7,7 @@
  * @Description:
 -->
 <template>
-  <unit-card cardTitle="进水曲线" cardType="3">
+  <unit-card cardTitle="进水曲线" cardType="5">
     <div class="warn-diagnosis">
       <radio-button class="radio-button" :options="pointList" v-model="pointCode" />
       <div class="chart-wrap">
@@ -99,14 +99,15 @@ export default {
 <style lang="less" scoped>
 /deep/ .circle-radio {
   margin-left: 12px;
-  .wpg-radio-wrapper {
-  }
+
   .wpg-radio-button-wrapper:not(:first-child)::before {
     display: none;
   }
+
   .wpg-radio-button-wrapper:last-child {
     margin-right: 0;
   }
+
   .wpg-radio-button-wrapper {
     margin-right: 8px;
     border-radius: 13px;
@@ -129,7 +130,8 @@ export default {
       border: 1px solid var(--supply-color-online) !important;
       /* 新增：放大文字/加粗，进一步突出 */
       font-weight: 600;
-      transform: scale(1.05); /* 轻微放大，增强感知 */
+      transform: scale(1.05);
+      /* 轻微放大，增强感知 */
     }
   }
 }
@@ -137,19 +139,23 @@ export default {
 .chart-wrap {
   height: calc(100% - 32px);
 }
+
 .circle-radio {
   margin-left: 0px;
   margin-top: 6px;
 }
+
 /deep/ .card-box__title {
   .text {
     max-width: 150px;
   }
 }
+
 .warn-diagnosis {
   width: 100%;
   height: 100%;
   position: relative;
+
   .btn {
     width: 282px !important;
     z-index: 10;

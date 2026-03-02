@@ -6,7 +6,7 @@
  * @Description:
 -->
 <template>
-  <unit-card cardTitle="预警管理">
+  <unit-card cardTitle="预警管理" cardType="5">
     <div class="card-inner">
       <div class="table-box">
         <div class="table-head">
@@ -171,14 +171,17 @@ export default {
   .table-box {
     width: 100%;
     height: 100%;
+
     .col {
       text-align: left;
       padding-left: 23px;
     }
+
     .table-head {
       height: 50px;
       display: flex;
       align-items: center;
+
       .col {
         font-family: AlibabaPuHuiTi_2_55_Regular, sans-serif;
         font-weight: 400;
@@ -186,6 +189,7 @@ export default {
         color: #cfdfff;
         letter-spacing: 0;
       }
+
       .index {
         flex-basis: 52px;
         overflow: hidden;
@@ -194,18 +198,21 @@ export default {
         position: relative;
         text-overflow: ellipsis;
       }
+
       .reality {
         flex-basis: 130px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
       }
+
       .target {
         flex-basis: 110px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
       }
+
       .time {
         flex-grow: 1;
         overflow: hidden;
@@ -213,11 +220,13 @@ export default {
         text-overflow: ellipsis;
       }
     }
+
     .table-body {
       width: 100%;
       height: calc(100% - 34px);
       overflow: auto;
     }
+
     .table-tr {
       height: 30px;
       display: flex;
@@ -230,19 +239,23 @@ export default {
       font-size: 14px;
       color: #e6e5f8;
       letter-spacing: 0;
+
       &:nth-last-child(1) {
         margin-bottom: 0px;
       }
+
       .index {
         flex-basis: 52px;
         font-family: Oswald-Bold, sans-serif;
         font-size: 14px;
         position: relative;
         color: #ffffff;
+
         .num {
           position: relative;
           left: -17px;
         }
+
         .tip {
           position: absolute;
           width: 24px;
@@ -250,6 +263,7 @@ export default {
           top: 0px;
         }
       }
+
       .reality {
         flex-basis: 130px;
         overflow: hidden;
@@ -259,6 +273,7 @@ export default {
 
       .target {
         flex-basis: 90px;
+
         .label {
           font-family: AlibabaPuHuiTi_2_55_Regular, sans-serif;
           font-weight: 400;
@@ -271,10 +286,12 @@ export default {
           height: 20px;
           background-image: linear-gradient(90deg, #575e64 0%, #26282a 100%);
           border-radius: 0 0 4.67px 4.67px;
+
           &.label-0 {
             background: url('~@/assets/img/smartForecast/finish.png') no-repeat;
             background-size: 100% 100%;
           }
+
           &.label-1 {
             background: url('~@/assets/img/smartForecast/alarm.png') no-repeat;
             background-size: 100% 100%;
@@ -282,6 +299,7 @@ export default {
           }
         }
       }
+
       .time {
         flex-shrink: 0;
         flex-grow: 1;

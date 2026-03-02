@@ -7,23 +7,19 @@
  * @LastEditTime: 2025-03-26 09:47:03
 -->
 <template>
-  <unit-card :cardTitle="title" :showTime="false">
+  <unit-card :cardTitle="title" :showTime="false" cardType="5">
     <div class="card-inner">
       <div class="timeline-container">
         <!-- 背景图片 -->
         <div class="timeline-bg">
-          <img src="@/assets/img/smartTalents/history_bg.png" alt="发展历程背景" />
+          <!-- <img src="@/assets/lightimg/new/group_15_backup.png" alt="发展历程背景" /> -->
         </div>
 
         <!-- 时间线主体 -->
         <div class="timeline-main">
           <!-- 里程碑节点 -->
-          <div
-            v-for="(milestone, index) in milestones"
-            :key="index"
-            class="milestone-node"
-            :class="`milestone-${index + 1}`"
-          >
+          <div v-for="(milestone, index) in milestones" :key="index" class="milestone-node"
+            :class="`milestone-${index + 1}`">
             <template v-if="index === 0 || index === 1 || index === 5">
               <div class="node-marker"></div>
               <div class="node-content">
@@ -95,7 +91,7 @@ export default {
   computed: {},
   watch: {},
   methods: {},
-  mounted() {}
+  mounted() { }
 };
 </script>
 
@@ -123,6 +119,8 @@ export default {
   top: 90px;
   right: 0px;
   z-index: 1;
+  background: url('~@/assets/lightimg/new/path_57.png') no-repeat center;
+  background-size: 100% 100%;
 
   img {
     width: 100%;
@@ -134,7 +132,8 @@ export default {
   position: relative;
   z-index: 2;
   width: 100%;
-  min-height: 100%; /* 使用min-height而不是固定height */
+  min-height: 100%;
+  /* 使用min-height而不是固定height */
   padding: 20px;
   box-sizing: border-box;
 }
@@ -143,7 +142,8 @@ export default {
   z-index: 3;
   display: flex;
   align-items: flex-start;
-  margin-bottom: 30px; /* 添加间距避免节点重叠 */
+  margin-bottom: 30px;
+  /* 添加间距避免节点重叠 */
   position: absolute;
 
   .node-marker {
@@ -169,7 +169,7 @@ export default {
       font-family: Aliba;
       font-weight: 400;
       font-size: 12px;
-      color: #c1d3f6;
+      color: #ffffff;
       letter-spacing: 0;
     }
   }
@@ -178,6 +178,7 @@ export default {
 .milestone-1 {
   top: 14%;
   left: 24%;
+
   .node-content {
     margin-left: -14px;
   }
@@ -186,6 +187,7 @@ export default {
 .milestone-2 {
   top: 6%;
   right: 0%;
+
   .node-content {
     margin-right: -14px;
   }
@@ -194,9 +196,11 @@ export default {
 .milestone-3 {
   top: 38%;
   left: 0%;
+
   .node-content {
     width: 150px;
     margin-right: -14px;
+
     .year {
       text-align: right;
     }
@@ -206,9 +210,11 @@ export default {
 .milestone-4 {
   top: 35%;
   right: -4%;
+
   .node-content {
     width: 156px;
     margin-right: -14px;
+
     .year {
       text-align: right;
     }
@@ -218,9 +224,11 @@ export default {
 .milestone-5 {
   top: 62%;
   left: 0%;
+
   .node-content {
     width: 174px;
     margin-right: -14px;
+
     .year {
       text-align: right;
     }
@@ -230,6 +238,7 @@ export default {
 .milestone-6 {
   top: 74%;
   right: 0%;
+
   .node-content {
     width: 174px;
     margin-left: -14px;

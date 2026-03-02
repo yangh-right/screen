@@ -117,16 +117,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: rgb(6, 25, 63);
+  background-color: #073c57;
 }
+
 #mainPage {
-  background-color: rgb(6, 25, 63);
+  background-color: #073c57;
 }
 
 /* chrome & safari 浏览器 重置滚动条样式 */
 ::-webkit-scrollbar {
   /*滚动条整体样式*/
-  width: 8px; /*高宽分别对应横竖滚动条的尺寸*/
+  width: 8px;
+  /*高宽分别对应横竖滚动条的尺寸*/
   height: 8px;
   background: rgba(0, 16, 40, 0.7);
 }
@@ -145,9 +147,13 @@ export default {
 /* IE 浏览器 重置滚动条样式 */
 body {
   overflow: hidden;
-  scrollbar-face-color: rgba(160, 201, 255, 0.3); /* 滚动条颜色 */
-  scrollbar-shadow-color: rgba(0, 16, 40, 0.7); /* 滚动条的边框 */
-  scrollbar-track-color: rgba(0, 16, 40, 0.7); /* 浏览器滚动条背景色 */
-  scrollbar-arrow-color: rgba(160, 201, 255, 0.3); /* 上下箭头颜色 */
+  scrollbar-face-color: rgba(160, 201, 255, 0.3);
+  /* 滚动条颜色 */
+  scrollbar-shadow-color: rgba(0, 16, 40, 0.7);
+  /* 滚动条的边框 */
+  scrollbar-track-color: rgba(0, 16, 40, 0.7);
+  /* 浏览器滚动条背景色 */
+  scrollbar-arrow-color: rgba(160, 201, 255, 0.3);
+  /* 上下箭头颜色 */
 }
 </style>

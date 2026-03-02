@@ -7,21 +7,12 @@
 -->
 <template>
   <div :class="[showStage ? 'one' : 'oneOut', 'right_panel']">
-    <digital-results
-      title="企业荣誉"
-      :class="[showStage ? 'one' : 'oneOut', 'water-module']"
-      :waterPlantId="waterPlantId"
-    />
-    <social-responsibility
-      title="产品布局"
-      :class="[showStage ? 'two' : 'twoOut', 'medicine-module']"
-      :waterPlantId="waterPlantId"
-    />
-    <culture-building
-      title="企业文化"
-      :class="[showStage ? 'three' : 'threeOut', 'culture-module']"
-      :waterPlantId="waterPlantId"
-    />
+    <digital-results title="企业荣誉" :class="[showStage ? 'one' : 'oneOut', 'water-module']"
+      :waterPlantId="waterPlantId" />
+    <social-responsibility title="产品布局" :class="[showStage ? 'two' : 'twoOut', 'medicine-module']"
+      :waterPlantId="waterPlantId" />
+    <culture-building title="企业文化" :class="[showStage ? 'three' : 'threeOut', 'culture-module']"
+      :waterPlantId="waterPlantId" />
   </div>
 </template>
 
@@ -63,7 +54,7 @@ export default {
   width: 452px;
   display: flex;
   flex-direction: column;
-  background: rgba(14, 35, 67, 0.45);
+  background: rgba(40, 72, 77, 0.4);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   padding: 12px 0px;
@@ -71,7 +62,7 @@ export default {
   background-size: 100% 100%;
   position: relative;
 
-  > div {
+  >div {
     position: relative;
     width: 452px;
     display: flex;
@@ -84,17 +75,20 @@ export default {
   .water-module {
     height: 350px;
   }
+
   .medicine-module {
     height: 350px;
   }
+
   .culture-module {
     height: 350px;
   }
 
-  > div:nth-last-child(1) {
+  >div:nth-last-child(1) {
     margin-bottom: 0;
   }
 }
+
 .in {
   animation: right-to-left 1s ease-in-out 1;
   animation-fill-mode: forwards;
@@ -130,6 +124,7 @@ export default {
   from {
     right: -486px;
   }
+
   to {
     right: 0;
   }
@@ -139,6 +134,7 @@ export default {
   from {
     right: 0;
   }
+
   to {
     right: -486px;
   }

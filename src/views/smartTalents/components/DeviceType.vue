@@ -23,9 +23,7 @@
       </div>
       <div class="des">
         永康污水厂现有正式党员<span class="num">3名</span>，入党积极分子<span class="num">1名</span>，共青团员<span
-          class="num"
-          >15名</span
-        >。大部分员工都提交了入党申请书。
+          class="num">15名</span>。大部分员工都提交了入党申请书。
       </div>
     </div>
   </unit-card>
@@ -58,7 +56,7 @@ export default {
   },
   computed: {},
   watch: {},
-  created() {},
+  created() { },
   mounted() {
     this.pointsArr = [
       {
@@ -158,6 +156,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   .echart-wrap {
     width: 100%;
     flex-direction: row;
@@ -165,6 +164,7 @@ export default {
     justify-content: space-between;
     align-items: center;
   }
+
   .echart-block {
     width: 232px;
     height: 200px;
@@ -233,6 +233,7 @@ export default {
       }
     }
   }
+
   .des {
     padding: 22px 17px;
     width: 412px;
@@ -248,6 +249,7 @@ export default {
     letter-spacing: 1px;
     text-align: left;
   }
+
   .num {
     color: #fff;
     font-size: 16px;

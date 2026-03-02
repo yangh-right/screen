@@ -55,18 +55,21 @@ export default {
   overflow: hidden;
   height: 100%;
   width: 100%;
-  background-color: #071e46;
+  background-color: transparent;
+
   &__title {
     height: 40px;
     display: flex;
     justify-content: space-between;
     background: url('~@/assets/img/smartForecast/note-title.png') no-repeat;
     background-size: 100% 100%;
+
     .title-left {
       position: relative;
       display: flex;
       align-items: center;
     }
+
     .text {
       max-width: 100%;
       color: #eaf1ff;
@@ -76,11 +79,13 @@ export default {
       letter-spacing: 0;
       text-align: left;
       position: relative;
+
       &__icon {
         width: 18px;
         height: 18px;
         margin-right: 7px;
       }
+
       &::after {
         position: absolute;
         bottom: -10px;
@@ -92,6 +97,7 @@ export default {
         height: 7px;
         background-color: #4c7dea;
       }
+
       &__content {
         position: relative;
         z-index: 10;
@@ -104,7 +110,7 @@ export default {
     padding: 12px 8px;
     position: relative;
     height: calc(100% - 24px);
-    background: url('~@/assets/img/smartForecast/note-body.png') no-repeat;
+    background: rgba(0, 0, 0, 0.1);
     background-size: 100% 100%;
     border-radius: 3px;
     overflow: hidden;

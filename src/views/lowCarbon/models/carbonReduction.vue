@@ -6,21 +6,15 @@
  * @Description:
 -->
 <template>
-  <unit-card cardTitle="碳减排">
+  <unit-card cardTitle="碳减排" cardType="10">
     <div slot="headerRight" class="ch-icons">
       <div :class="['img-box', isConfigure ? 'img-box--2d' : 'img-box--3d']" @click="toggleConfigure"></div>
     </div>
     <div class="card-inner">
       <div class="chart">
         <pie-chart :options="option" />
-        <pie-chart3
-          :showTooltip="false"
-          class="pie3"
-          chartId="carbonReductionChart"
-          :option="option"
-          :chartView="chartView"
-          ref="pieChart"
-        >
+        <pie-chart3 :showTooltip="false" class="pie3" chartId="carbonReductionChart" :option="option"
+          :chartView="chartView" ref="pieChart">
         </pie-chart3>
       </div>
     </div>
@@ -57,7 +51,7 @@ export default {
   },
 
   watch: {},
-  created() {},
+  created() { },
   mounted() {
     this.initData();
   },
@@ -92,6 +86,7 @@ export default {
 .ch-icons {
   cursor: pointer;
   margin-top: 6px;
+
   .img-box {
     width: 40px;
     height: 26px;
@@ -107,6 +102,7 @@ export default {
     }
   }
 }
+
 .card-inner {
   width: 100%;
   height: 100%;
@@ -132,6 +128,7 @@ export default {
       transform: translateX(-50%);
       animation: blink 1.5s ease-in-out infinite;
     }
+
     .pie3 {
       width: 100%;
       height: 100%;

@@ -60,7 +60,7 @@ export default {
   },
   computed: {},
   watch: {},
-  created() {},
+  created() { },
   mounted() {
     this.initData();
   },
@@ -119,12 +119,14 @@ export default {
     letter-spacing: 0.2px;
     line-height: 22px;
   }
+
   .img {
     margin: 12px;
     width: 452px;
     height: 206px;
     box-shadow: inset 0 0 55px 11px #00172d;
     border-radius: 3.33px;
+
     /* background: url('~@/assets/img/smartTalents/team_building.png') no-repeat center;
     background-size: 100% 100%; */
     img {

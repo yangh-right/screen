@@ -6,7 +6,7 @@
  * @Description:
 -->
 <template>
-  <unit-card cardTitle="门禁记录">
+  <unit-card cardTitle="门禁记录" cardType="5">
     <div class="card-inner">
       <div class="table-box">
         <div class="table-head">
@@ -17,12 +17,8 @@
         <div class="table-body">
           <c-split v-if="tableData.length" class="split"></c-split>
           <div v-for="(item, i) in tableData" :key="i" :class="['table-tr']">
-            <div
-              :style="{ flexBasis: col.width }"
-              :class="['col', col.dataIndex === 'temp' ? 'temp' : '']"
-              v-for="col in columns"
-              :key="col.dataIndex"
-            >
+            <div :style="{ flexBasis: col.width }" :class="['col', col.dataIndex === 'temp' ? 'temp' : '']"
+              v-for="col in columns" :key="col.dataIndex">
               <span>{{ item[col.dataIndex] }}</span>
             </div>
             <c-split class="split row-split"></c-split>
@@ -190,6 +186,7 @@ export default {
     overflow: hidden;
     width: 100%;
     height: 100%;
+
     .col {
       text-align: left;
       padding-left: 8px;
@@ -197,6 +194,7 @@ export default {
       white-space: nowrap;
       text-overflow: ellipsis;
     }
+
     .table-head {
       height: 40px;
       display: flex;
@@ -206,20 +204,24 @@ export default {
       color: #ffffff;
       letter-spacing: 0;
     }
+
     .split {
       &.row-split {
         position: absolute;
         bottom: 0;
       }
     }
+
     .table-body {
       width: 100%;
       height: calc(100% - 40px);
       overflow: auto;
+
       &::-webkit-scrollbar {
         width: 0px;
       }
     }
+
     .table-tr {
       height: 40px;
       display: flex;

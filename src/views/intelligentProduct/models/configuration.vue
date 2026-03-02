@@ -47,10 +47,11 @@ export default {
   height: 100%;
   background: url('~@/assets/img/smartProduct/svg-bg.png') no-repeat;
   background-size: 100% 100%;
+
   .title {
     position: absolute;
     top: 36px;
-    left: 0;
+    left: 20px;
     width: 279px;
     height: 48px;
     display: flex;
@@ -59,6 +60,7 @@ export default {
     background: url('~@/assets/img/hz/intelligent_product_title.png') no-repeat;
     background-size: 100% 100%;
   }
+
   .svg {
     width: 100%;
     height: 100%;

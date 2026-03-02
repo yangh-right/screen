@@ -35,11 +35,8 @@
     </div>
     <!-- 全厂碳排放分析 -->
     <div class="technological-process">
-      <carbonEmissionAnalysis
-        :parameter="parameter"
-        :waterPlantId="waterPlantId"
-        title="温测列表数据"
-      ></carbonEmissionAnalysis>
+      <carbonEmissionAnalysis :parameter="parameter" :waterPlantId="waterPlantId" title="温测列表数据">
+      </carbonEmissionAnalysis>
     </div>
   </div>
 </template>
@@ -230,6 +227,7 @@ export default {
         letter-spacing: 0.26px;
         text-align: center;
       }
+
       .point-box {
         width: calc(100% - 130px);
         height: 100%;
@@ -242,6 +240,7 @@ export default {
           width: calc(50% - 10px);
           display: flex;
           justify-content: flex-start;
+
           .point-name {
             color: #fdc207;
             font-size: 16px;
@@ -252,6 +251,7 @@ export default {
             text-align: right;
             margin-right: 4px;
           }
+
           .point-time {
             color: #ffffff;
             font-size: 16px;
@@ -271,6 +271,7 @@ export default {
               letter-spacing: 0.2px;
             }
           }
+
           .point-status {
             font-family: PingFangSC, sans-serif;
             font-weight: 500;
@@ -278,15 +279,18 @@ export default {
             letter-spacing: 0.2px;
             text-align: center;
           }
+
           .status1 {
             color: #00ce65;
           }
+
           .status2 {
             color: #ff7272;
           }
         }
       }
     }
+
     .point-card {
       width: 906px;
       height: 133px;
@@ -317,6 +321,7 @@ export default {
           color: #e9faff;
           text-align: center;
         }
+
         .point-filed {
           height: 34px;
           line-height: 34px;
@@ -328,6 +333,7 @@ export default {
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
+
         .point-unit {
           height: 32px;
           line-height: 34px;
@@ -337,6 +343,7 @@ export default {
           color: #e9faff;
           text-align: center;
         }
+
         &:first-child {
           .point-filed {
             height: 34px;
@@ -369,6 +376,7 @@ export default {
     background-size: 100% 100%;
 
     position: relative;
+
     .thermodynamic {
       position: absolute;
       top: 110px;
@@ -376,10 +384,12 @@ export default {
       height: 630px;
       z-index: 10;
     }
-    .iframeBox > iframe {
+
+    .iframeBox>iframe {
       width: 100%;
       height: 100%;
     }
+
     .iframeBox {
       // background: url('~@/assets/img/hz/screen-bg.png') no-repeat;
       // background-size: 100% 100%;
@@ -387,6 +397,7 @@ export default {
       width: 50%;
       height: 80%;
     }
+
     .bg-iframe {
       width: 70%;
       height: 60%;
@@ -423,6 +434,7 @@ export default {
       margin-top: 10px;
     }
   }
+
   // 组态右侧
   .left-side-wrap {
     z-index: 999;

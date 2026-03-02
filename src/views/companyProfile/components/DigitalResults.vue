@@ -7,7 +7,7 @@
  * @LastEditTime: 2025-03-26 09:47:03
 -->
 <template>
-  <unit-card :cardTitle="title" :showTime="false">
+  <unit-card :cardTitle="title" :showTime="false" cardType="5">
     <div class="project-digital">
       <div class="digital-container">
         <!-- digital Images -->
@@ -15,12 +15,8 @@
           <div v-for="(milestone, index) in milestones" :key="`img-${index}`" class="digital-main">
             <div class="image-item">
               <div class="image-frame">
-                <img
-                  :src="milestone.imageUrl"
-                  :alt="milestone.title"
-                  class="milestone-image"
-                  @click="showImagePreview(milestone.bigImageUrl)"
-                />
+                <img :src="milestone.imageUrl" :alt="milestone.title" class="milestone-image"
+                  @click="showImagePreview(milestone.bigImageUrl)" />
               </div>
             </div>
             <div class="milestone-item">
@@ -71,21 +67,21 @@ export default {
           active: false
         },
         {
-          title: '标准化污水处理厂',
+          title: '浙江省信用管理示范企业',
           date: '2019年01月',
           imageUrl: require('@/assets/img/summaryOverview/fir_img5.png'),
           bigImageUrl: require('@/assets/img/summaryOverview/fir_img5.png'),
           active: false
         },
         {
-          title: '荣誉证书',
+          title: '浙江省现代化营业所',
           date: '2024年12月',
           imageUrl: require('@/assets/img/summaryOverview/fir_img10.png'),
           bigImageUrl: require('@/assets/img/summaryOverview/fir_img10.png'),
           active: false
         },
         {
-          title: '文明单位',
+          title: '浙江省文明单位',
           date: '2024年02月',
           imageUrl: require('@/assets/img/summaryOverview/fir_img7.png'),
           bigImageUrl: require('@/assets/img/summaryOverview/fir_img7.png'),
@@ -99,7 +95,7 @@ export default {
           active: false
         },
         {
-          title: '智慧工地优秀应用',
+          title: '污水五期获浙江省智慧工地优秀应用成果',
           date: '2024年12月',
           imageUrl: require('@/assets/img/summaryOverview/fir_img8.png'),
           bigImageUrl: require('@/assets/img/summaryOverview/fir_img8.png'),
@@ -134,6 +130,7 @@ export default {
     justify-content: space-between;
     margin-bottom: 12px;
     flex-wrap: wrap;
+
     .digital-main {
       width: 33%;
       display: flex;
@@ -144,7 +141,7 @@ export default {
 
     .image-item {
       height: 98px;
-      background: url('~@/assets/img/summaryOverview/fir_timeline__image.png') no-repeat;
+      background: url('~@/assets/lightimg/int/group_31.png') no-repeat;
       background-size: 100% 100%;
 
       .image-frame {
@@ -171,7 +168,7 @@ export default {
     .milestone-title {
       font-family: AlibabaPuHuiTi_2_85_Bold, sans-serif;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 12px;
       color: #e6e5f7;
       letter-spacing: 0;
       text-align: center;
@@ -183,7 +180,7 @@ export default {
       .milestone-ico {
         width: 12px;
         height: 12px;
-        background: url('~@/assets/img/summaryOverview/fir_tip_point.png') no-repeat;
+        background: url('~@/assets/lightimg/int/rectangle.png') no-repeat;
         background-size: 100% 100%;
         margin: 0 6px;
       }

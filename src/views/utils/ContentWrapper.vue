@@ -31,22 +31,48 @@ export default {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  display: flex;
-  .content-main {
-    flex: 1;
-    height: calc(100% - 140px);
-    margin-top: 90px;
-    overflow: hidden;
+  position: relative;
+
+  // 四周阴影效果
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow:
+      inset 0 80px 60px -20px rgba(0, 20, 50, 0.8),
+      inset 0 -80px 60px -20px rgba(0, 20, 50, 0.8);
+    pointer-events: none;
+    z-index: 50;
   }
+
+  .content-main {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
   .content-bar {
+    position: absolute;
+    top: 0;
     height: 100%;
     width: 28px;
+    z-index: 99;
+    pointer-events: none;
+
     &.left-bar {
-      background: url('~@/assets/img/hz/left_bar.png') no-repeat;
+      left: 0;
+      background: url('~@/assets/lightimg/int/decoration_left.png') no-repeat;
       background-size: 100% 100%;
     }
+
     &.right-bar {
-      background: url('~@/assets/img/hz/right_bar.png') no-repeat;
+      right: 0;
+      background: url('~@/assets/lightimg/int/decoration_right.png') no-repeat;
       background-size: 100% 100%;
     }
   }

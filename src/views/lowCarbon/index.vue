@@ -63,7 +63,7 @@ export default {
         class: ['supply-flex-col'],
         children: [
           {
-            style: { height: '33.3%' },
+            style: { height: 'calc(33.3% - 13px)', marginBottom: '20px' },
             class: ['supply-overflow-hidden'],
             children: [
               {
@@ -84,7 +84,7 @@ export default {
             class: ['supply-flex-1', 'supply-overflow-hidden'],
             children: [
               {
-                class: ['supply-flex-1'],
+                class: ['supply-flex-1', 'no-bg'],
                 slots: ['carbonBox']
               },
               {
@@ -108,7 +108,7 @@ export default {
     };
   },
 
-  mounted() {},
+  mounted() { },
 
   methods: {
     handleToggle(isConfigured) {
@@ -119,11 +119,22 @@ export default {
 </script>
 <style lang="less" scoped>
 .smart-forecast {
-  background: linear-gradient(rgb(5, 13, 36), rgb(6, 21, 53), rgb(4, 12, 33));
+  background: #073c57;
   width: 100%;
   height: 100%;
+  padding: 95px 20px 20px;
+  box-sizing: border-box;
+
+  /deep/ .con-layout__item:not(.no-bg) {
+    background-color: #0b4c6c;
+  }
+
   /deep/ .margin-right {
     margin-right: 20px;
+  }
+
+  /deep/ .margin-bottom {
+    margin-bottom: 20px;
   }
 }
 </style>

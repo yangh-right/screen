@@ -6,7 +6,7 @@
  * @Description: 出水水质监控组件
 -->
 <template>
-  <unit-card cardTitle="出水水质">
+  <unit-card cardTitle="出水水质" cardType="5">
     <point-tab v-if="pointsArr.length > 0" :tabs="pointsArr" :tabValue="currentPoint" @tabChange="handlePointChange">
     </point-tab>
     <div :class="[pointsArr.length > 0 ? 'echart-con' : 'echart-block']">
@@ -186,6 +186,7 @@ export default {
   height: 100%;
   position: relative;
 }
+
 .echart-con {
   width: 100%;
   height: calc(100% - 52px);

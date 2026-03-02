@@ -1,7 +1,7 @@
 <template>
   <div class="main-page smart-talents">
     <div class="center-side-wrap">
-      <mapCmp ref="leafletMap" v-if="showMap" :currentMapCenter="mainPageMapCenter" :currentMapZoom="11"/>
+      <mapCmp ref="leafletMap" v-if="showMap" :currentMapCenter="mainPageMapCenter" :currentMapZoom="11" />
     </div>
     <div class="left-side-wrap">
       <slide-panel :showStage="showStage" ref="left" />
@@ -10,11 +10,7 @@
       <think-panel :showStage="showStage" ref="right" />
     </div>
     <!-- 图片预览弹框 -->
-    <image-preview-modal
-      :isBigger="isBigger"
-      :visible.sync="showPreview"
-      :imageUrl="previewImage"
-    />
+    <image-preview-modal :isBigger="isBigger" :visible.sync="showPreview" :imageUrl="previewImage" />
   </div>
 </template>
 
@@ -51,11 +47,11 @@ export default {
   watch: {
     waterPlantId: {
       immediate: true,
-      handler(val) {}
+      handler(val) { }
     }
   },
-  created() {},
-  mounted() {},
+  created() { },
+  mounted() { },
   methods: {
     showImagePreview(imageUrl) {
       this.previewImage = imageUrl;
@@ -78,6 +74,7 @@ export default {
     width: 100%;
     margin: 10px 0;
     height: 97%;
+
     .content-wrap {
       position: absolute;
       width: 80%;
@@ -86,12 +83,13 @@ export default {
       left: 10%;
     }
   }
+
   .right-side-wrap {
     position: fixed;
     width: 452px;
     height: calc(100% - 132px);
     top: 8%;
-    right: 32px;
+    right: 0;
 
     .box {
       width: 100%;
@@ -99,12 +97,13 @@ export default {
       margin-top: 10px;
     }
   }
+
   .left-side-wrap {
     position: fixed;
     width: 452px;
     height: calc(100% - 132px);
     top: 8%;
-    left: 32px;
+    left: 0;
 
     .box {
       width: 100%;
@@ -112,9 +111,11 @@ export default {
       margin-top: 10px;
     }
   }
+
   .img-active {
     transform: scale(1.1);
   }
+
   /deep/ .select__block {
     z-index: 100;
     position: absolute;
@@ -135,6 +136,7 @@ export default {
       height: 34px;
       line-height: 34px;
       text-align: center;
+
       .ant-select-selection-selected-value {
         float: unset;
         font-family: SourceHanSansCN-Regular, sans-serif;

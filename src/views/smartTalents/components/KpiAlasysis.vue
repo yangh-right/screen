@@ -33,7 +33,7 @@ export default {
   computed: {},
   watch: {},
   methods: {},
-  mounted() {}
+  mounted() { }
 };
 </script>
 
@@ -47,6 +47,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   .content-item {
     position: relative;
     width: 200px;
@@ -54,6 +55,7 @@ export default {
 
     background: url('~@/assets/img/smartTalents/benke.png') no-repeat center;
     background-size: 199px 267px;
+
     .label {
       position: absolute;
       bottom: 14%;
@@ -65,6 +67,7 @@ export default {
       text-align: center;
     }
   }
+
   .module1 {
     margin-left: 12px;
     background: url('~@/assets/img/smartTalents/shuoshi.png') no-repeat center;

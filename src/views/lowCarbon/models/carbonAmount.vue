@@ -6,7 +6,7 @@
  * @Description:
 -->
 <template>
-  <unit-card cardTitle="碳减排量" cardType="2">
+  <unit-card cardTitle="碳减排量" cardType="10">
     <div class="carbon-dashboard">
       <div class="header-section">
         <div class="header-item">
@@ -141,6 +141,7 @@ export default {
         font-size: 24px;
         font-family: AlibabaPuHuiTi_2_85_Bold, sans-serif;
         vertical-align: baseline;
+
         i {
           font-style: normal;
           color: #bac9e7;
@@ -195,39 +196,47 @@ export default {
         &.glow-blue {
           background: url('~@/assets/img/smartProduct/fir_formation_18.png') no-repeat;
           background-size: 100% 100%;
+
           .value-number {
             background-image: linear-gradient(to bottom, #ffffff 15%, #00b9ff 99%);
             -webkit-background-clip: text;
             color: transparent;
           }
+
           .value-unit {
             background-image: linear-gradient(to bottom, #ffffff 5%, #00b9ff 99%);
             -webkit-background-clip: text;
             color: transparent;
           }
         }
+
         &.glow-yellow {
           background: url('~@/assets/img/smartProduct/fir_formation_19.png') no-repeat;
           background-size: 100% 100%;
+
           .value-number {
             background-image: linear-gradient(to bottom, #ffffff 15%, #fef165 99%);
             -webkit-background-clip: text;
             color: transparent;
           }
+
           .value-unit {
             background-image: linear-gradient(to bottom, #ffffff 5%, #fef165 99%);
             -webkit-background-clip: text;
             color: transparent;
           }
         }
+
         &.glow-green {
           background: url('~@/assets/img/smartProduct/fir_group_20.png') no-repeat;
           background-size: 100% 100%;
+
           .value-number {
             background-image: linear-gradient(to bottom, #ffffff 15%, #81f193 99%);
             -webkit-background-clip: text;
             color: transparent;
           }
+
           .value-unit {
             background-image: linear-gradient(to bottom, #ffffff 5%, #81f193 99%);
             -webkit-background-clip: text;

@@ -6,18 +6,11 @@
  * @Description: 智能视频监控组件
 -->
 <template>
-  <unit-card cardTitle="智能视频监控" class="video-surveillance-wrapper">
+  <unit-card cardTitle="智能视频监控" cardType="5" class="video-surveillance-wrapper">
     <div class="card-inner">
       <div class="video-box">
-        <video-player
-          route="smartSafe"
-          playType="1"
-          :playerId="currentVideoId"
-          :video-box-id="currentVideoId"
-          type="3"
-          :videoNo="currentVideoId"
-          :videoCode="currentVideoId"
-        />
+        <video-player route="intelligenInspection" playType="1" :playerId="currentVideoId"
+          :video-box-id="currentVideoId" type="3" :videoNo="currentVideoId" :videoCode="currentVideoId" />
       </div>
     </div>
   </unit-card>
@@ -64,7 +57,8 @@ export default {
 <style lang="less" scoped>
 .video-surveillance-wrapper {
   position: relative;
-  z-index: 9999;
+  z-index: 1;
+  background-color: #0b4f71;
 }
 
 .card-inner {
@@ -86,5 +80,9 @@ export default {
   margin-top: 28px;
   position: relative;
   z-index: 9999;
+}
+
+.ant-dropdown {
+  z-index: 10001 !important;
 }
 </style>

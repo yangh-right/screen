@@ -6,15 +6,9 @@
  * @Description: 智能视频监控组件
 -->
 <template>
-  <unit-card cardTitle="智能视频监控" class="video-surveillance-wrapper">
-    <c-select
-      v-model="currentVideoId"
-      slot="headerRight"
-      @openChange="handleOpenChange"
-      @change="handleVideoChange"
-      class="select-wrapper"
-      placeholder="请选择视频"
-    >
+  <unit-card cardTitle="智能视频监控" cardType="5" class="video-surveillance-wrapper">
+    <c-select v-model="currentVideoId" slot="headerRight" @openChange="handleOpenChange" @change="handleVideoChange"
+      class="select-wrapper" placeholder="请选择视频">
       <a-select-option v-for="item in videoDetailList" :key="item.videoId" :value="item.videoId">
         {{ item.videoName }}
       </a-select-option>
@@ -22,15 +16,8 @@
 
     <div class="card-inner">
       <div class="video-box">
-        <video-player
-          route="smartSafe"
-          playType="1"
-          playerId="safePlayer"
-          video-box-id="safePlayWndd"
-          type="3"
-          :videoNo="currentVideoId"
-          :videoCode="currentVideoId"
-        />
+        <video-player route="smartSafe" playType="1" playerId="safePlayer" video-box-id="safePlayWndd" type="3"
+          :videoNo="currentVideoId" :videoCode="currentVideoId" />
       </div>
     </div>
   </unit-card>
@@ -210,7 +197,8 @@ export default {
   width: 100%;
   height: 100%;
   display: flex;
-  padding: 20px 0;
+  padding-top: 50px;
+  padding-bottom: 20px;
 
   .video-box {
     flex: 1;

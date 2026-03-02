@@ -9,28 +9,15 @@
   <div class="mapCmp">
     <div class="mapCmp-main">
       <!-- 全屏地图 -->
-      <personnelTrack
-        :stationData="stationData"
-        :personLine="personLine"
-        @viewTracks="viewTracks"
-        @progress-change="handleProgressChange"
-        ref="boxMap"
-      ></personnelTrack>
+      <personnelTrack :stationData="stationData" :personLine="personLine" @viewTracks="viewTracks"
+        @progress-change="handleProgressChange" ref="boxMap"></personnelTrack>
     </div>
     <div class="top-selsect" v-if="checkDate">
       <div>
         <span>搜索{{ entityName }}行为轨迹</span>
-        <a-range-picker
-          dropdownClassName="date__select"
-          :allowClear="false"
-          class="date-pick"
-          v-model="rangeTime"
-          :show-time="{ format: 'HH:mm' }"
-          format="YYYY-MM-DD HH:mm:ss"
-          style="width: 550px; height: 40px"
-          :placeholder="['开始时间', '结束时间']"
-          @ok="handleLocationHistory"
-        >
+        <a-range-picker dropdownClassName="date__select" :allowClear="false" class="date-pick" v-model="rangeTime"
+          :show-time="{ format: 'HH:mm' }" format="YYYY-MM-DD HH:mm:ss" style="width: 550px; height: 40px"
+          :placeholder="['开始时间', '结束时间']" @ok="handleLocationHistory">
         </a-range-picker>
       </div>
       <a-icon type="close" style="color: #9bc4ff; font-size: 36px" @click="removeTracks" />
@@ -201,39 +188,48 @@ export default {
       height: 32px;
     }
   }
+
   .progress-slider {
     flex: 1;
   }
+
   /deep/.ant-slider-track {
     background-color: #1890ff;
     height: 4px;
   }
+
   /deep/.ant-slider-rail {
     background-color: #e1e1e1;
     height: 4px;
   }
 }
+
 /deep/.ant-input {
   background: rgba(8, 55, 112, 0.8);
   height: 38px;
   border: 1px solid #096dd9;
 }
+
 /deep/.ant-calendar-range .ant-calendar-body {
   border: 1px solid #096dd9;
 }
+
 /deep/.ant-calendar-range .ant-calendar-selected-start-date .ant-calendar-date,
 .ant-calendar-range .ant-calendar-selected-end-date .ant-calendar-date {
   background: #bae7ff !important;
 }
+
 /deep/.ant-calendar-range-right .ant-calendar-time-picker-inner {
   border-left: 1px solid #096dd9;
 }
+
 /deep/.ant-calendar-range.ant-calendar-time .ant-calendar-time-picker-combobox {
   display: inline-block;
   height: 100%;
   background: rgba(8, 55, 112, 0.8);
   border-top: 1px solid #096dd9;
 }
+
 /deep/ .date__select {
   .ant-calendar-picker-input {
     color: #d9ecff;
@@ -243,6 +239,7 @@ export default {
     outline: 1px solid #085299 !important;
   }
 }
+
 .mapCmp {
   width: 100%;
   height: 100%;
@@ -259,7 +256,7 @@ export default {
     .spinStyle {
       width: 100%;
       height: 100%;
-      background-color: #02263e !important;
+      background-color: #073c57 !important;
       z-index: 7;
       position: absolute;
       left: 0px;
@@ -269,9 +266,11 @@ export default {
         width: 100%;
         height: 100%;
       }
+
       /deep/.ant-spin {
         top: 30%;
       }
+
       /deep/.ant-spin-dot {
         font-size: 40px;
         margin-top: 30%;
@@ -282,6 +281,7 @@ export default {
       background-image: none !important;
     }
   }
+
   .left-panel {
     width: 340px;
     height: calc(100% - 68px);
@@ -290,6 +290,7 @@ export default {
     left: 0px;
     z-index: 12;
   }
+
   .top-selsect {
     z-index: 999;
     position: absolute;
@@ -303,6 +304,7 @@ export default {
     justify-content: space-between;
     background: url('~@/assets/img/person_info_bg.png') no-repeat;
     background-size: 100% 100%;
+
     span {
       font-weight: 600;
       font-family: JiangChengXieHei, sans-serif;
@@ -312,12 +314,14 @@ export default {
       -webkit-background-clip: text;
       color: transparent;
     }
+
     .date-pick {
       /deep/ input {
         font-family: Aliba, sans-serif;
         font-size: 18px;
         color: #9fcfff;
       }
+
       .i-drop {
         width: 24px;
         height: 24px;

@@ -1,9 +1,6 @@
 <template>
-  <unit-card cardTitle="全流程水质仪表" cardType="4">
+  <unit-card cardTitle="全流程水质仪表" cardType="8">
     <div class="process-container">
-      <div class="pool-select">
-        <radio-button @change="lineChange" :options="poolList" v-model="line"></radio-button>
-      </div>
 
       <div class="process-flow">
         <div class="process-stages">
@@ -64,7 +61,6 @@ import RadioButton from '@/views/smartProduct/components/RadioButton.vue';
 export default {
   name: 'keyInstruments',
   components: {
-    RadioButton,
     UnitCard: () => import('@/components/UnitCard.vue')
   },
   props: {
@@ -205,19 +201,22 @@ export default {
   &.process-stage-1 {
     width: 240px;
     height: 47px;
-    background: url('~@/assets/img/smartProduct/normal.png') no-repeat;
+    background: url('~@/assets/lightimg/shenchan/label.png') no-repeat;
     background-size: 100% 100%;
   }
+
   &.process-stage-2 {
     width: 240px;
     height: 70px;
     background: url('~@/assets/img/smartProduct/anaerobic_aerobic_alternating_segment.png') no-repeat;
     background-size: 100% 100%;
     padding: 0 12px;
+
     .stage-arrows {
       top: 68%;
     }
   }
+
   &.process-stage-3 {
     width: 240px;
     height: 122px;
@@ -236,6 +235,7 @@ export default {
     left: 50%;
     transform: translateX(-50%);
   }
+
   .stage-arrows {
     width: 160px;
     height: 38px;
@@ -244,26 +244,30 @@ export default {
     right: -140px;
     transform: translateY(-240%);
     z-index: 0;
-    background: url('~@/assets/img/smartProduct/stage-arrows.png') no-repeat;
+    background: url('~@/assets/lightimg/shenchan/arrow.png') no-repeat;
     background-size: 100% 100%;
   }
 }
+
 .stage-data-box {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   width: 150px;
   height: 54px;
-  background-image: linear-gradient(180deg, #11357d 0%, #000c2300 100%);
+  background: url('~@/assets/lightimg/shenchan/group_32_backup5.png') no-repeat;
+  background-size: 100% 100%;
   overflow-y: auto;
   padding: 12px 1px;
 }
+
 .point-field {
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   margin-bottom: 8px;
+
   .label {
     margin-right: 8px;
     overflow: hidden;
@@ -276,6 +280,7 @@ export default {
     letter-spacing: 0;
     text-align: right;
   }
+
   .pint-val {
     display: flex;
     align-items: center;
@@ -289,6 +294,7 @@ export default {
       letter-spacing: 0;
       text-align: center;
     }
+
     .unit {
       margin-left: 2px;
       font-family: AlibabaPuHuiTi_2_55_Regular, sans-serif;
@@ -299,24 +305,29 @@ export default {
     }
   }
 }
+
 .stage-data_stage0 {
   display: none;
 }
+
 .stage-data_stage1 {
   top: -98px;
   width: 240px;
   height: 54px;
 }
+
 .stage-data_stage2 {
   top: -140px;
   width: 240px;
   height: 120px;
 }
+
 .stage-data_stage3 {
   top: -130px;
   width: 240px;
   height: 90px;
 }
+
 .stage-data_stage4 {
   top: -220px;
   width: 220px;
@@ -329,10 +340,12 @@ export default {
   top: -210px;
   transform: translateX(-50%);
   width: 150px;
+
   .measurement-box {
     display: flex;
     flex-direction: column;
     margin-top: 6px;
+
     .param {
       font-family: AlibabaPuHuiTi_2_55_Regular, sans-serif;
       font-weight: 400;
@@ -341,10 +354,12 @@ export default {
       letter-spacing: 0;
       text-align: left;
     }
+
     .stage-data_stage1 {
       width: 100%;
       height: 54px;
-      background-image: linear-gradient(180deg, #11357d 0%, #000c2300 100%);
+      background: url('~@/assets/lightimg/shenchan/group_32_backup5.png') no-repeat;
+      background-size: 100% 100%;
       overflow-y: auto;
       padding: 12px 10px;
     }

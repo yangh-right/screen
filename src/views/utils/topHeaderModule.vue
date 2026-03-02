@@ -318,7 +318,7 @@ export default {
   left: 0;
   width: 100%;
   height: 90px;
-  z-index: 5;
+  z-index: 10000;
 
   .map-title {
     z-index: 5;
@@ -340,7 +340,7 @@ export default {
       display: flex;
       width: 100%;
       height: 100%;
-      background: url('~@/assets/img/top.png') no-repeat;
+      background: url('~@/assets/lightimg/int/main_title.png') no-repeat;
       background-size: 100% 100%;
 
       .title-wrapper {
@@ -373,7 +373,7 @@ export default {
         height: 48px;
         line-height: 48px;
         text-align: center;
-        background: url('~@/assets/img/hz/l-menu.png') no-repeat;
+        background: url('~@/assets/lightimg/int/notselected.png') no-repeat;
         background-size: 100% 100%;
 
         /deep/ .gradient-shadow {
@@ -389,6 +389,7 @@ export default {
             letter-spacing: 0;
             color: #76a1f7;
             -webkit-mask: linear-gradient(to top, #76a1f7 28%, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 79%);
+            mask: linear-gradient(to top, #76a1f7 28%, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 79%);
           }
         }
 
@@ -397,6 +398,7 @@ export default {
             .text:before {
               color: #92b4fa;
               -webkit-mask: linear-gradient(to top, #86abf5 28%, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 79%);
+              mask: linear-gradient(to top, #86abf5 28%, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 79%);
             }
           }
         }
@@ -417,7 +419,7 @@ export default {
 
       p.selected {
         color: #fff8ef;
-        background: url('~@/assets/img/hz/la-menu.png') no-repeat;
+        background: url('~@/assets/lightimg/int/selected.png') no-repeat;
         background-size: 100% 100%;
       }
 
@@ -561,5 +563,9 @@ export default {
   padding: 0 !important;
   background-color: rgba(18, 61, 132, 0.3) !important;
   overflow: hidden;
+}
+
+.ant-dropdown {
+  z-index: 11000 !important;
 }
 </style>

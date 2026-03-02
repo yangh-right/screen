@@ -7,7 +7,7 @@
  * @LastEditTime: 2025-03-26 09:47:03
 -->
 <template>
-  <unit-card :cardTitle="title" :showTime="false">
+  <unit-card :cardTitle="title" :showTime="false" cardType="5">
     <div class="org-chart">
       <!-- 主公司 -->
       <div class="main-company">
@@ -16,13 +16,8 @@
 
       <!-- 部门和子公司 - 竖向展示 -->
       <div class="departments-container">
-        <div
-          v-for="(dept, index) in departments"
-          :key="index"
-          class="department-item"
-          @click="selectDepartment(dept)"
-          :class="{ active: selectedDepartment === dept.name }"
-        >
+        <div v-for="(dept, index) in departments" :key="index" class="department-item" @click="selectDepartment(dept)"
+          :class="{ active: selectedDepartment === dept.name }">
           <span class="dept-name">{{ dept.name }}</span>
         </div>
       </div>
@@ -85,7 +80,7 @@ export default {
   width: 100%;
   height: calc(100% - 10px);
   position: relative;
-  background-image: url('~@/assets/img/smartTalents/company_bg.png');
+  background-image: url('~@/assets/lightimg/new/group_16.png');
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
@@ -109,7 +104,7 @@ export default {
   font-family: Aliba;
   font-weight: 700;
   font-size: 18px;
-  color: #ebf2ff;
+  color: #ffffff;
   letter-spacing: 0;
   text-align: center;
   text-shadow: 0 3px 6px #00000080;
@@ -156,7 +151,7 @@ export default {
   font-family: Aliba;
   font-weight: 500;
   font-size: 14px;
-  color: #b8cef3;
+  color: #ffffff;
   letter-spacing: 0;
 }
 </style>

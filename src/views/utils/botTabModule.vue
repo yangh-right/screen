@@ -26,7 +26,7 @@ export default {
 .map-otherPages {
   position: fixed;
   bottom: 0px;
-  z-index: 7;
+  z-index: 100;
   width: calc(100%);
   display: flex;
   align-items: flex-end;
@@ -35,7 +35,7 @@ export default {
   .botTab {
     width: 100%;
     height: 50px;
-    background: url('~@/assets/img/footer.png') no-repeat center bottom/100%;
+    background: url('~@/assets/lightimg/int/footer.png') no-repeat center bottom/100%;
   }
 }
 </style>

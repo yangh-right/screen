@@ -6,7 +6,7 @@
  * @Description:
 -->
 <template>
-  <unit-card cardTitle="碳减排">
+  <unit-card cardTitle="碳减排" cardType="10">
     <div class="card-inner">
       <div class="carbon-total">
         <span class="header-label">碳排放总量：</span>
@@ -14,15 +14,8 @@
       </div>
       <div class="chart">
         <pie-chart :options="option" />
-        <pie-chart3
-          :showTooltip="false"
-          class="pie3"
-          chartId="carbonReductionChart"
-          :option="option"
-          :chartView="chartView"
-          @handleClick="carbonReductionChart"
-          ref="pieChart"
-        >
+        <pie-chart3 :showTooltip="false" class="pie3" chartId="carbonReductionChart" :option="option"
+          :chartView="chartView" @handleClick="carbonReductionChart" ref="pieChart">
         </pie-chart3>
       </div>
     </div>
@@ -97,6 +90,7 @@ export default {
   padding: 10px 0px 0;
   display: flex;
   flex-direction: column;
+
   .carbon-total {
     width: 273px;
     height: 55px;
@@ -107,6 +101,7 @@ export default {
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
+
     .header-label {
       color: #bac9e7;
       font-size: 18px;
@@ -114,11 +109,13 @@ export default {
       font-weight: 400;
       margin-right: 4px;
     }
+
     .header-value {
       color: #ffffff;
       font-size: 18px;
       font-family: AlibabaPuHuiTi_2_85_Bold, sans-serif;
       vertical-align: baseline;
+
       i {
         font-style: normal;
         color: #bac9e7;
@@ -129,6 +126,7 @@ export default {
       }
     }
   }
+
   .chart {
     flex: 1;
     overflow: hidden;
@@ -147,6 +145,7 @@ export default {
       transform: translateX(-50%);
       animation: blink 1.5s ease-in-out infinite;
     }
+
     .pie3 {
       width: 100%;
       height: 100%;

@@ -6,7 +6,7 @@
  * @Description: 稳定出水监控组件
 -->
 <template>
-  <unit-card cardTitle="千吨水药耗" cardType="2" :showTime="false">
+  <unit-card cardTitle="千吨水药耗" cardType="10" :showTime="false">
     <div class="card-inner">
       <div class="box">
         <line-chart :options="thirdOption"></line-chart>
@@ -48,10 +48,10 @@ export default {
         color: ['#7da466', '#5BFF72'],
         series: [],
         grid: {
-          left: '3%',
-          right: '4%',
-          top: '15%',
-          bottom: '3%',
+          left: '10%',
+          right: '5%',
+          top: '18%',
+          bottom: '15%',
           containLabel: true
         },
         legend: {
@@ -208,7 +208,8 @@ export default {
 .card-inner {
   width: 100%;
   height: 100%;
-  padding: 17px 12px 0;
+  padding: 10px 10px 0;
+  box-sizing: border-box;
 
   .box {
     width: 100%;

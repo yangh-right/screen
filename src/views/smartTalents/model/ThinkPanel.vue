@@ -7,16 +7,9 @@
 -->
 <template>
   <div :class="[showStage ? 'one' : 'oneOut', 'right_panel']">
-    <kpi-alasysis
-      title="学历占比"
-      :class="[showStage ? 'one' : 'oneOut', 'water-module']"
-      :waterPlantId="waterPlantId"
-    />
-    <device-manage-type
-      title="人格测试"
-      :class="[showStage ? 'two' : 'twoOut', 'medicine-module']"
-      :waterPlantId="waterPlantId"
-    />
+    <kpi-alasysis title="学历占比" :class="[showStage ? 'one' : 'oneOut', 'water-module']" :waterPlantId="waterPlantId" />
+    <device-manage-type title="人格测试" :class="[showStage ? 'two' : 'twoOut', 'medicine-module']"
+      :waterPlantId="waterPlantId" />
   </div>
 </template>
 
@@ -58,13 +51,13 @@ export default {
   width: 452px;
   display: flex;
   flex-direction: column;
-  background: #040c21;
+  background: #0b4a6a;
   padding: 12px 9px 12px 2px;
   box-sizing: border-box;
   background-size: 100% 100%;
   position: relative;
 
-  > div {
+  >div {
     position: relative;
     width: 100%;
     display: flex;
@@ -77,14 +70,16 @@ export default {
   .water-module {
     height: 320px;
   }
+
   .medicine-module {
     height: calc(100% - 320px);
   }
 
-  > div:nth-last-child(1) {
+  >div:nth-last-child(1) {
     margin-bottom: 0;
   }
 }
+
 .in {
   animation: right-to-left 1s ease-in-out 1;
   animation-fill-mode: forwards;
@@ -120,6 +115,7 @@ export default {
   from {
     right: -486px;
   }
+
   to {
     right: 0;
   }
@@ -129,6 +125,7 @@ export default {
   from {
     right: 0;
   }
+
   to {
     right: -486px;
   }

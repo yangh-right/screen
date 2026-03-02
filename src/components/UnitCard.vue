@@ -8,7 +8,9 @@
 <template>
   <div class="container">
     <div class="card-title" :class="[layoutFlag ? 'card-titles' : '', 'card-title' + cardType]">
-      <div class="title"><gradientShadowText :text="cardTitle"></gradientShadowText></div>
+      <div class="title">
+        <gradientShadowText :text="cardTitle"></gradientShadowText>
+      </div>
       <a-icon v-if="showCloseBtn" type="close" style="font-size: 20px; margin-top: 10px; color: #fff" @click="close" />
       <div class="card-title__right">
         <slot name="headerRight"></slot>
@@ -18,56 +20,30 @@
       <div v-if="showTime" class="content-header" :class="layoutFlag ? 'card-headers' : ''">
         <div class="date-btns">
           <div class="date-box">
-            <a-date-picker
-              v-if="currentDate === 'day'"
-              dropdownClassName="date__select"
-              :allowClear="false"
-              class="date-bg"
-              v-model="dateTime"
-            >
+            <a-date-picker v-if="currentDate === 'day'" dropdownClassName="date__select" :allowClear="false"
+              class="date-bg" v-model="dateTime">
               <a-icon slot="suffixIcon" style="font-size: 16px; color: #6ca6f5" type="caret-down" />
             </a-date-picker>
-            <a-month-picker
-              class="date-bg"
-              v-model="dateTime"
-              v-if="currentDate === 'month'"
-              :allowClear="false"
-              dropdownClassName="date__select"
-              :format="monthFormat"
-              placeholder="选择日期"
-            >
+            <a-month-picker class="date-bg" v-model="dateTime" v-if="currentDate === 'month'" :allowClear="false"
+              dropdownClassName="date__select" :format="monthFormat" placeholder="选择日期">
               <template #suffixIcon>
                 <div class="i-drop"></div>
               </template>
             </a-month-picker>
-            <a-date-picker
-              v-if="currentDate === 'year'"
-              v-model="dateTime"
-              mode="year"
-              valueFormat="yyyy"
-              dropdownClassName="date__select"
-              :allowClear="false"
-              class="date-bg"
-              format="yyyy"
-              :open="isopen"
-              @openChange="openChange"
-              @panelChange="
+            <a-date-picker v-if="currentDate === 'year'" v-model="dateTime" mode="year" valueFormat="yyyy"
+              dropdownClassName="date__select" :allowClear="false" class="date-bg" format="yyyy" :open="isopen"
+              @openChange="openChange" @panelChange="
                 value => {
                   dateTime = value;
                   isopen = false;
                 }
-              "
-            >
+              ">
               <a-icon slot="suffixIcon" style="font-size: 16px; color: #6ca6f5" type="caret-down" />
             </a-date-picker>
           </div>
-          <a-button
-            v-for="item in datesType"
-            :key="item.type"
-            :class="[currentDate === item.type ? 'active-btn' : '', 'point-btn']"
-            size="small"
-            @click="handleDate(item)"
-          >
+          <a-button v-for="item in datesType" :key="item.type"
+            :class="[currentDate === item.type ? 'active-btn' : '', 'point-btn']" size="small"
+            @click="handleDate(item)">
             {{ item.label }}
           </a-button>
         </div>
@@ -146,8 +122,8 @@ export default {
       }
     }
   },
-  created() {},
-  mounted() {}
+  created() { },
+  mounted() { }
 };
 </script>
 
@@ -156,6 +132,7 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
+
   .card-titles {
     width: 50%;
   }
@@ -168,66 +145,170 @@ export default {
     align-items: center;
     padding: 1px 0px 2px 24px;
     height: 32px;
-    background: url('~@/assets/img/hz/card-title1.png') no-repeat;
+    background: url('~@/assets/lightimg/new/subtitle_backup5.png') no-repeat;
     background-size: 100% 100%;
+
     &.card-title1 {
-      background: url('~@/assets/img/hz/card-title1.png') no-repeat;
+      background: url('~@/assets/lightimg/new/subtitle_backup5.png') no-repeat;
       background-size: 100% 100%;
     }
+
     &.card-title2 {
       background: url('~@/assets/img/hz/card-title2.png') no-repeat;
       background-size: 100% 100%;
     }
+
     &.card-title3 {
       background: url('~@/assets/img/hz/card-title3.png') no-repeat;
       background-size: 100% 100%;
     }
+
     &.card-title4 {
       background: url('~@/assets/img/smartProduct/subtitle1862.png') no-repeat;
       background-size: 100% 100%;
     }
+
     &.card-title5 {
-      background: url('~@/assets/img/summaryOverview/fir_subtitle784.png') no-repeat;
+      background: url('~@/assets/lightimg/new/subtitle_backup5.png') no-repeat;
       background-size: 100% 100%;
     }
+
     &.card-title6 {
-      background: url('~@/assets/img/summaryOverview/fir_subtitle1072.png') no-repeat;
+      background: url('~@/assets/lightimg/int/subtitle_new.png') no-repeat;
       background-size: 100% 100%;
     }
+
     &.card-title7 {
       background: url('~@/assets/img/summaryOverview/fir_subheadline320.png') no-repeat;
       background-size: 100% 100%;
     }
+
+    &.card-title8 {
+      background: url('~@/assets/lightimg/shenchan/bigtitle.png') no-repeat;
+      background-size: 100% 100%;
+    }
+
+    &.card-title9 {
+      background: url('~@/assets/lightimg/baoqi/subtitle_1026.png') no-repeat;
+      background-size: 100% 100%;
+    }
+
+    &.card-title10 {
+      background: url('~@/assets/lightimg/baoqi/subtitle_1026.png') no-repeat;
+      background-size: 100% 100%;
+    }
+
+    &.card-title11 {
+      background: url('~@/assets/lightimg/shenchan/subtitle_1865.png') no-repeat;
+      background-size: 100% 100%;
+    }
+
     &__right {
       position: absolute;
-      right: 43px;
+      right: 20px;
+      height: 100%;
+      top: 30px;
+      display: flex;
+      align-items: center;
       z-index: 9999;
     }
+
+    &.card-title5 {
+      .title {
+        /deep/.gradient-shadow {
+          .text {
+            width: fit-content;
+            white-space: nowrap;
+            margin-left: 15px;
+          }
+        }
+      }
+    }
+
+    &.card-title6 {
+      .title {
+        /deep/.gradient-shadow {
+          .text {
+            width: 120px;
+            margin-left: 30px;
+          }
+        }
+      }
+    }
+
+    &.card-title8 {
+      .title {
+        /deep/.gradient-shadow {
+          .text {
+            width: 168px;
+            margin-left: 20px;
+          }
+        }
+      }
+    }
+
+    &.card-title9,
+    &.card-title11 {
+      .title {
+        /deep/.gradient-shadow {
+          .text {
+            width: 144px;
+            margin-left: 55px;
+          }
+        }
+      }
+    }
+
+    &.card-title10 {
+      .title {
+        margin-left: 0px; // 减少左侧间距
+        margin-right: 140px; // 预留右侧按钮空间，防止文字过长重叠
+
+        /deep/.gradient-shadow {
+          .text {
+            width: fit-content;
+            white-space: nowrap;
+            margin-left: 15px; // 修正间距为 15px
+          }
+        }
+      }
+    }
+
     .title {
       margin-left: 20px;
+
       /deep/.gradient-shadow {
         .text {
-          font-size: 22px;
-          text-shadow: 2px 2px 2px #011529;
+          font-family: MiSans-Demibold;
+          font-weight: 600;
+          font-size: 24px;
+          color: #E4F0F6;
+          letter-spacing: 0;
+          text-shadow: 0 2px 2px #011B25;
+          display: flex;
+          align-items: center;
+          height: 32px;
         }
+
         .text:before {
-          /*覆盖文字的颜色*/
-          color: #76a1f7;
-          -webkit-mask: linear-gradient(to top, #76a1f7 28%, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 79%);
+          display: none;
         }
       }
     }
   }
+
   .card-content {
     width: 100%;
     height: calc(100% - 32px);
     position: relative;
+
     .card-headers {
       width: 50%;
       position: absolute;
       right: -10px;
       top: -40px;
     }
+
     .content-header {
       display: flex;
       justify-content: space-between;
@@ -240,10 +321,12 @@ export default {
         display: flex;
         justify-content: space-between;
       }
+
       .date-box {
         width: 160px;
         margin-right: 8px;
       }
+
       .point-btn {
         width: 94px;
         height: 28px;
@@ -260,6 +343,7 @@ export default {
           margin-right: 0px;
         }
       }
+
       .active-btn {
         background: url('~@/assets/img/hz/b-point.png') no-repeat;
         background-size: 100% 100%;
@@ -274,6 +358,7 @@ export default {
           font-size: 18px;
           color: #9fcfff;
         }
+
         .i-drop {
           width: 24px;
           height: 24px;
@@ -291,10 +376,12 @@ export default {
   .ant-calendar {
     background: rgba(8, 55, 112, 0.8);
     border: none;
+
     .ant-calendar-month-select,
     .ant-calendar-year-select {
       color: #fff;
     }
+
     .ant-calendar-date {
       color: #fff;
     }
@@ -309,6 +396,7 @@ export default {
       background: rgba(8, 55, 112, 0.9);
       color: #fff;
     }
+
     // .ant-calendar-panel,.ant-calendar-date-panel{
     //         background: rgba(8, 55, 112, 1);
     // }
@@ -320,6 +408,7 @@ export default {
       background: rgba(8, 55, 112, 1);
       color: #fff;
     }
+
     .ant-calendar-month-panel-month,
     .ant-calendar-decade-panel-decade,
     .ant-calendar-year-panel-year,
@@ -327,6 +416,7 @@ export default {
     .ant-calendar-year-panel-decade-select {
       color: #d9f7ff;
     }
+
     .ant-calendar-header a:hover {
       background: #40a9ff;
     }

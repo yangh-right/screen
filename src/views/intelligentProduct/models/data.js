@@ -213,7 +213,7 @@ export function getInWaterQualityOption(config = {}) {
         min: 0,
         max: 100,
         splitNumber: 5,
-        radius: '55%',
+        radius: '68%',
         itemStyle: {
           color: {
             type: 'linear',

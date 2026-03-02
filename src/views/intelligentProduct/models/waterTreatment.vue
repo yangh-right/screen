@@ -6,7 +6,7 @@
  * @Description: 水处理量统计图表
 -->
 <template>
-  <unit-card cardTitle="处理水量">
+  <unit-card cardTitle="处理水量" cardType="5">
     <div class="water-treatment">
       <div class="statistics">
         <div class="stat-item">
@@ -112,6 +112,7 @@ export default {
   .statistics {
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
     margin-bottom: 20px;
     padding: 0 16px;
 
@@ -143,6 +144,7 @@ export default {
         letter-spacing: 0;
         display: flex;
         align-items: center;
+
         .unit {
           font-weight: 400;
           font-size: 16px;

@@ -6,7 +6,7 @@
  * @Description:
 -->
 <template>
-  <unit-card cardTitle="回用水量">
+  <unit-card cardTitle="回用水量" cardType="10">
     <div class="card-inner">
       <div class="chart">
         <line-chart :options="option" ref="chart1" />
@@ -95,12 +95,14 @@ export default {
 /deep/ .card-title__right {
   right: 23px !important;
 }
+
 .card-inner {
   width: 100%;
   height: 100%;
   padding: 10px 0px 0;
   display: flex;
   flex-direction: column;
+
   .chart {
     flex: 1;
     overflow: hidden;

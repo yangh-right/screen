@@ -7,7 +7,7 @@
  * @Description: 
 -->
 <template>
-  <div class="smart-product">
+  <div class="decision-making">
     <con-layout :config="config">
       <template #safetyHelmet>
         <safety-helmet :waterPlantId="waterPlantId" @update:videoList="updateVideoList"></safety-helmet>
@@ -122,8 +122,10 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.smart-product {
+.decision-making {
   width: 100%;
   height: 100%;
+  padding: 100px 18px 18px;
+  box-sizing: border-box;
 }
 </style>

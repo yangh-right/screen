@@ -1,5 +1,5 @@
 <template>
-  <unit-card :cardTitle="title" :showTime="false">
+  <unit-card :cardTitle="title" :showTime="false" cardType="5">
     <div class="product-layout-container">
       <!-- 四个业务分类 -->
       <div class="business-categories">
@@ -41,10 +41,6 @@
           <div class="category-sphere">
             <div class="category-title">光伏 项目</div>
           </div>
-          <div class="category-items">
-            <div class="item">新能源项目</div>
-            <div class="item">绿色能源解决方案</div>
-          </div>
         </div>
 
         <!-- 产品布局 -->
@@ -85,10 +81,6 @@ export default {
         {
           title: '管道 安装',
           items: ['水务安装工程']
-        },
-        {
-          title: '光伏 项目',
-          items: ['新能源项目', '绿色能源解决方案']
         }
       ]
     };
@@ -102,7 +94,7 @@ export default {
   height: calc(100% - 34px);
   position: relative;
   overflow: hidden;
-  background: url('~@/assets/img/smartTalents/product_bg.png') center 30px no-repeat;
+  background: url('~@/assets/lightimg/new/bianzu5.png') center 30px no-repeat;
   background-size: auto 100%;
 }
 
@@ -159,24 +151,25 @@ export default {
 
 /* 四个分类位置 */
 .product-layout-container .category-top-left {
-  top: 18%;
-  left: 29.5%;
+  top: 20%;
+  left: 27.5%;
 }
 
 .product-layout-container .category-top-right {
-  top: 14%;
-  right: 21.5%;
+  top: 15%;
+  right: 20.5%;
 }
 
 .product-layout-container .category-bottom-left {
-  bottom: 13%;
-  left: 11.5%;
+  bottom: 10%;
+  left: 10.5%;
 }
 
 .product-layout-container .category-bottom-right {
-  bottom: 4%;
-  right: 2%;
+  bottom: 15%;
+  right: 10%;
 }
+
 .product-layout-container .product-layout {
   position: absolute;
   top: 67%;

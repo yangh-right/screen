@@ -8,12 +8,13 @@
 -->
 <template>
   <div class="smart-product">
+    <!-- 全屏背景地图 -->
+    <mapCmp ref="bgMap" class="background-map" :currentMapCenter="[119.9883396051631, 28.87622726922423]"
+      :currentMapZoom="isFullScreen ? 17.6 : 17" />
     <con-layout :config="config">
       <template #introductionWaterPlant>
-        <introduction-water-plant
-          :waterPlantId="waterPlantId"
-          @handleFullScreen="handleFullScreen"
-        ></introduction-water-plant>
+        <introduction-water-plant :waterPlantId="waterPlantId"
+          @handleFullScreen="handleFullScreen"></introduction-water-plant>
       </template>
       <template #developmentHistory>
         <development-history :waterPlantId="waterPlantId"></development-history>
@@ -27,9 +28,9 @@
       <template #corporateCulture>
         <corporate-culture :waterPlantId="waterPlantId"></corporate-culture>
       </template>
-      <template #leadersCaring>
+      <!-- <template #leadersCaring>
         <leaders-caring :waterPlantId="waterPlantId"></leaders-caring>
-      </template>
+      </template> -->
     </con-layout>
   </div>
 </template>
@@ -39,22 +40,24 @@ import { mapState } from 'vuex';
 import { processStructure } from '@/api/smartProduct.js';
 import ConLayout from '@/components/ConLayout/ConLayout';
 import introductionWaterPlant from './models/introductionWaterPlant';
+import mapCmp from '@/views/mapBox/index.vue';
 import developmentHistory from './models/developmentHistory';
 import processFlow from './models/processFlow';
 import designedWaterQuality from './models/designedWaterQuality';
 import corporateCulture from './models/corporateCulture';
-import leadersCaring from './models/leadersCaring';
+// import leadersCaring from './models/leadersCaring';
 
 export default {
   name: 'summaryOverview',
   components: {
     ConLayout,
     introductionWaterPlant,
+    mapCmp,
     developmentHistory,
     processFlow,
     designedWaterQuality,
     corporateCulture,
-    leadersCaring
+    // leadersCaring
   },
   data() {
     return {
@@ -83,7 +86,7 @@ export default {
               style: { marginRight: '0px' },
               children: [
                 {
-                  class: ['supply-flex-1'],
+                  class: ['supply-flex-1', 'map-slot-transparent'],
                   slots: ['introductionWaterPlant']
                 }
               ]
@@ -95,14 +98,13 @@ export default {
           children: [
             {
               class: ['supply-flex-col', 'supply-flex-1'],
-              style: { marginRight: '16px' },
               children: [
                 {
-                  class: ['supply-flex-1'],
+                  class: ['supply-flex-1', 'map-slot-transparent'],
                   slots: ['introductionWaterPlant']
                 },
                 {
-                  style: { height: '258px', marginTop: '10px' },
+                  style: { height: '378px', marginTop: '10px', marginBottom: '10px' },
                   slots: ['developmentHistory']
                 }
               ]
@@ -113,23 +115,24 @@ export default {
               children: [
                 {
                   class: ['supply-flex-1'],
+                  style: { paddingTop: '90px', paddingLeft: '30px' },
                   slots: ['processFlow']
                 },
                 {
                   class: ['supply-flex-1'],
-                  style: { marginTop: '10px' },
+                  style: { paddingLeft: '30px' },
                   slots: ['designedWaterQuality']
                 },
                 {
                   class: ['supply-flex-1'],
-                  style: { marginTop: '10px' },
+                  style: { marginBottom: '30px', paddingLeft: '30px' },
                   slots: ['corporateCulture']
                 },
-                {
-                  class: ['supply-flex-1'],
-                  style: { marginTop: '10px' },
-                  slots: ['leadersCaring']
-                }
+                // {
+                //   class: ['supply-flex-1'],
+                //   style: { marginTop: '10px' },
+                //   slots: ['leadersCaring']
+                // }
               ]
             }
           ]
@@ -160,6 +163,12 @@ export default {
     },
     handleFullScreen(val) {
       this.isFullScreen = val;
+      // 切换后刷新地图尺寸
+      this.$nextTick(() => {
+        if (this.$refs.bgMap && this.$refs.bgMap.map) {
+          this.$refs.bgMap.map.resize();
+        }
+      });
     }
   }
 };
@@ -168,5 +177,44 @@ export default {
 .smart-product {
   width: 100%;
   height: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #073c57;
+
+  .background-map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  /deep/ .con-layout {
+    position: relative;
+    z-index: 10;
+    pointer-events: none; // 让布局容器不阻挡点击，透传给地图
+
+    .con-layout__item {
+      pointer-events: auto; // 具体的图表面板需要响应点击
+      background: rgba(40, 72, 77, 0.4); // #28484d 带透明效果
+
+      // 特殊处理：水厂简介所在的插槽需要透明且穿透
+      &.map-slot-transparent {
+        background: transparent !important;
+        pointer-events: none;
+      }
+
+      .card-title5 {
+        .title {
+          .gradient-shadow {
+            .text {
+              margin-left: 45px !important;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 </style>

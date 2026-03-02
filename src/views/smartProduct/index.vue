@@ -67,14 +67,14 @@ export default {
                 slots: ['configuration']
               },
               {
-                style: { height: '273px' },
+                style: { height: '365px' },
                 slots: ['valvePrecision']
               }
             ]
           },
           {
             class: ['supply-flex-col'],
-            style: { width: '42%' },
+            style: { width: '42%', padding: '0 20px' },
             children: [
               {
                 class: ['supply-flex-1'],
@@ -105,7 +105,7 @@ export default {
     };
   },
 
-  mounted() {},
+  mounted() { },
 
   methods: {
   }
@@ -115,5 +115,7 @@ export default {
 .smart-product {
   width: 100%;
   height: 100%;
+  padding-top: 100px;
+  box-sizing: border-box;
 }
 </style>

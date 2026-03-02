@@ -6,7 +6,7 @@
  * @Description:
 -->
 <template>
-  <unit-card cardTitle="控制原理" cardType="2" :showTime="false">
+  <unit-card cardTitle="控制原理" cardType="9" :showTime="false">
     <div class="card-inner">
       <div class="label">
         <div class="label__item" v-for="item in theoryData.left" :key="item">
@@ -45,12 +45,12 @@ export default {
   },
   computed: {},
   watch: {},
-  created() {},
+  created() { },
   mounted() {
     this.initData();
   },
   methods: {
-    initData() {}
+    initData() { }
   }
 };
 </script>
@@ -63,12 +63,14 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url('~@/assets/lightimg/baoqi/control_theory.png') no-repeat;
+  background-size: 100% 100%;
+
   .center {
     width: 277px;
     height: 100%;
-    background: url('~@/assets/img/smartProduct/theory-center.png') no-repeat;
-    background-size: 100% 100%;
   }
+
   .label {
     flex: 1;
     max-width: 229px;
@@ -82,8 +84,7 @@ export default {
       width: 100%;
       height: 60px;
       text-align: center;
-      background: url('~@/assets/img/smartProduct/theory1.png') no-repeat;
-      background-size: 100% 100%;
+
       .text {
         position: relative;
         top: 3px;
@@ -96,12 +97,13 @@ export default {
         letter-spacing: 0;
       }
     }
+
     &:nth-last-child(1) {
       .label__item {
-        background: url('~@/assets/img/smartProduct/theory2.png') no-repeat;
-        background-size: 100% 100%;
+
         .text {
-          left: 2px;
+          left: 15px;
+          top: 0;
         }
       }
     }

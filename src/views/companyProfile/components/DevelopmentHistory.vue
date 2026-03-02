@@ -7,7 +7,7 @@
  * @LastEditTime: 2025-03-26 09:47:03
 -->
 <template>
-  <unit-card :cardTitle="title" :showTime="false">
+  <unit-card :cardTitle="title" :showTime="false" cardType="5">
     <div class="card-inner">
       <div class="img-box">
         <img v-for="(img, idx) in imageUrls" :key="idx" class="img" :src="img" @click="showImagePreview(img)" alt="" />
@@ -111,30 +111,37 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
   .des {
     margin: 6px 0;
     font-family: AlibabaPuHuiTi-Regular, sans-serif;
     font-weight: 400;
     font-size: 14px;
-    color: #bfd5ff;
+    color: #FBFEFF;
     letter-spacing: 0.2px;
     text-indent: 28px;
     line-height: 22px;
   }
+
   .img-box {
     width: 100%;
+    margin-top: 10px;
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    gap: 6px; /* 添加间距 */
+    gap: 6px;
+    /* 添加间距 */
   }
+
   .img {
-    width: 0; /* 重置宽度，让flex:1生效 */
+    width: 0;
+    /* 重置宽度，让flex:1生效 */
     height: 166px;
     object-fit: cover;
     border-radius: 3.33px;
-    flex: 1; /* 均等分空间 */
+    flex: 1;
+    /* 均等分空间 */
   }
 }
 </style>

@@ -7,7 +7,7 @@
  * @Description: 报警详情 - 左侧报警列表，右侧图片展示
 -->
 <template>
-  <unit-card cardTitle="报警详情" cardType="3">
+  <unit-card cardTitle="报警详情" cardType="9" class="decision-wrapper">
     <div class="decision-container">
       <!-- 左侧：报警详情列表 -->
       <div class="alarm-list-section">
@@ -99,11 +99,15 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.decision-wrapper {
+  background-color: #0b4f71;
+}
+
 .decision-container {
   width: 100%;
   height: 100%;
   display: flex;
-  gap: 16px;
+  gap: 40px;
   padding: 12px 0;
 }
 
@@ -112,7 +116,7 @@ export default {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: rgba(6, 19, 39, 0.4);
+  background: rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(42, 130, 228, 0.3);
   border-radius: 4px;
   overflow: hidden;
@@ -267,7 +271,7 @@ export default {
   width: 45%;
   display: flex;
   flex-direction: column;
-  background: rgba(6, 19, 39, 0.4);
+  background: rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(42, 130, 228, 0.3);
   border-radius: 4px;
   padding: 12px;

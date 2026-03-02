@@ -71,7 +71,7 @@ export default {
           },
           {
             class: ['supply-flex-1', 'supply-overflow-hidden'],
-            style: { marginTop: '12px' },
+            style: { marginTop: '20px' },
             children: [
               {
                 class: ['supply-flex-1'],
@@ -84,7 +84,7 @@ export default {
     };
   },
   computed: {},
-  mounted() {},
+  mounted() { },
 
   methods: {
     carbonChart(data) {
@@ -95,11 +95,20 @@ export default {
 </script>
 <style lang="less" scoped>
 .carbon-forecast {
-  background: linear-gradient(rgb(5, 13, 36), rgb(6, 21, 53), rgb(4, 12, 33));
+  background: transparent;
   width: 100%;
   height: 100%;
+
+  /deep/ .con-layout__item {
+    background-color: #0b4c6c;
+  }
+
   /deep/ .margin-right {
     margin-right: 20px;
+  }
+
+  /deep/ .margin-bottom {
+    margin-bottom: 20px;
   }
 }
 </style>

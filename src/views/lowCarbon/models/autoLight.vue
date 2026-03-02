@@ -1,5 +1,5 @@
 <template>
-  <unit-card cardTitle="千吨水电耗曲线">
+  <unit-card cardTitle="千吨水电耗曲线" cardType="10">
     <template #headerRight>
       <div class="date-tabs">
         <div v-for="tab in tabs" :key="tab.value" :class="['tab-item', { active: currentTab === tab.value }]"
@@ -207,7 +207,7 @@ export default {
     }
 
     &.active {
-      background: #1890ff;
+      background: #094664;
       color: #fff;
     }
   }

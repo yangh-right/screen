@@ -6,7 +6,7 @@
  * @Description:
 -->
 <template>
-  <unit-card cardTitle="出水水质">
+  <unit-card cardTitle="出水水质" cardType="10">
     <div class="card-inner">
       <radio-button @change="pointChange" :options="tabs" v-model="tabValue" />
       <div class="chart">

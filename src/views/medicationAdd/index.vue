@@ -44,7 +44,7 @@ export default {
     valvePrecision,
     configuration,
     controlTheory,
-  //  dissolvedOxygen,
+    //  dissolvedOxygen,
     controlPrecision
   },
 
@@ -58,6 +58,7 @@ export default {
         children: [
           {
             class: ['supply-flex-1', 'supply-flex-col'],
+            style: { paddingLeft: '10px', paddingRight: '10px', paddingTop: '90px' },
             children: [
               {
                 class: ['supply-flex-1'],
@@ -71,11 +72,11 @@ export default {
           },
           {
             class: ['supply-flex-col'],
-            style: { width: '26%' },
+            style: { width: '26%', paddingTop: '90px', paddingLeft: '10px', paddingRight: '10px' },
             children: [
               {
                 class: ['supply-flex-1'],
-              //  style:{flex:'2 1 0%'},
+                //  style:{flex:'2 1 0%'},
                 slots: ['theory']
               },
               // {
@@ -101,7 +102,7 @@ export default {
     };
   },
 
-  mounted() {},
+  mounted() { },
 
   methods: {
     lineChange(val) {

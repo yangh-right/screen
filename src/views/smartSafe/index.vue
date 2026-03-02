@@ -7,7 +7,7 @@
  * @Description: 
 -->
 <template>
-  <div class="smart-forecast">
+  <div class="smart-safe">
     <con-layout :config="config">
       <template #envSafe>
         <env-safe :waterPlantId="waterPlantId"></env-safe>
@@ -45,7 +45,7 @@ import temperatureRank from './models/temperatureRank';
 import securityControl from './models/securityControl';
 import autoFireSuppression from './models/autoFireSuppression';
 export default {
-  name: 'smartForecast',
+  name: 'smartSafe',
   components: {
     ConLayout,
     videoSurveillance,
@@ -66,7 +66,7 @@ export default {
         class: ['supply-flex-col'],
         children: [
           {
-            class: ['supply-flex-1', 'supply-overflow-hidden'],
+            class: ['supply-flex-1', 'supply-overflow-hidden', 'margin-bottom'],
             children: [
               {
                 class: ['supply-flex-1'],
@@ -83,7 +83,7 @@ export default {
             ]
           },
           {
-            class: ['supply-flex-1', 'supply-overflow-hidden'],
+            class: ['supply-flex-1', 'supply-overflow-hidden', 'margin-bottom'],
             children: [
               {
                 class: ['supply-flex-1'],
@@ -108,18 +108,29 @@ export default {
     };
   },
 
-  mounted() {},
+  mounted() { },
 
   methods: {}
 };
 </script>
 <style lang="less" scoped>
-.smart-forecast {
-  background: linear-gradient(rgb(5, 13, 36), rgb(4, 12, 33));
+.smart-safe {
+  background: #073c57;
   width: 100%;
   height: 100%;
+  padding: 100px 18px 18px;
+  box-sizing: border-box;
+
+  /deep/ .container {
+    background: #0c4f71;
+  }
+
   /deep/ .margin-right {
-    margin-right: 20px;
+    margin-right: 24px;
+  }
+
+  /deep/ .margin-bottom {
+    margin-bottom: 24px;
   }
 }
 </style>

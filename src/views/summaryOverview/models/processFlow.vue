@@ -9,12 +9,7 @@
   <unit-card cardTitle="工艺流程" cardType="5">
     <div class="card-inner">
       <div class="process-flow-container">
-        <img
-          :src="processFlowImg"
-          @click="showImagePreview(processFlowImg)"
-          alt="工艺流程图"
-          class="process-flow-img"
-        />
+        <img :src="processFlowImg" @click="showImagePreview(processFlowImg)" alt="工艺流程图" class="process-flow-img" />
       </div>
     </div>
     <!-- 图片预览弹框 -->
@@ -41,7 +36,7 @@ export default {
     return {
       showPreview: false,
       previewImage: '',
-      processFlowImg: require('@/assets/img/summaryOverview/fir_has_text.png')
+      processFlowImg: require('@/assets/lightimg/int/process_flow.png')
     };
   },
   methods: {
@@ -78,6 +73,7 @@ export default {
     }
   }
 }
+
 .img-bigger {
   /deep/.ant-modal-content {
     transform: scale(1.7);

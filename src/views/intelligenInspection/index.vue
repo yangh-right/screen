@@ -59,7 +59,8 @@ export default {
         class: ['supply-flex-col'],
         children: [
           {
-            class: ['supply-flex-1', 'supply-overflow-hidden'],
+            style: { height: '470px' },
+            class: ['supply-overflow-hidden'],
             children: [
               {
                 class: ['supply-flex-1'],
@@ -80,7 +81,8 @@ export default {
             ]
           },
           {
-            style: { height: '650px' },
+            style: { marginTop: '20px' },
+            class: ['supply-flex-1', 'supply-overflow-hidden'],
             children: [
               {
                 class: ['supply-flex-1'],
@@ -169,6 +171,9 @@ export default {
 .smart-forecast {
   width: 100%;
   height: 100%;
+  padding: 95px 20px 20px;
+  box-sizing: border-box;
+  background-color: #073c57;
 
   /deep/ .margin-right {
     margin-right: 18px;

@@ -1,5 +1,5 @@
 <template>
-  <unit-card cardTitle="工艺仿真" cardType="4">
+  <unit-card cardTitle="工艺仿真" cardType="9">
     <div class="box-wapper">
       <iframe class="svg" v-if="svgPreviewUrl" :src="svgPreviewUrl" title=""></iframe>
     </div>
@@ -54,6 +54,7 @@ export default {
   height: 100%;
   background: url('~@/assets/img/smartProduct/svg-bg.png') no-repeat;
   background-size: 100% 100%;
+
   .svg {
     width: 100%;
     height: 100%;

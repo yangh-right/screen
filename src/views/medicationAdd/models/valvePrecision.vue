@@ -6,7 +6,7 @@
  * @Description:
 -->
 <template>
-  <unit-card cardTitle="过程指标" cardType="3" :showTime="false">
+  <unit-card cardTitle="过程指标" cardType="11" :showTime="false">
     <div class="aaa">
       <div class="card-inner">
         <div class="second_title">

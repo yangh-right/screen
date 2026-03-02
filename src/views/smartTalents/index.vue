@@ -3,38 +3,19 @@
     <div class="center-side-wrap">
       <div class="content-wrap">
         <!-- 使用动态组件减少重复代码 -->
-        <component
-          :is="currentComponent"
-          v-if="currentComponent"
-          :memo="currentModuleData.memo"
-          :urlList="currentModuleData.urlList"
-          :currentPreviewIndex="currentPreviewIndex"
-          @preview="showImagePreview"
-        />
+        <component :is="currentComponent" v-if="currentComponent" :memo="currentModuleData.memo"
+          :urlList="currentModuleData.urlList" :currentPreviewIndex="currentPreviewIndex" @preview="showImagePreview" />
       </div>
       <div class="content-tab">
-        <carousel-3d
-          :count="slides.length + 1"
-          :perspective="30"
-          :inverseScaling="500"
-          :dir="'ltl'"
-          :width="215"
-          :height="430"
-          :border="0"
-          :space="280"
-        >
+        <carousel-3d :count="slides.length + 1" :perspective="30" :inverseScaling="500" :dir="'ltl'" :width="215"
+          :height="430" :border="0" :space="280">
           <slide v-for="(slide, i) in slides" :index="i" :key="slide.code" class="slide-box">
             <template slot-scope="{ index, isCurrent, leftIndex, rightIndex }">
               <div class="slide-con" :class="fade ? 'fade' : 'fade-in'">
                 <div class="slide-img">
-                  <img
-                    :data-index="index"
-                    :class="{ current: isCurrent, onLeft: leftIndex >= 0, onRight: rightIndex >= 0 }"
-                    class="img_ball"
-                    alt=""
-                    :src="isCurrent ? slide.imgUrlActive : slide.imgUrl"
-                    @click="clickSlide(slide)"
-                  />
+                  <img :data-index="index"
+                    :class="{ current: isCurrent, onLeft: leftIndex >= 0, onRight: rightIndex >= 0 }" class="img_ball"
+                    alt="" :src="isCurrent ? slide.imgUrlActive : slide.imgUrl" @click="clickSlide(slide)" />
                 </div>
                 <div class="slide-title">{{ slide.title }}</div>
               </div>
@@ -50,12 +31,8 @@
       <think-panel :showStage="showStage" ref="right" />
     </div>
     <!-- 图片预览弹框 -->
-    <image-preview-modal
-      :isBigger="isBigger"
-      :visible.sync="showPreview"
-      :imageUrl="previewImage"
-      @close="handleClose"
-    />
+    <image-preview-modal :isBigger="isBigger" :visible.sync="showPreview" :imageUrl="previewImage"
+      @close="handleClose" />
   </div>
 </template>
 
@@ -448,10 +425,10 @@ export default {
   watch: {
     waterPlantId: {
       immediate: true,
-      handler(val) {}
+      handler(val) { }
     }
   },
-  created() {},
+  created() { },
   mounted() {
     this.initPage();
     this.initSlide();
@@ -472,7 +449,7 @@ export default {
       document.querySelectorAll('.content-wrapper').forEach(wrapper => {
         wrapper.querySelectorAll('.content-main').forEach(wrapperInner => {
           if (wrapperInner.querySelectorAll('.smart-talents').length > 0) {
-            wrapper.style.background = '#050d21';
+            wrapper.style.background = '#0b4a6a';
           }
         });
       });
@@ -607,28 +584,32 @@ export default {
   position: relative;
   display: flex;
   justify-content: center;
-  background: #050d24;
+  background: #0b4a6a;
 
   .center-side-wrap {
     position: relative;
     width: calc(100% - 914px);
-    margin: 32px 0;
+    margin: 90px 0;
     height: 90%;
     background: url('~@/assets/img/smartTalents/bg.png') no-repeat;
     background-size: 100% 100%;
+
     .content-wrap {
       position: absolute;
       width: 80%;
       height: 48%;
       top: 6%;
       left: 10%;
+
       .module-wrap1 {
         height: 100%;
         padding: 12px 24px;
+
         .chart {
           height: 100%;
         }
       }
+
       .module-wrap2 {
         .content-middle {
           margin-top: 24px;
@@ -637,12 +618,14 @@ export default {
           align-items: center;
           flex-wrap: wrap;
           flex-direction: row;
+
           .manage-item {
             width: 368px;
             height: 86px;
             background: url('~@/assets/img/smartTalents/guanli_bg.png') no-repeat;
             background-size: 100% 100%;
             margin: 10px 0px;
+
             .manage-item-title {
               height: 24px;
               width: 100%;
@@ -653,6 +636,7 @@ export default {
               color: #ffffff;
               letter-spacing: 2px;
             }
+
             .manage-item-text {
               margin-top: 6px;
               padding-left: 12px;
@@ -665,6 +649,7 @@ export default {
           }
         }
       }
+
       .module-wrap3 {
         .content-top {
           margin-top: 32px;
@@ -681,12 +666,14 @@ export default {
           letter-spacing: 0.2px;
           line-height: 28px;
         }
+
         .content-bottom {
           display: flex;
           align-items: center;
           justify-content: center;
           flex-wrap: nowrap;
           margin-top: 32px;
+
           img {
             flex: 1 1 0;
             height: 135px;
@@ -696,6 +683,7 @@ export default {
           }
         }
       }
+
       .module-wrap4 {
         .content-top {
           margin-top: 36px;
@@ -712,12 +700,14 @@ export default {
           letter-spacing: 0.2px;
           line-height: 28px;
         }
+
         .content-bottom {
           display: flex;
           align-items: center;
           justify-content: center;
           flex-wrap: nowrap;
           margin-top: 36px;
+
           img {
             width: 33.3%;
             height: 153px;
@@ -725,6 +715,7 @@ export default {
           }
         }
       }
+
       .module-wrap5 {
         .content-top {
           margin-top: 24px;
@@ -737,12 +728,14 @@ export default {
           letter-spacing: 1px;
           line-height: 28px;
         }
+
         .content-bottom {
           display: flex;
           align-items: center;
           justify-content: center;
           flex-wrap: nowrap;
           margin-top: 32px;
+
           img {
             flex: 1 1 auto;
             height: 204px;
@@ -751,19 +744,23 @@ export default {
         }
       }
     }
+
     .content-tab {
       position: absolute;
       top: 62%;
       left: 0%;
       width: 100%;
       height: 400px;
+
       .carousel-3d-container {
         margin: 0 !important;
         height: 515px;
       }
+
       /deep/.carousel-3d-slide {
         background-color: transparent !important;
       }
+
       .current {
         display: flex;
 
@@ -771,6 +768,7 @@ export default {
         height: 185px !important;
         top: 50%;
         left: 15%;
+
         .slide-con {
           .slide-img {
             .img_ball {
@@ -778,6 +776,7 @@ export default {
               height: 154px !important;
             }
           }
+
           .slide-title {
             display: flex;
             justify-content: center;
@@ -787,6 +786,7 @@ export default {
           }
         }
       }
+
       .right-1 {
         display: flex;
         width: 100px !important;
@@ -795,6 +795,7 @@ export default {
         transform: none !important;
         top: 32%;
         left: 192%;
+
         .slide-con {
           .slide-img {
             img {
@@ -802,6 +803,7 @@ export default {
               height: 110px;
             }
           }
+
           .slide-title {
             display: flex;
             justify-content: center;
@@ -812,6 +814,7 @@ export default {
           }
         }
       }
+
       .right-2 {
         display: flex;
         width: 75px !important;
@@ -820,6 +823,7 @@ export default {
         transform: none !important;
         top: 1%;
         left: 90%;
+
         .slide-con {
           .slide-img {
             img {
@@ -827,6 +831,7 @@ export default {
               height: 66px;
             }
           }
+
           .slide-title {
             display: flex;
             justify-content: center;
@@ -837,6 +842,7 @@ export default {
           }
         }
       }
+
       .left-1 {
         display: flex;
         width: 100px !important;
@@ -845,6 +851,7 @@ export default {
         transform: none !important;
         top: 32%;
         left: -132%;
+
         .slide-con {
           .slide-img {
             img {
@@ -852,6 +859,7 @@ export default {
               height: 110px;
             }
           }
+
           .slide-title {
             display: flex;
             justify-content: center;
@@ -862,6 +870,7 @@ export default {
           }
         }
       }
+
       .left-2 {
         display: flex;
         width: 74px !important;
@@ -870,6 +879,7 @@ export default {
         transform: none !important;
         top: 1%;
         left: -28%;
+
         .slide-con {
           .slide-img {
             img {
@@ -877,6 +887,7 @@ export default {
               height: 66px;
             }
           }
+
           .slide-title {
             display: flex;
             justify-content: center;
@@ -887,12 +898,15 @@ export default {
           }
         }
       }
+
       .content-tab-item {
         position: absolute;
+
         img {
           width: 103px;
           height: 95px;
         }
+
         .name {
           opacity: 0.8;
           font-family: AlibabaPuHuiTi-Regular, sans-serif;
@@ -903,57 +917,70 @@ export default {
           text-align: center;
         }
       }
+
       .content-tab-item_active {
         img {
           width: 144.14px;
           height: 131.82px;
         }
       }
+
       .module1 {
         left: 45%;
         top: 56%;
+
         .name {
           font-size: 18px;
           color: #ffffff;
         }
       }
+
       .module2 {
         right: 9%;
         top: 36%;
+
         .name {
           font-size: 16px;
           opacity: 0.8;
         }
       }
+
       .module3 {
         right: 34%;
         top: -4%;
+
         img {
           width: 61.8px;
           height: 56.46px;
         }
+
         .name {
           font-size: 14px;
           opacity: 0.7;
           margin-top: -6px;
         }
       }
+
       .module4 {
         left: 34%;
         top: -4%;
+
         img {
           width: 61.8px;
           height: 56.46px;
         }
+
         .name {
           font-size: 14px;
           opacity: 0.7;
           margin-top: -12px;
         }
       }
+
       .module5 {
         left: 9%;
         top: 36%;
+
         .name {
           font-size: 16px;
           opacity: 0.8;
@@ -961,6 +988,7 @@ export default {
       }
     }
   }
+
   .right-side-wrap {
     position: fixed;
     width: 452px;
@@ -974,6 +1002,7 @@ export default {
       margin-top: 10px;
     }
   }
+
   .left-side-wrap {
     position: fixed;
     width: 452px;
@@ -987,9 +1016,11 @@ export default {
       margin-top: 10px;
     }
   }
+
   .img-active {
     transform: scale(1.1);
   }
+
   /deep/ .select__block {
     z-index: 100;
     position: absolute;
@@ -1010,6 +1041,7 @@ export default {
       height: 34px;
       line-height: 34px;
       text-align: center;
+
       .ant-select-selection-selected-value {
         float: unset;
         font-family: SourceHanSansCN-Regular, sans-serif;
@@ -1020,48 +1052,60 @@ export default {
       }
     }
   }
+
   .fade {
     animation: fade 2s ease-in 1;
   }
+
   .fade-in {
     animation: move 2s 3s ease-in infinite;
   }
+
   @keyframes move {
     0% {
       transform: translateY(0px);
     }
+
     50% {
       transform: translateY(-4px);
     }
+
     100% {
       transform: translateY(0px);
     }
   }
+
   @keyframes fade {
     0% {
       transform: rotateX(0deg);
       opacity: 1;
     }
+
     30% {
       transform: rotateX(180deg);
       opacity: 0;
     }
+
     40% {
       transform: rotateX(0deg);
       opacity: 1;
     }
+
     50% {
       transform: rotateX(20deg);
       opacity: 0.8;
     }
+
     60% {
       transform: rotateX(0deg);
       opacity: 1;
     }
+
     70% {
       transform: rotate(10deg);
       opacity: 0.8;
     }
+
     100% {
       transform: rotate(0deg);
       opacity: 1;

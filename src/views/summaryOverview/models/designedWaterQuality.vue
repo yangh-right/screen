@@ -8,43 +8,31 @@
 <template>
   <unit-card cardTitle="设计水质" cardType="5">
     <div class="card-inner">
-      <div
-        class="video-box"
-        @dblclick="toggleFullscreen"
-        @mouseenter="showControl = true"
-        @mouseleave="showControl = false"
-      >
-        <video
-          ref="videoPlayer"
-          class="video-player"
-          :src="require('@/assets/img/summaryOverview/fir_video.mp4')"
-          loop
-          muted
-          autoplay
-          @play="isPlaying = true"
-          @pause="isPlaying = false"
-        ></video>
+      <div class="video-box" @dblclick="toggleFullscreen" @mouseenter="showControl = true"
+        @mouseleave="showControl = false">
+        <video ref="videoPlayer" class="video-player" :src="require('@/assets/img/summaryOverview/fir_video.mp4')" loop
+          muted autoplay @play="isPlaying = true" @pause="isPlaying = false"></video>
         <div class="play-control" v-show="!isPlaying || showControl" @click="togglePlay">
           <img :src="isPlaying ? playSrc : pauseSrc" :alt="isPlaying ? '暂停' : '播放'" class="control-icon" />
         </div>
       </div>
       <div class="table-box">
         <div class="table-head">
-          <div class="index col">序号</div>
-          <div class="reality col">设计进水</div>
-          <div class="target col">浙江省标</div>
-          <div class="time col">一级A标准</div>
-          <div class="standard col">本项目标准</div>
+          <div class="label-space"></div>
+          <div class="col">设计进水</div>
+          <div class="col">设计出水</div>
+          <div class="col">二沉淀池出水</div>
+          <div class="col">三类标准</div>
         </div>
         <div class="table-body">
-          <div @click="selectAlarm(item)" v-for="(item, i) in tableData" :key="i" class="table-tr">
-            <div class="index col">
-              <span class="num">{{ item.parameter }}(mg/L)</span>
+          <div v-for="(item, i) in tableData" :key="i" class="table-row">
+            <div class="param-label">{{ item.parameter }}</div>
+            <div class="values-bg">
+              <div class="col">{{ item.inflow }}</div>
+              <div class="col">{{ item.outflow }}</div>
+              <div class="col">{{ item.secondary }}</div>
+              <div class="col standard-val">{{ item.standard }}</div>
             </div>
-            <div class="reality col">{{ item.inflow }}</div>
-            <div class="target col">{{ item.outflow }}</div>
-            <div class="time col">{{ item.secondary }}</div>
-            <div class="standard col">{{ item.standard }}</div>
           </div>
         </div>
       </div>
@@ -77,52 +65,46 @@ export default {
       playSrc: require('@/assets/img/summaryOverview/fir_start.png'),
       tableData: [
         {
-          parameter: 'COD',
-          inflow: '≤320',
+          parameter: 'COD(mg/L)',
+          inflow: '400',
           outflow: '≤30',
           secondary: '≤50',
-          standard: '≤40',
-          isHighlighted: true
+          standard: '≤20'
         },
         {
-          parameter: 'BOD₅',
-          inflow: '≤160',
-          outflow: '--',
-          secondary: '≤10',
-          standard: '≤10',
-          isHighlighted: true
+          parameter: 'BOD(mg/L)',
+          inflow: '150',
+          outflow: '≤6',
+          secondary: '≤6',
+          standard: '≤4'
         },
         {
-          parameter: 'NH₃-N',
-          inflow: '≤35',
-          outflow: '≤1.5(3)',
-          secondary: '≤5(8)',
-          standard: '≤2(4)',
-          isHighlighted: true
+          parameter: 'SS(mg/L)',
+          inflow: '55',
+          outflow: '≤10',
+          secondary: '≤15',
+          standard: '≤5'
         },
         {
-          parameter: 'TN',
-          inflow: '≤45',
+          parameter: 'TN(mg/L)',
+          inflow: '45',
           outflow: '≤10(12)',
           secondary: '≤15',
-          standard: '≤12(15)',
-          isHighlighted: true
+          standard: '≤10'
         },
         {
-          parameter: 'TP',
-          inflow: '≤4',
+          parameter: 'NH(mg/L)',
+          inflow: '400',
+          outflow: '≤1.0(1.5)',
+          secondary: '≤1.0(1.5)',
+          standard: '≤1.0(1.5)'
+        },
+        {
+          parameter: 'TP(mg/L)',
+          inflow: '5',
           outflow: '≤0.3',
-          secondary: '≤0.5',
-          standard: '≤0.3',
-          isHighlighted: true
-        },
-        {
-          parameter: 'SS',
-          inflow: '≤100',
-          outflow: '--',
-          secondary: '≤10',
-          standard: '≤10',
-          isHighlighted: true
+          secondary: '≤1',
+          standard: '≤0.2'
         }
       ]
     };
@@ -160,17 +142,18 @@ export default {
   position: relative;
   display: flex;
   align-items: center;
+  padding: 10px 20px;
 
   .video-box {
     width: 290px;
     height: 200px;
-    margin-right: 20px;
+    margin-right: 15px;
     position: relative;
     border-radius: 4px;
     overflow: hidden;
-    background: url('~@/assets/img/summaryOverview/fir_videobox.png') no-repeat;
+    background: url('~@/assets/lightimg/int/video.png') no-repeat;
     background-size: 100% 100%;
-    padding: 8px;
+    padding: 10px;
 
     .video-player {
       width: 100%;
@@ -183,25 +166,17 @@ export default {
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      width: 50px;
-      height: 50px;
-      background: rgba(0, 146, 246, 0.2);
-      border-radius: 50%;
+      width: 60px;
+      height: 60px;
       cursor: pointer;
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: all 0.3s;
-      opacity: 0;
-      animation: fadeIn 0.3s forwards;
-
-      &:hover {
-        background: rgba(0, 146, 246, 0.4);
-      }
+      z-index: 10;
 
       .control-icon {
-        width: 50px;
-        height: 50px;
+        width: 100%;
+        height: 100%;
       }
     }
   }
@@ -209,129 +184,76 @@ export default {
   .table-box {
     flex: 1;
     height: 100%;
-    .col {
-      padding-left: 12px;
-      text-align: left;
-    }
+    display: flex;
+    flex-direction: column;
+
     .table-head {
-      height: 32px;
       display: flex;
       align-items: center;
+      height: 30px;
+      margin-bottom: 8px;
+
+      .label-space {
+        width: 120px;
+      }
+
       .col {
-        text-align: left;
+        flex: 1;
+        text-align: center;
         font-family: AlibabaPuHuiTi_2_55_Regular, sans-serif;
         font-weight: 400;
-        font-size: 12px;
-        color: #cfdfff;
-        letter-spacing: 0;
-      }
-      .index {
-        flex-grow: 1;
-        overflow: hidden;
-        visibility: hidden;
+        font-size: 13px;
+        color: #e4f0f6;
         white-space: nowrap;
-        position: relative;
-        text-overflow: ellipsis;
-      }
-      .reality {
-        flex-basis: 86px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-      .target {
-        flex-basis: 86px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-      .time {
-        flex-basis: 86px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-      .standard {
-        flex-basis: 94px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        padding: 0 2px;
       }
     }
+
     .table-body {
-      width: 100%;
-      height: calc(100% - 34px);
-      overflow: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
-    .table-tr {
-      height: 24px;
+
+    .table-row {
       display: flex;
       align-items: center;
-      background: url('~@/assets/img/summaryOverview/fir_form.png') no-repeat top right;
-      background-size: 82% 100%;
-      margin-bottom: 8px;
-      font-family: AlibabaPuHuiTi_2_55_Regular, sans-serif;
-      font-weight: 400;
-      font-size: 12px;
-      color: #e6e5f8;
-      letter-spacing: 0;
-      .index {
-        flex-grow: 1;
-        font-family: Oswald-Bold, sans-serif;
-        font-size: 12px;
-        position: relative;
-        color: #e6e5f7;
-        text-align: left;
-        padding-left: 32px;
-        .num {
-          font-family: AlibabaPuHuiTi_2_55_Regular, sans-serif;
-          position: relative;
-          left: -17px;
-        }
-        .tip {
-          position: absolute;
-          width: 24px;
-          right: 3px;
-          top: -3px;
-        }
-      }
-      .reality {
-        flex-basis: 82px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
+      height: 32px;
 
-      .target {
-        flex-basis: 86px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-      .time {
-        flex-basis: 86px;
-        text-align: center;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-      .standard {
-        padding-right: 27px;
-        flex-basis: 90px;
+      .param-label {
+        width: 100px;
+        font-family: AlibabaPuHuiTi_2_55_Regular, sans-serif;
+        font-weight: 500;
+        font-size: 15px;
+        color: #e4f0f6;
         text-align: right;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        padding-right: 8px;
       }
-    }
-  }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
+      .values-bg {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        background: url('~@/assets/lightimg/int/table.png') no-repeat;
+        background-size: 100% 100%;
+        padding: 0 4px;
+
+        .col {
+          flex: 1;
+          text-align: center;
+          font-family: AlibabaPuHuiTi_2_55_Regular, sans-serif;
+          font-weight: 400;
+          font-size: 15px;
+          color: #e4f0f6;
+          white-space: nowrap;
+
+          &.standard-val {
+            color: #ff4d4d;
+          }
+        }
+      }
     }
   }
 }

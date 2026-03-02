@@ -1,11 +1,11 @@
 <template>
-  <unit-card cardTitle="进水水质">
-    <div class="header-box">
+  <unit-card cardTitle="进水水质" cardType="5">
+    <!-- <div class="header-box">
       <div v-for="(item, index) in runDays" :key="index" class="dashboard-header">
         <div class="header-left">{{ item.label }}</div>
         <div class="header-right">{{ item.value }} <span class="header-unit">天</span></div>
       </div>
-    </div>
+    </div> -->
     <div class="gauge-container">
       <div class="gauge-card" v-for="(item, index) in gaugeData" :key="index">
         <div class="gauge-chart" :id="`gauge-chart-${index}`">
@@ -42,7 +42,7 @@ export default {
     },
     qualityData: {
       type: Object,
-      default: () => {}
+      default: () => { }
     }
   },
   data() {
@@ -190,6 +190,7 @@ export default {
   padding: 0px 6px 0 6px;
   margin: 4px 0;
 }
+
 .dashboard-header {
   width: calc(50% - 9px);
   height: 36px;
@@ -200,6 +201,7 @@ export default {
   box-sizing: border-box;
   background: url('~@/assets/img/smartProduct/outlet_water_compliance_rate.png') no-repeat;
   background-size: 100% 100%;
+
   .header-left {
     font-family: AlibabaPuHuiTi_2_55_Regular, sans-serif;
     font-weight: 400;
@@ -207,6 +209,7 @@ export default {
     color: #cee6ff;
     letter-spacing: 0;
   }
+
   .header-right {
     font-family: MiSans-Medium, sans-serif;
     font-weight: 500;
@@ -215,6 +218,7 @@ export default {
     letter-spacing: 0;
     text-align: center;
   }
+
   .header-unit {
     font-family: AlibabaPuHuiTi_2_85_Bold, sans-serif;
     font-weight: 700;
@@ -223,6 +227,7 @@ export default {
     letter-spacing: 0;
   }
 }
+
 .gauge-container {
   width: 100%;
   height: 100%;
@@ -238,7 +243,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: url('~@/assets/img/smartProduct/card319_large.png') no-repeat;
+  background: url('~@/assets/lightimg/shenchan/card_255.png') no-repeat;
   background-size: 100% 100%;
 
   &:first-child {
@@ -246,6 +251,7 @@ export default {
       background: url('~@/assets/img/smartProduct/dashboard__blue.png') no-repeat center center;
     }
   }
+
   &:last-child {
     .gauge-chart {
       background: url('~@/assets/img/smartProduct/dashboard__purple.png') no-repeat center center;
@@ -255,7 +261,7 @@ export default {
 
 .gauge-chart {
   width: 100%;
-  height: 171px;
+  height: 210px;
   margin-top: 22px;
   position: relative;
 }
@@ -268,13 +274,13 @@ export default {
   letter-spacing: 0;
   text-align: center;
   position: absolute;
-  bottom: 42px;
+  bottom: 55px;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .gauge-info {
-  margin-top: 6px;
+  margin-top: 10px;
   font-family: AlibabaPuHuiTi_2_55_Regular, sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -309,16 +315,17 @@ export default {
     background-color: #4fef15;
   }
 }
+
 .gauge-title {
   margin-bottom: 4px;
 }
 
 .gauge-days {
-  margin-top: 4px;
-  padding: 6px 0;
+  margin-top: 10px;
+  padding: 0;
   width: 90%;
-  background: url('~@/assets/img/smartProduct/days.png') no-repeat;
-  background-size: 100% 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 10px;
   font-family: MiSans-Medium, sans-serif;
   font-weight: 500;
   font-size: 18px;

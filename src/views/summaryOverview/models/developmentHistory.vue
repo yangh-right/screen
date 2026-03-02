@@ -1,29 +1,21 @@
 <template>
-  <unit-card cardTitle="发展历程" cardType="6">
+  <unit-card cardTitle="资质荣誉" cardType="6">
     <div class="project-timeline">
       <div class="timeline-container">
         <!-- Timeline Images -->
         <div class="timeline-images">
           <div class="image-item" v-for="(milestone, index) in milestones" :key="`img-${index}`">
             <div class="image-frame">
-              <img
-                :src="milestone.imageUrl"
-                :alt="milestone.title"
-                class="milestone-image"
-                @click="showImagePreview(milestone.bigImageUrl)"
-              />
+              <img :src="milestone.imageUrl" :alt="milestone.title" class="milestone-image"
+                @click="showImagePreview(milestone.bigImageUrl)" />
             </div>
           </div>
         </div>
 
         <!-- Timeline Line -->
         <div class="timeline-line">
-          <div
-            v-for="(milestone, index) in milestones"
-            :key="`node-${index}`"
-            class="timeline-node"
-            :class="{ active: milestone.active }"
-          ></div>
+          <div v-for="(milestone, index) in milestones" :key="`node-${index}`" class="timeline-node"
+            :class="{ active: milestone.active }"></div>
         </div>
 
         <!-- Timeline Milestones -->
@@ -115,7 +107,7 @@ export default {
 <style lang="less">
 .project-timeline {
   width: 100%;
-  background: url('~@/assets/img/summaryOverview/fir_timeline_background.png') no-repeat;
+  // background: url('~@/assets/img/summaryOverview/fir_timeline_background.png') no-repeat;
   background-size: 100% 100%;
   padding: 20px 10px 40px;
   box-sizing: border-box;
@@ -179,7 +171,7 @@ export default {
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    background: url('~@/assets/img/summaryOverview/fir_time.png') no-repeat;
+    background: url('~@/assets/lightimg/int/timeline.png') no-repeat;
     background-size: 100% 100%;
     align-items: center;
     padding: 0 63px;
@@ -188,17 +180,17 @@ export default {
       width: 18px;
       height: 18px;
       border-radius: 50%;
-      background: url('~@/assets/img/summaryOverview/fir_unclicked_points.png') no-repeat;
+      background: url('~@/assets/lightimg/int/group_33.png') no-repeat;
       background-size: 100% 100%;
       z-index: 2;
       position: relative;
 
-      &.active {
-        width: 26px;
-        height: 26px;
-        background: url('~@/assets/img/summaryOverview/fir_timeline__click.png') no-repeat;
-        background-size: 100% 100%;
-      }
+      // &.active {
+      //   width: 26px;
+      //   // height: 26px;
+      //   // background: url('~@/assets/img/summaryOverview/fir_timeline__click.png') no-repeat;
+      //   background-size: 100% 100%;
+      // }
     }
   }
 
@@ -226,7 +218,7 @@ export default {
         .milestone-ico {
           width: 12px;
           height: 12px;
-          background: url('~@/assets/img/summaryOverview/fir_tip_point.png') no-repeat;
+          background: url('~@/assets/lightimg/int/rectangle.png') no-repeat;
           background-size: 100% 100%;
           margin: 0 6px;
         }

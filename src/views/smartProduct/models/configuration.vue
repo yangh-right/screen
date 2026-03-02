@@ -57,7 +57,7 @@ export default {
   .title {
     position: absolute;
     top: 36px;
-    left: 0;
+    left: 20px;
     width: 279px;
     height: 48px;
     display: flex;
@@ -65,9 +65,12 @@ export default {
     align-items: center;
     background: url('~@/assets/img/hz/smart_product_title.png') no-repeat;
     background-size: 100% 100%;
+    z-index: 1;
   }
 
   .svg {
+    position: relative;
+    z-index: 1;
     width: 100%;
     height: 100%;
   }

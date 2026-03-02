@@ -6,7 +6,7 @@
  * @Description:
 -->
 <template>
-  <unit-card cardTitle="绿色低碳">
+  <unit-card cardTitle="绿色低碳" cardType="10">
     <div class="card-inner">
       <!-- 使用过渡组件包裹 img 标签 -->
       <div class="img-list">
@@ -62,7 +62,7 @@ export default {
       this.currentImgIndex = i;
       this.showPreview = true;
     },
-    async initData() {}
+    async initData() { }
   }
 };
 </script>
@@ -74,16 +74,19 @@ export default {
   padding: 20px 0;
   display: flex;
   align-items: center;
+
   /* For demo */
   .img-list {
     height: 100%;
     width: calc(50% - 8px);
     margin-right: 16px;
   }
+
   /deep/.ant-carousel {
     height: 100%;
     width: 100%;
   }
+
   /deep/.slick-slider {
     height: 100%;
     width: 100%;
@@ -95,9 +98,11 @@ export default {
     height: 100%;
     width: 100%;
   }
+
   /deep/.slick-track {
     height: 100%;
   }
+
   .img-box {
     cursor: pointer;
     height: 100%;
@@ -107,6 +112,7 @@ export default {
     border-radius: 4px;
     overflow: hidden;
     position: relative;
+
     &::after {
       content: '';
       display: block;

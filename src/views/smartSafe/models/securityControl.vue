@@ -6,7 +6,7 @@
  * @Description:
 -->
 <template>
-  <unit-card cardTitle='"强制式"-执行力安全管控' cardType="4">
+  <unit-card cardTitle='"强制式"-执行力安全管控' cardType="10">
     <div class="box">
       <div class="box__item">
         <phone-verification :waterPlantId="waterPlantId" />
@@ -53,10 +53,10 @@ export default {
       immediate: true
     }
   },
-  created() {},
-  mounted() {},
+  created() { },
+  mounted() { },
   methods: {
-    initData() {}
+    initData() { }
   }
 };
 </script>
@@ -69,11 +69,13 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+
   &__item {
     flex: 1;
     overflow: hidden;
     height: 100%;
     margin-right: 20px;
+
     &:nth-last-child(1) {
       margin-right: 0;
     }

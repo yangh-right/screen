@@ -20,6 +20,7 @@ import { MapboxMap } from '@wpg/map-vue/mapbox';
 import mapboxgl from '@wpg/mapbox-gl';
 import { GB, AddPopup } from './tools';
 import { createDefer } from '@/common/js/tool/tools.js';
+import axiosConfig from '@/api/axiosConfig';
 export default {
   name: 'personnelTrack',
   components: {
@@ -32,7 +33,7 @@ export default {
     },
     safetyInfo: {
       type: Object,
-      default: () => {}
+      default: () => { }
     },
     personLine: {
       type: Array,
@@ -48,8 +49,7 @@ export default {
       resizeTimer: null,
       eventHandlers: {}, // 存储事件处理函数
       defaultMapProps: {
-        baseURL:
-          process.env.NODE_ENV === 'production' ? `${window.location.origin}/main` : 'http://172.168.10.138:8877/main',
+        baseURL: axiosConfig.VUEAPPHOST + '/main',
         token: '',
         theme: 'SUPPLY_WATER_SCREEN',
         controls: {

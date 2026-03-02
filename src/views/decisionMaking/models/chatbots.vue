@@ -16,12 +16,8 @@
         <div class="prompt-section">
           <img src="@/assets/img/summaryOverview/prompt-title.png" alt="prompt" />
           <div class="prompt-content">
-            <div
-              v-for="(item, index) in promptList"
-              :key="index"
-              class="prompt-content-list"
-              @click="handlePromptClick(item.title)"
-            >
+            <div v-for="(item, index) in promptList" :key="index" class="prompt-content-list"
+              @click="handlePromptClick(item.title)">
               <div class="question-item-title">{{ item.title }}</div>
               <div class="question-item-content">
                 <div v-for="(content, idx) in item.content" :key="idx" class="question-item-content-item">
@@ -41,18 +37,9 @@
               {{ item.label === 'tm' ? timeFormat(item.value) : item.value }}
             </div>
             <div v-else :class="['fr-chat', 'chat-message']">
-              <vue-typed-js
-                :strings="[item.label === 'tm' ? timeFormat(item.value) : item.value]"
-                :shuffle="false"
-                cursorChar=""
-                @onComplete="onComplete(index)"
-                :typeSpeed="14"
-                :loop="false"
-                :loopCount="1"
-                :startDelay="500"
-                :showCursor="true"
-                :contentType="'html'"
-              >
+              <vue-typed-js :strings="[item.label === 'tm' ? timeFormat(item.value) : item.value]" :shuffle="false"
+                cursorChar="" @onComplete="onComplete(index)" :typeSpeed="14" :loop="false" :loopCount="1"
+                :startDelay="500" :showCursor="true" :contentType="'html'">
                 <div class="typing"></div>
               </vue-typed-js>
             </div>
@@ -62,13 +49,8 @@
 
       <!-- 输入框区域 -->
       <div class="search">
-        <a-input
-          v-model="keyword"
-          class="search-input"
-          placeholder="请输入您的问题"
-          @keyup.enter="handleSearch"
-          :maxLength="200"
-        />
+        <a-input v-model="keyword" class="search-input" placeholder="请输入您的问题" @keyup.enter="handleSearch"
+          :maxLength="200" />
         <img src="@/assets/img/summaryOverview/fir_post.png" @click="handleSearch" alt="发送" />
       </div>
     </div>
@@ -424,9 +406,11 @@ export default {
           top: -14px;
           left: 0;
         }
+
         .question-item-content-item {
           padding-left: 14px;
           position: relative;
+
           &::before {
             content: '';
             position: absolute;
@@ -437,7 +421,9 @@ export default {
             background: #26a8d3;
             border-radius: 50%;
           }
-          font-family: Aliba, sans-serif;
+
+          font-family: Aliba,
+          sans-serif;
           font-weight: 400;
           font-size: 14px;
           color: #acc6f2;

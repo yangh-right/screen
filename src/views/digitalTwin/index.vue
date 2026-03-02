@@ -59,10 +59,12 @@ export default {
     background-size: 100% 100%;
 
     position: relative;
-    .iframeBox > iframe {
+
+    .iframeBox>iframe {
       width: 100%;
       height: 100%;
     }
+
     .iframeBox {
       width: 100%;
     }

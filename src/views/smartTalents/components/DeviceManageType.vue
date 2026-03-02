@@ -123,8 +123,8 @@ export default {
   },
   computed: {},
   watch: {},
-  created() {},
-  mounted() {},
+  created() { },
+  mounted() { },
   methods: {}
 };
 </script>
@@ -140,6 +140,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   .top {
     position: relative;
     margin-top: 48px;
@@ -147,6 +148,7 @@ export default {
     height: 299px;
     background: url('~@/assets/img/smartTalents/renge.png') no-repeat center;
     background-size: 100% 100%;
+
     .test-res {
       position: absolute;
       top: 46%;
@@ -156,6 +158,7 @@ export default {
       color: #ffffff;
       letter-spacing: 0;
     }
+
     .item {
       .value {
         position: absolute;
@@ -166,6 +169,7 @@ export default {
         letter-spacing: 1px;
         text-shadow: 0 3px 6px #00396ecc;
       }
+
       .name {
         position: absolute;
         font-family: AlibabaPuHuiTiM, sans-serif;
@@ -177,6 +181,7 @@ export default {
       }
     }
   }
+
   .list {
     flex: 1;
     width: 100%;
@@ -184,6 +189,7 @@ export default {
     align-items: center;
     flex-wrap: wrap;
     flex-direction: row;
+
     .list-item {
       width: 188px;
       height: 110px;
@@ -192,6 +198,7 @@ export default {
       flex-direction: column;
       align-items: center;
     }
+
     .title {
       display: flex;
       align-items: center;
@@ -205,6 +212,7 @@ export default {
       background: url('~@/assets/img/smartTalents/rg_title.png') no-repeat center;
       background-size: 100% 100%;
     }
+
     .content-item {
       margin-top: 1px;
       padding-top: 10px;
@@ -218,6 +226,7 @@ export default {
       text-align: center;
       background: url('~@/assets/img/smartTalents/rg_content.png') no-repeat center;
       background-size: 100% 100%;
+
       .value1 {
         margin-top: 3px;
       }

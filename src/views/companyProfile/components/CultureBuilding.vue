@@ -7,7 +7,7 @@
  * @LastEditTime: 2025-03-26 09:47:03
 -->
 <template>
-  <unit-card :cardTitle="title" :showTime="false">
+  <unit-card :cardTitle="title" :showTime="false" cardType="5">
     <div class="culture-container">
       <div class="culture-content">
         <div v-for="(item, index) in cultureItems" :key="index" class="culture-item">
@@ -69,7 +69,7 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
-  background-image: url('~@/assets/img/smartTalents/culture_bg.png');
+  background-image: url('~@/assets/lightimg/new/group_17.png');
   background-position: center;
   background-repeat: no-repeat;
   padding: 16px 20px;
@@ -99,18 +99,23 @@ export default {
   letter-spacing: 0;
   margin-left: 50px;
 }
+
 .item-title-1 {
   /* margin-left: 20px; */
 }
+
 .item-title-2 {
   margin-left: 74px;
 }
+
 .item-title-3 {
   margin-left: 116px;
 }
+
 .item-title-4 {
   margin-left: 74px;
 }
+
 .item-title-5 {
   /* margin-left: 20px; */
 }

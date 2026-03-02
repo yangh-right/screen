@@ -57,7 +57,7 @@ export default {
   .title {
     position: absolute;
     top: 36px;
-    left: 0;
+    left: 20px;
     width: 279px;
     height: 48px;
     display: flex;

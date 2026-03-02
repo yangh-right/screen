@@ -151,5 +151,8 @@ export default {
 .smart-product {
   width: 100%;
   height: 100%;
+  padding-top: 90px;
+  box-sizing: border-box;
+  background-color: #073c57;
 }
 </style>

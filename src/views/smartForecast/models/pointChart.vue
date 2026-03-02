@@ -7,18 +7,9 @@
  * @Description:
 -->
 <template>
-  <unit-card :cardTitle="handlePointName(pointName) + '曲线'" cardType="3">
-    <c-select
-      slot="headerRight"
-      size="small"
-      ref="structureSelect"
-      @change="selectPoint"
-      mode="multiple"
-      :maxTagTextLength="6"
-      :maxTagCount="3"
-      v-model="curPoints"
-      class="select-wrapper"
-    >
+  <unit-card :cardTitle="handlePointName(pointName) + '曲线'" cardType="5">
+    <c-select slot="headerRight" size="small" ref="structureSelect" @change="selectPoint" mode="multiple"
+      :maxTagTextLength="6" :maxTagCount="3" v-model="curPoints" class="select-wrapper">
       <a-select-option :title="item.name" v-for="item in pointList" :key="item.name" :value="item.name">{{
         item.name
       }}</a-select-option>
@@ -158,8 +149,8 @@ export default {
         this.curPoints = newPoints.length
           ? newPoints.map(item => item.name)
           : avDevices.length
-          ? [avDevices?.[0]?.name]
-          : [];
+            ? [avDevices?.[0]?.name]
+            : [];
 
         this.selectPoint();
       }
@@ -195,23 +186,28 @@ export default {
   width: 190px;
   height: 32px;
 }
+
 /deep/.card-title__right {
   position: absolute;
   right: 12px !important;
 }
+
 .point-wrapper {
   height: 100%;
   display: flex;
   flex-direction: column;
+
   .chart {
     flex: 1;
     overflow: hidden;
   }
 }
+
 .warn-diagnosis {
   width: 100%;
   height: 100%;
   position: relative;
+
   .btn {
     width: 282px !important;
     z-index: 10;
@@ -220,6 +216,7 @@ export default {
     top: 10px;
   }
 }
+
 /deep/ .ant-spin-container {
   height: 100%;
 }

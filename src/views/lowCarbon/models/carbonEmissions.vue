@@ -6,7 +6,7 @@
  * @Description: 稳定出水监控组件
 -->
 <template>
-  <unit-card cardTitle="精细化核算碳排量" :showTime="false">
+  <unit-card cardTitle="精细化核算碳排量" cardType="10" :showTime="false">
     <div class="card-inner">
       <div class="box">
         <line-chart id="inChart" :options="lineOption" ref="inChart" />
@@ -208,13 +208,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-:deep(.card-title) {
-  .title {
-    .text {
-      font-size: 20px !important;
-    }
-  }
-}
 .card-inner {
   width: 100%;
   height: 100%;

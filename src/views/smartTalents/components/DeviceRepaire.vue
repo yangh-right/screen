@@ -104,6 +104,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
   .des {
     margin: 12px;
     font-family: AlibabaPuHuiTi-Regular, sans-serif;
@@ -114,6 +115,7 @@ export default {
     text-indent: 28px;
     line-height: 22px;
   }
+
   .img {
     width: 100%;
     height: 206px;
