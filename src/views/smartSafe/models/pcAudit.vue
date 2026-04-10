@@ -58,7 +58,7 @@ export default {
       immediate: true
     }
   },
-  created() {},
+  created() { },
   mounted() {
     // 启动轮播
     this.startCarousel();
@@ -68,7 +68,7 @@ export default {
     this.stopCarousel();
   },
   methods: {
-    initData() {},
+    initData() { },
     startCarousel() {
       this.intervalId = setInterval(() => {
         // 将最后一个元素移到数组开头
@@ -88,9 +88,10 @@ export default {
   width: 100%;
   height: 100%;
   padding: 12px;
-  background-image: linear-gradient(180deg, #003874b3 0%, #00244a33 53%, #00244ab3 100%);
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.1) 53%, rgba(0, 0, 0, 0.4) 100%);
   box-shadow: inset 0 0 20px 0 #007dff4d;
   border-radius: 4px;
+
   .title {
     width: 60%;
     height: 40px;
@@ -103,10 +104,12 @@ export default {
     background-image: linear-gradient(270deg, #1e539000 7%, #134479ba 77%);
     margin-bottom: 12px;
   }
+
   .card-content {
     display: flex;
     justify-content: center;
     padding: 0 30px 0 18px;
+
     .base {
       flex: 0 0 auto;
       margin-right: 31.5px;
@@ -114,6 +117,7 @@ export default {
       height: 198px;
       background: url('~@/assets/img/smartSafe/base-bg.png') no-repeat;
       background-size: 100% 100%;
+
       .icon {
         width: 138px;
         height: 138px;
@@ -124,6 +128,7 @@ export default {
         top: 22px;
       }
     }
+
     .tip {
       flex: 1;
       display: flex;
@@ -143,21 +148,25 @@ export default {
         background-size: 100% 50px;
         margin-bottom: 10px;
         padding: 0 21px 0;
+
         &:nth-last-child(1) {
           margin-bottom: 0px;
         }
       }
     }
   }
+
   /* 优化后的过渡动画，仅保留进入动画 */
   .slide-enter-active {
     transition: all 0.5s ease;
     transform-origin: top;
   }
+
   .slide-enter {
     opacity: 0;
     transform: translateY(-100%);
   }
+
   .slide-leave-to {
     opacity: 0;
     transform: translateY(-100%);

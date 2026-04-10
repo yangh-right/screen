@@ -7,23 +7,12 @@
 -->
 <template>
   <div class="card-inner">
-    <div
-      class="card-content"
-      @dblclick="toggleFullscreen"
-      @mouseenter="showControl = true"
-      @mouseleave="showControl = false"
-    >
+    <div class="card-content" @dblclick="toggleFullscreen" @mouseenter="showControl = true"
+      @mouseleave="showControl = false">
       <div class="title">实时管控操作步骤</div>
       <div class="mask"></div>
-      <video
-        ref="videoPlayer"
-        class="video-player"
-        :src="videoSrc"
-        loop
-        muted
-        @play="isPlaying = true"
-        @pause="isPlaying = false"
-      ></video>
+      <video ref="videoPlayer" class="video-player" :src="videoSrc" loop muted @play="isPlaying = true"
+        @pause="isPlaying = false"></video>
       <div class="play-control" v-show="!isPlaying || showControl" @click="togglePlay">
         <img :src="isPlaying ? playSrc : pauseSrc" :alt="isPlaying ? '暂停' : '播放'" class="control-icon" />
       </div>
@@ -64,10 +53,10 @@ export default {
       immediate: true
     }
   },
-  created() {},
-  mounted() {},
+  created() { },
+  mounted() { },
   methods: {
-    initData() {},
+    initData() { },
     togglePlay() {
       const video = this.$refs.videoPlayer;
       if (video) {
@@ -95,17 +84,20 @@ export default {
   width: 100%;
   height: 100%;
   padding: 12px;
-  background-image: linear-gradient(180deg, #003874b3 0%, #00244a33 53%, #00244ab3 100%);
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.1) 53%, rgba(0, 0, 0, 0.4) 100%);
   box-shadow: inset 0 0 20px 0 #007dff4d;
   border-radius: 4px;
+
   .card-content {
     position: relative;
     width: 100%;
     height: 100%;
+
     .video-player {
       width: 100%;
       height: 100%;
     }
+
     .mask {
       width: 100%;
       height: 100%;
@@ -114,6 +106,7 @@ export default {
       border-radius: 3.33px;
       z-index: 2;
     }
+
     .play-control {
       z-index: 4;
       position: absolute;
@@ -141,6 +134,7 @@ export default {
         height: 50px;
       }
     }
+
     .title {
       position: absolute;
       z-index: 3;

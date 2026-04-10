@@ -48,10 +48,10 @@ export default {
       immediate: true
     }
   },
-  created() {},
-  mounted() {},
+  created() { },
+  mounted() { },
   methods: {
-    initData() {}
+    initData() { }
   }
 };
 </script>
@@ -61,9 +61,10 @@ export default {
   width: 100%;
   height: 100%;
   padding: 12px;
-  background-image: linear-gradient(180deg, #003874b3 0%, #00244a33 53%, #00244ab3 100%);
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.1) 53%, rgba(0, 0, 0, 0.4) 100%);
   box-shadow: inset 0 0 20px 0 #007dff4d;
   border-radius: 4px;
+
   .title {
     width: 60%;
     height: 40px;
@@ -76,17 +77,20 @@ export default {
     background-image: linear-gradient(270deg, #1e539000 7%, #134479ba 77%);
     margin-bottom: 12px;
   }
+
   .card-content {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0 30px 0 18px;
+
     .base {
       margin-right: 31.5px;
       width: 189px;
       height: 198px;
       background: url('~@/assets/img/smartSafe/base-bg.png') no-repeat;
       background-size: 100% 100%;
+
       .icon {
         width: 150px;
         height: 150px;
@@ -97,6 +101,7 @@ export default {
         top: 3px;
       }
     }
+
     .tip {
       flex: 1;
       display: flex;
@@ -115,6 +120,7 @@ export default {
         padding: 0 20px 0;
         background: url('~@/assets/img/smartSafe/tip-bg.png') 0 16px no-repeat;
         background-size: 100% 50px;
+
         &:last-child {
           margin-top: 20px;
         }

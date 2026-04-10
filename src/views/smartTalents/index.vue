@@ -591,7 +591,7 @@ export default {
     width: calc(100% - 914px);
     margin: 90px 0;
     height: 90%;
-    background: url('~@/assets/img/smartTalents/bg.png') no-repeat;
+    background: url('~@/assets/lightimg/int/bgbg.png') no-repeat;
     background-size: 100% 100%;
 
     .content-wrap {

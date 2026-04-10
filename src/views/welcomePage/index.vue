@@ -5,7 +5,7 @@
     </div>
 
     <div class="content">
-      <div class="slogan">悟水之道  善水之德</div>
+      <div class="slogan">悟水之道 善水之德</div>
       <div class="welcome-text">欢迎各位领导莅临参观</div>
       <div class="tags">
         <span class="tag">团结</span>
@@ -32,10 +32,10 @@ export default {
   data() {
     return {
       logoSrc: require('@/assets/bottom-logo.png'),
-      videoSrc: require('@/assets/home-bg.mp4')
+      videoSrc: require('@/assets/lightimg/int/video(6).mp4')
     };
   },
-  mounted() {},
+  mounted() { },
   methods: {
     handleClick() {
       this.$router.push('/mainPage');
@@ -51,19 +51,23 @@ export default {
   height: 100%;
   overflow: hidden;
   cursor: pointer;
+  background: none;
 
   .wave-animation {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background: none;
 
     video {
       width: 100%;
       height: 100%;
+      object-fit: cover;
     }
   }
+
   .logo-container {
     position: absolute;
     top: 40px;
@@ -82,32 +86,38 @@ export default {
   z-index: 10;
 
   .slogan {
+    font-family: AlibabaPuHuiTi_3_65_Medium;
     font-weight: 500;
-    font-size: 56.78px;
-    color: #bdcfff;
+    font-size: 51px;
+    color: #5C5C5C;
     letter-spacing: 0;
+    text-align: center;
   }
 
   .welcome-text {
-    font-family: AlibabaPuHuiTi_3_85_Bold, sans-serif;
-
+    font-family: AlibabaPuHuiTi_3_85_Bold;
     font-weight: 700;
-    font-size: 128.78px;
+    font-size: 125px;
     letter-spacing: 0;
-    background: linear-gradient(to bottom, #f4f8ff 50%, #a9c8ff);
-    color: transparent;
+    text-align: center;
+    background: linear-gradient(180deg, #15A0FF 0%, #0532BC 100%);
     -webkit-background-clip: text;
     background-clip: text;
+    color: transparent;
+    /* 使用 text-stroke 实现描边，或者使用 drop-shadow 模拟 */
+    -webkit-text-stroke: 3px #D4EFF8;
   }
 
   .tags {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: AlibabaPuHuiTi_3_65_Medium;
     font-weight: 500;
-    font-size: 44.78px;
-    color: #cad9ff;
+    font-size: 51px;
+    color: #5C5C5C;
     letter-spacing: 0;
+    text-align: center;
     margin-top: 16px;
 
     .divider {

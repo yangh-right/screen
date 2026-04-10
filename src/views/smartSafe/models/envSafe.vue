@@ -128,7 +128,7 @@ export default {
       height: 46%;
       padding: 14px 30px;
       margin-bottom: 16px;
-      background-image: linear-gradient(180deg, #003874b3 0%, #00244a33 53%, #00244ab3 100%);
+      background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.1) 53%, rgba(0, 0, 0, 0.4) 100%);
       box-shadow: inset 0 0 20px 0 #007dff4d;
       display: flex;
       justify-content: space-between;

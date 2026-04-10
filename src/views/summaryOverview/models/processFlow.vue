@@ -36,7 +36,7 @@ export default {
     return {
       showPreview: false,
       previewImage: '',
-      processFlowImg: require('@/assets/lightimg/int/process_flow.png')
+      processFlowImg: require('@/assets/lightimg/int/liuchengtu.png')
     };
   },
   methods: {
